@@ -1,10 +1,13 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 
+const env = process.env.NODE_ENV ?? 'development';
+const isProd = env === 'production';
+
 module.exports = {
-  mode: process.env.NODE_ENV ? process.env.NODE_ENV : 'development',
+  mode: env,
   target: 'node',
-  devtool: 'inline-source-map',
+  devtool: isProd ? 'source-map' : 'inline-source-map',
   entry: {
     index: './src/index.ts',
   },
