@@ -1,3 +1,4 @@
+/babel.config.js
 /build
 /src/grammar/*
 !/src/grammar/*.g4
