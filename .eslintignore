@@ -1,0 +1,3 @@
+/build
+/src/grammar/*
+!/src/grammar/*.g4

@@ -1,0 +1,4 @@
+# Ignore artifacts:
+/dist
+/src/grammar/*
+!/src/grammar/*.g4
