@@ -1,8 +1,8 @@
-import { BovadaLexer } from '../../grammar/BovadaLexer';
-import { BovadaParser } from '../../grammar/BovadaParser';
-import { HandHistory } from '../../types';
-import { getParser } from '../../utils/getParser';
-import { Dictionary, groupBy } from '../../utils/groupBy';
+import { BovadaLexer } from '~/grammar/BovadaLexer';
+import { BovadaParser } from '~/grammar/BovadaParser';
+import { HandHistory } from '~/types';
+import { getParser } from '~/utils/getParser';
+import { Dictionary, groupBy } from '~/utils/groupBy';
 import { BovadaHandHistoryVisitor } from './BovadaHandHistoryVisitor';
 import { Line, LineAction, LineMeta, LinePlayer } from './types';
 

@@ -1,7 +1,7 @@
 import { AbstractParseTreeVisitor } from 'antlr4ts/tree/AbstractParseTreeVisitor';
-import { LineActionContext } from '../../grammar/BovadaParser';
-import { BovadaVisitor } from '../../grammar/BovadaVisitor';
-import { Action } from '../../types';
+import { LineActionContext } from '~/grammar/BovadaParser';
+import { BovadaVisitor } from '~/grammar/BovadaVisitor';
+import { Action } from '~/types';
 import { BovadaChipCountVisitor } from './BovadaChipCountVisitor';
 import { NotImplementedError } from './types';
 

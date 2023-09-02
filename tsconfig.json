@@ -15,7 +15,8 @@
     "isolatedModules": true,
     "noEmit": false,
     "rootDir": "src",
-    "outDir": "dist"
+    "outDir": "dist",
+    "paths": { "~/*": ["./src/*"] }
   },
   "include": ["src"]
 }

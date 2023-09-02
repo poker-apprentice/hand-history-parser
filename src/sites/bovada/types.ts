@@ -1,4 +1,4 @@
-import { Action, Game, Limit, Position } from '../../types';
+import { Action, Game, Limit, Position } from '~/types';
 
 interface BaseLine {
   type: string;

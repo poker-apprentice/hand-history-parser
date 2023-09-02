@@ -17,9 +17,9 @@ import {
   LineSmallBlindContext,
   LineStreetContext,
   PositionContext,
-} from '../../grammar/BovadaParser';
-import { BovadaVisitor } from '../../grammar/BovadaVisitor';
-import { Game, HandStrength, Limit, Position, Street } from '../../types';
+} from '~/grammar/BovadaParser';
+import { BovadaVisitor } from '~/grammar/BovadaVisitor';
+import { Game, HandStrength, Limit, Position, Street } from '~/types';
 import { BovadaActionVisitor } from './BovadaActionVisitor';
 import { BovadaChipCountVisitor } from './BovadaChipCountVisitor';
 import { Line } from './types';
