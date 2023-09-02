@@ -1,11 +1,11 @@
 {
-  "name": "poker-hand-history-parser",
+  "name": "@poker-apprentice/hand-history-parser",
   "version": "1.0.0",
   "description": "Parse hand histories from online poker sites",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
-  "repository": "https://github.com/poker-apprentice/poker-hand-history-parser",
+  "repository": "https://github.com/poker-apprentice/hand-history-parser",
   "author": "Matt Huggins <matt.huggins@gmail.com>",
   "license": "MIT",
   "private": false,

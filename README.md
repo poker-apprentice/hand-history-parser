@@ -1,22 +1,19 @@
-# poker-hand-history-parser
+# `@poker-apprentice/hand-history-parser`
 
 Parse hand histories from online poker sites in JavaScript & TypeScript.
 
 ## Installation
 
-Add `poker-hand-history-parser` as a dependency.
+Add `@poker-apprentice/hand-history-parser` as a dependency.
 
-**yarn:**
-
-```bash
-yarn add poker-hand-history-parser
-```
-
-**npm:**
-
-```bash
-npm install poker-hand-history-parser --save
-```
+- yarn:
+  ```bash
+  yarn add @poker-apprentice/hand-history-parser
+  ```
+- npm:
+  ```bash
+  npm install @poker-apprentice/hand-history-parser --save
+  ```
 
 ## Usage
 
@@ -41,7 +38,7 @@ try {
 }
 ```
 
-The value returned is represented as a [`HandHistory`](https://github.com/poker-apprentice/poker-hand-history-parser/blob/main/src/types.ts#L140) type object. For example:
+The value returned is represented as a [`HandHistory`](https://github.com/poker-apprentice/hand-history-parser/blob/main/src/types.ts#L140) type object. For example:
 
 ```js
 {
@@ -271,7 +268,7 @@ The architecture is as straightforward as possible, with the most complex part i
 
 1. Clone the repository:
    ```bash
-   git clone git@github.com:poker-apprentice/poker-hand-history-parser.git
+   git clone git@github.com:poker-apprentice/hand-history-parser.git
    ```
 1. Install dependencies:
    ```bash
