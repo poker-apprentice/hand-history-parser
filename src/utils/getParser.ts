@@ -11,7 +11,8 @@ import {
 } from 'antlr4ts';
 
 interface Constructable<T> {
-  new (...args: any): T;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  new (...args: any[]): T;
 }
 
 interface Options<L extends Lexer, P extends Parser> {
