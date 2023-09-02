@@ -21,34 +21,6 @@ export type Position = 'SB' | 'BB' | 'UTG' | 'UTG+1' | 'UTG+2' | 'MP' | 'LJ' | '
 
 export type Street = 'preflop' | 'flop' | 'turn' | 'river';
 
-export interface HandSummary {
-  site: Site;
-  handNumber: string;
-  timestamp: Date;
-  game: Game;
-  limit: Limit;
-  fastFold: boolean;
-  position: Position;
-  street: Street;
-  tableSize: number;
-  stackSize: string;
-  blinds: string[];
-  bigBlind: string;
-  stakes: string;
-  cards: string;
-  hand: string;
-  handStrength: HandStrength | undefined;
-  won: string;
-  numFolds: number;
-  numChecks: number;
-  numCalls: number;
-  numBets: number;
-  numRaises: number;
-  lastStreetSeen: Street;
-  vpip: boolean;
-  wentToShowdown: boolean;
-}
-
 export interface GameInfo {
   site: Site;
   handNumber: string;
@@ -62,25 +34,39 @@ export interface GameInfo {
 
 export interface Player {
   name: string;
+  seatNumber: number;
   position: Position;
-  chipStack: number;
+  chipStack: string;
+  isHero: boolean;
+}
+
+export interface PlayerHand {
+  cards: string[];
+  madeHand: string[];
+  madeHandStrength: HandStrength;
 }
 
 export interface BaseAction {
   type: string;
 }
 
-export interface AnteAction extends BaseAction {
-  type: 'ante';
+export interface PostAction extends BaseAction {
+  type: 'post';
+  postType: 'blind' | 'ante' | 'dead';
   playerName: string;
   amount: string;
 }
 
-export interface DealAction extends BaseAction {
-  type: 'deal';
+export interface DealHandAction extends BaseAction {
+  type: 'deal-hand';
   playerName: string;
-  cardCount: number;
-  cards?: string[];
+  cards: string[];
+}
+
+export interface DealBoardAction extends BaseAction {
+  type: 'deal-board';
+  street: Street;
+  cards: string[];
 }
 
 export interface BoardAction extends BaseAction {
@@ -88,27 +74,28 @@ export interface BoardAction extends BaseAction {
   cards: string[];
 }
 
-export interface PostBlindAction extends BaseAction {
-  type: 'post-blind';
+export interface BetAction extends BaseAction {
+  type: 'bet';
   playerName: string;
   amount: string;
-}
-
-export interface FoldAction extends BaseAction {
-  type: 'fold';
-  playerName: string;
+  isAllIn: boolean;
 }
 
 export interface CallAction extends BaseAction {
   type: 'call';
   playerName: string;
   amount: string;
+  isAllIn: boolean;
 }
 
-export interface BetAction extends BaseAction {
-  type: 'bet';
+export interface CheckAction extends BaseAction {
+  type: 'check';
   playerName: string;
-  amount: string;
+}
+
+export interface FoldAction extends BaseAction {
+  type: 'fold';
+  playerName: string;
 }
 
 export interface RaiseAction extends BaseAction {
@@ -120,9 +107,7 @@ export interface RaiseAction extends BaseAction {
 
 export interface ShowdownAction extends BaseAction {
   type: 'showdown';
-  playername: string;
-  cards: string[];
-  hand: string[];
+  playerName: string;
   handStrength: HandStrength;
 }
 
@@ -130,6 +115,7 @@ export interface AwardPotAction extends BaseAction {
   type: 'award-pot';
   playerName: string;
   amount: string;
+  isSidePot: boolean;
 }
 
 export interface MuckAction extends BaseAction {
@@ -138,13 +124,14 @@ export interface MuckAction extends BaseAction {
 }
 
 export type Action =
-  | AnteAction
-  | PostBlindAction
-  | DealAction
+  | PostAction
+  | DealHandAction
+  | DealBoardAction
   | BoardAction
-  | FoldAction
-  | CallAction
   | BetAction
+  | CallAction
+  | CheckAction
+  | FoldAction
   | RaiseAction
   | ShowdownAction
   | AwardPotAction

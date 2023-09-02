@@ -51,13 +51,10 @@ export const getHand = (cards: string[]) => {
   const ranks = cards.map((card) => card[0]);
   const suits = cards.map((card) => card[1]);
 
-  const suitCounts = suits.reduce(
-    (counts, rank) => {
-      const count = counts[rank] ?? 0;
-      return { ...counts, [rank]: count + 1 };
-    },
-    {} as Record<string, number>,
-  );
+  const suitCounts = suits.reduce((counts, rank) => {
+    const count = counts[rank] ?? 0;
+    return { ...counts, [rank]: count + 1 };
+  }, {} as Record<string, number>);
 
   const suitedCount = Object.keys(
     filterObject(suitCounts, (numCards: number) => numCards >= 2),

@@ -1,89 +1,81 @@
-import BigNumber from 'bignumber.js';
-import { getParser } from '../../utils/getParser';
 import { BovadaLexer } from '../../grammar/BovadaLexer';
 import { BovadaParser } from '../../grammar/BovadaParser';
-import { HandSummary } from '../../types';
-import { getHand } from '../../utils/getHand';
-import { BovadaHandHistoryVisitor, Result } from './BovadaHandHistoryVisitor';
+import { HandHistory } from '../../types';
+import { getParser } from '../../utils/getParser';
+import { Dictionary, groupBy } from '../../utils/groupBy';
+import { BovadaHandHistoryVisitor } from './BovadaHandHistoryVisitor';
+import { Line, LineAction, LineMeta, LinePlayer } from './types';
 
-const formatCurrency = (n: BigNumber) => {
-  if (n.isInteger()) {
-    return n.toString();
-  }
-  return n.toFixed(2);
-};
+type LineDictionary = Dictionary<Line>;
 
-const getVPIP = ({ blinds, position, won }: Result) => {
-  if (position === 'BB') {
-    const bigBlind = blinds[blinds.length - 1];
-    return !won.isEqualTo(bigBlind);
-  }
-  if (position === 'SB') {
-    const smallBlind = blinds[0];
-    return !won.isEqualTo(smallBlind);
-  }
-  return !won.isEqualTo(0);
-};
+class LineNotFoundError extends Error {}
 
-const formatResult = (result: Result): HandSummary => {
-  if (result.handNumber === undefined) {
-    throw new Error('Unable to parse hand number');
+const getInfo = (lines: LineDictionary): HandHistory['info'] => {
+  const meta: LineMeta | undefined = lines.meta?.[0];
+  if (!meta) {
+    throw new LineNotFoundError('Missing meta information');
   }
-  if (!result.timestamp) {
-    throw new Error('Unable to parse timestamp');
+
+  const smallBlind = lines.smallBlind?.[0];
+  const bigBlind = lines.bigBlind?.[0];
+  if (!smallBlind && !bigBlind) {
+    throw new LineNotFoundError('Missing blind information');
   }
-  if (!result.game) {
-    throw new Error('Unable to parse game');
-  }
-  if (!result.lastStreetSeen) {
-    throw new Error('Unable to parse last street seen');
-  }
-  if (!result.limit) {
-    throw new Error('Unable to parse limit');
-  }
-  if (!result.position) {
-    throw new Error('Unable to parse position');
-  }
-  if (!result.street) {
-    throw new Error('Unable to parse street');
-  }
-  if (!result.stackSize) {
-    throw new Error('Unable to parse stack size');
-  }
+
   return {
-    site: result.site,
-    handNumber: result.handNumber,
-    timestamp: result.timestamp,
-    fastFold: result.fastFold,
-    game: result.game,
-    limit: result.limit,
-    position: result.position,
-    street: result.street,
-    tableSize: result.occupiedSeats.length,
-    stackSize: formatCurrency(result.stackSize),
-    blinds: result.blinds.map(formatCurrency),
-    bigBlind: result.blinds[result.blinds.length - 1].toString(),
-    stakes: result.blinds.join('/'),
-    cards: result.cards.join(''),
-    hand: getHand(result.cards),
-    handStrength: result.handStrength,
-    lastStreetSeen: result.lastStreetSeen,
-    numFolds: result.numFolds,
-    numChecks: result.numChecks,
-    numCalls: result.numCalls,
-    numBets: result.numBets,
-    numRaises: result.numRaises,
-    vpip: getVPIP(result),
-    wentToShowdown: result.wentToShowdown,
-    won: formatCurrency(result.won),
+    blinds: [smallBlind.chipCount, bigBlind.chipCount],
+    currency: 'USD',
+    game: meta.game,
+    handNumber: meta.handNumber,
+    isFastFold: meta.fastFold,
+    limit: meta.limit,
+    site: 'bovada',
+    timestamp: meta.timestamp,
   };
 };
 
-export const parseHand = (hand: string) => {
-  const parser = getParser(hand, { lexer: BovadaLexer, parser: BovadaParser });
-  const tree = parser.handHistory();
-  const visitor = new BovadaHandHistoryVisitor();
-  const result = visitor.visit(tree);
+const getPlayers = (lines: LineDictionary): HandHistory['players'] => {
+  const players: LinePlayer[] = lines.player ?? [];
 
-  return result.position === undefined ? undefined : formatResult(result);
+  return players.map((player) => ({
+    name: player.name,
+    position: player.position,
+    seatNumber: player.seatNumber,
+    chipStack: player.chipCount,
+    isHero: player.isHero,
+  }));
+};
+
+const getActions = (lines: LineDictionary): HandHistory['actions'] => {
+  const actions: LineAction[] = lines.action ?? [];
+  if (actions.some(({ type }) => type !== 'action')) {
+    throw new LineNotFoundError('Missing actions');
+  }
+
+  return actions.map(({ action }, index) => {
+    // Reconcile 'bet' all-ins that should be treated as 'call' all-ins. (Bovada does not
+    // differentiate these actions in their hand histories.)
+    if (action.type === 'bet' && action.isAllIn) {
+      const previousAction = actions[index - 1]?.action;
+      if (previousAction?.type === 'bet' || previousAction?.type === 'raise') {
+        return { ...action, type: 'call' };
+      }
+    }
+    return action;
+  });
+};
+
+export const parseHand = (hand: string): HandHistory => {
+  const parser = getParser(hand, { lexer: BovadaLexer, parser: BovadaParser });
+  const context = parser.handHistory();
+
+  const visitor = new BovadaHandHistoryVisitor();
+  const lines = visitor.visit(context);
+  const groupedLines = groupBy(lines, 'type');
+
+  return {
+    info: getInfo(groupedLines),
+    players: getPlayers(groupedLines),
+    actions: getActions(groupedLines),
+  };
 };

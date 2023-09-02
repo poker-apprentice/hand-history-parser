@@ -1,27 +1,14 @@
 import { ParserRuleContext } from 'antlr4ts';
 import { Interval } from 'antlr4ts/misc/Interval';
 import { AbstractParseTreeVisitor } from 'antlr4ts/tree/AbstractParseTreeVisitor';
-import { ParseTree } from 'antlr4ts/tree/ParseTree';
-import BigNumber from 'bignumber.js';
+import { TerminalNode } from 'antlr4ts/tree/TerminalNode';
 import {
-  ActionAllInContext,
-  ActionAllInRaiseContext,
-  ActionBetContext,
-  ActionCallContext,
-  ActionCheckContext,
-  ActionFoldContext,
-  ActionRaiseContext,
-  BoardSectionsContext,
-  CardContext,
-  ChipCountContext,
   GameContext,
-  HandNumberContext,
   HandStrengthContext,
   LimitContext,
   LineActionContext,
-  LineBigBlindContext,
-  LineBoardContext,
   LineHandsDealtContext,
+  LineMetaContext,
   LineMuckContext,
   LinePlayerContext,
   LinePostContext,
@@ -29,66 +16,69 @@ import {
   LineShowdownContext,
   LineSmallBlindContext,
   LineStreetContext,
-  LineUncalledContext,
   PositionContext,
-  TimestampContext,
 } from '../../grammar/BovadaParser';
 import { BovadaVisitor } from '../../grammar/BovadaVisitor';
 import { Game, HandStrength, Limit, Position, Street } from '../../types';
+import { BovadaActionVisitor } from './BovadaActionVisitor';
+import { BovadaChipCountVisitor } from './BovadaChipCountVisitor';
+import { Line } from './types';
 
-export interface Result {
-  site: 'bovada';
-  handNumber: undefined | string;
-  timestamp: undefined | Date;
-  game: undefined | Game;
-  limit: undefined | Limit;
-  fastFold: boolean;
-  position: undefined | Position;
-  street: undefined | Street;
-  stackSize: undefined | BigNumber;
-  occupiedSeats: number[];
-  blinds: BigNumber[];
-  cards: string[];
-  board: string[];
-  won: BigNumber;
-  numFolds: number;
-  numChecks: number;
-  numCalls: number;
-  numBets: number;
-  numRaises: number;
-  lastStreetSeen: undefined | Street;
-  wentToShowdown: boolean;
-  handStrength: undefined | HandStrength;
-}
+const getSubstring = (ctx: ParserRuleContext): string => {
+  const { start, stop } = ctx;
+  if (!start.inputStream || !stop || start.startIndex < 0 || stop.stopIndex < 0) {
+    return start.text ?? '';
+  }
+  return start.inputStream.getText(Interval.of(start.startIndex, stop.stopIndex));
+};
 
-const partialResult = (result: Partial<Result> = {}): Result => ({
-  site: 'bovada',
-  handNumber: undefined,
-  timestamp: undefined,
-  game: undefined,
-  limit: undefined,
-  fastFold: false,
-  position: undefined,
-  street: undefined,
-  stackSize: undefined,
-  occupiedSeats: [],
-  blinds: [],
-  cards: [],
-  board: [],
-  won: new BigNumber(0),
-  numFolds: 0,
-  numChecks: 0,
-  numCalls: 0,
-  numBets: 0,
-  numRaises: 0,
-  lastStreetSeen: undefined,
-  wentToShowdown: false,
-  handStrength: undefined,
-  ...result,
-});
+const getGame = (ctx: GameContext): Game => {
+  switch (ctx.text) {
+    case 'HOLDEM':
+    case 'HOLDEMZonePoker':
+      return 'holdem';
+    case 'OMAHA':
+    case 'OMAHAZonePoker':
+      return 'omaha';
+    default:
+      throw new Error(`Unexpected game: "${ctx.text}"`);
+  }
+};
 
-const getStreet = (value: string): Street | undefined => {
-  switch (value) {
+const getLimit = (ctx: LimitContext): Limit => {
+  switch (ctx.text) {
+    case 'Limit':
+      return 'limit';
+    case 'No Limit':
+      return 'no limit';
+    case 'Pot Limit':
+      return 'pot limit';
+    default:
+      throw new Error(`Unexpected limit: "${ctx.text}"`);
+  }
+};
+
+const getPosition = (ctx: PositionContext): Position => {
+  switch (ctx.text) {
+    case 'Small Blind':
+      return 'SB';
+    case 'Big Blind':
+      return 'BB';
+    case 'UTG':
+      return 'UTG';
+    case 'UTG+1':
+      return 'UTG+1';
+    case 'UTG+2':
+      return 'UTG+2';
+    case 'Dealer':
+      return 'BTN';
+    default:
+      throw new Error(`Unexpected position: "${ctx.text}"`);
+  }
+};
+
+const getStreet = (ctx: TerminalNode): Street | undefined => {
+  switch (ctx.text) {
     case 'HOLE CARDS':
       return 'preflop';
     case 'FLOP':
@@ -100,12 +90,12 @@ const getStreet = (value: string): Street | undefined => {
     case 'SUMMARY':
       return undefined;
     default:
-      throw new Error(`Unexpected street: "${value}"`);
+      throw new Error(`Unexpected street: "${ctx.text}"`);
   }
 };
 
-const getHandStrength = (value: string): HandStrength => {
-  switch (value) {
+const getHandStrength = (ctx: HandStrengthContext): HandStrength => {
+  switch (ctx.text) {
     case 'High Card':
       return HandStrength.HighCard;
     case 'One pair':
@@ -127,333 +117,139 @@ const getHandStrength = (value: string): HandStrength => {
     case 'Royal Straight Flush':
       return HandStrength.RoyalFlush;
     default:
-      throw new Error(`Unexpected hand strength: "${value}"`);
+      throw new Error(`Unexpected hand strength: "${ctx.text}"`);
   }
-};
-
-// TODO: we're assuming commas are always thousands separators, but that may depend on locale
-const parseNumber = (num: string) => new BigNumber(num.replace(',', ''));
-
-const hasAncestor = (node: ParseTree, cls: any): boolean => {
-  if (node instanceof cls) {
-    return true;
-  }
-  if (!node.parent) {
-    return false;
-  }
-  return hasAncestor(node.parent, cls);
 };
 
 export class BovadaHandHistoryVisitor
-  extends AbstractParseTreeVisitor<Result>
-  implements BovadaVisitor<Result>
+  extends AbstractParseTreeVisitor<Line[]>
+  implements BovadaVisitor<Line[]>
 {
-  isHero = false;
-  heroFolded = false;
-
-  protected defaultResult(): Result {
-    return partialResult();
+  protected defaultResult(): Line[] {
+    return [];
   }
 
-  aggregateResult(aggregate: Result, nextResult: Result) {
-    return {
-      site: aggregate.site,
-      handNumber: nextResult.handNumber ?? aggregate.handNumber,
-      timestamp: nextResult.timestamp ?? aggregate.timestamp,
-      game: nextResult.game ?? aggregate.game,
-      limit: nextResult.limit ?? aggregate.limit,
-      fastFold: nextResult.fastFold || aggregate.fastFold,
-      position: nextResult.position ?? aggregate.position,
-      street: nextResult.street ?? aggregate.street,
-      stackSize: nextResult.stackSize ?? aggregate.stackSize,
-      occupiedSeats: [...aggregate.occupiedSeats, ...nextResult.occupiedSeats].sort(),
-      blinds: [...aggregate.blinds, ...nextResult.blinds],
-      cards: [...aggregate.cards, ...nextResult.cards],
-      board: nextResult.board.length > 0 ? nextResult.board : aggregate.board,
-      won: aggregate.won.plus(nextResult.won),
-      numFolds: nextResult.numFolds + aggregate.numFolds,
-      numChecks: nextResult.numChecks + aggregate.numChecks,
-      numCalls: nextResult.numCalls + aggregate.numCalls,
-      numBets: nextResult.numBets + aggregate.numBets,
-      numRaises: nextResult.numRaises + aggregate.numRaises,
-      lastStreetSeen: nextResult.lastStreetSeen ?? aggregate.lastStreetSeen,
-      wentToShowdown: nextResult.wentToShowdown || aggregate.wentToShowdown,
-      handStrength: nextResult.handStrength ?? aggregate.handStrength,
-    };
+  protected aggregateResult(aggregate: Line[], nextResult: Line[]): Line[] {
+    return [...aggregate, ...nextResult];
   }
 
-  visitFastFold(): Result {
-    return partialResult({ fastFold: true });
+  public visitLineAction(ctx: LineActionContext): Line[] {
+    const actions = new BovadaActionVisitor().visit(ctx);
+    return actions.map((action) => ({ type: 'action', action }));
   }
 
-  visitHandNumber(ctx: HandNumberContext): Result {
-    return partialResult({ handNumber: ctx.text });
-  }
+  public visitLineMeta(ctx: LineMetaContext): Line[] {
+    const handNumber = ctx.handNumber().text;
 
-  visitTimestamp(ctx: TimestampContext): Result {
-    // TODO: This parses the date using the current time zone.
-    // Instead, we'll need the user's time zone & to pass it through.
-    const text = this.getSubstring(ctx);
+    const gameContext = ctx.game();
+    const game = getGame(gameContext);
+
+    const limit = getLimit(ctx.limit());
+
+    const fastFold =
+      !!ctx.fastFold() ||
+      gameContext.text === 'HOLDEMZonePoker' ||
+      gameContext.text === 'OMAHAZonePoker'; // TODO: OMAHA8 version of ZonePoker?
+
+    const text = getSubstring(ctx.timestamp());
     const t = text.split(/\D/).map(Number);
     const timestamp = new Date(t[0], t[1] - 1, t[2], t[3], t[4], t[5]);
-    return partialResult({ timestamp });
+
+    return [{ type: 'meta', handNumber, fastFold, game, limit, timestamp }];
   }
 
-  visitGame(ctx: GameContext): Result {
-    const value = ctx.text;
-    switch (value) {
-      case 'HOLDEM':
-        return partialResult({ game: 'holdem' });
-      case 'HOLDEMZonePoker':
-        return partialResult({ game: 'holdem', fastFold: true });
-      case 'OMAHA':
-        return partialResult({ game: 'omaha' });
-      case 'OMAHAZonePoker':
-        return partialResult({ game: 'omaha', fastFold: true });
-      default:
-        throw new Error(`Unexpected game: "${value}"`);
-    }
+  public visitLineSmallBlind(ctx: LineSmallBlindContext): Line[] {
+    const chipCount = new BovadaChipCountVisitor().visit(ctx.chipCount()).toString();
+    const playerName = 'Small Blind';
+    return [
+      { type: 'smallBlind', chipCount },
+      {
+        type: 'action',
+        action: { type: 'post', amount: chipCount, playerName, postType: 'blind' },
+      },
+    ];
   }
 
-  visitLineAction(ctx: LineActionContext): Result {
-    return this.useHero(!!ctx.ME(), () => this.visitChildren(ctx));
+  public visitLineBigBlind(ctx: LineSmallBlindContext): Line[] {
+    const chipCount = new BovadaChipCountVisitor().visit(ctx.chipCount()).toString();
+    const playerName = 'Big Blind';
+    return [
+      { type: 'bigBlind', chipCount },
+      {
+        type: 'action',
+        action: { type: 'post', amount: chipCount, playerName, postType: 'blind' },
+      },
+    ];
   }
 
-  visitLineSmallBlind(ctx: LineSmallBlindContext): Result {
-    return this.useHero(!!ctx.ME(), () => this.visitChildren(ctx));
+  public visitLinePost(ctx: LinePostContext): Line[] {
+    const chipCount = new BovadaChipCountVisitor().visit(ctx.chipCount()).toString();
+    const isDead = !!ctx.DEAD();
+    const playerName = ctx.position().text;
+    return [
+      {
+        type: 'action',
+        action: { type: 'post', amount: chipCount, playerName, postType: isDead ? 'dead' : 'ante' },
+      },
+    ];
   }
 
-  visitLineBigBlind(ctx: LineBigBlindContext): Result {
-    return this.useHero(!!ctx.ME(), () => this.visitChildren(ctx));
+  public visitLinePlayer(ctx: LinePlayerContext): Line[] {
+    const seatNumber = Number(ctx.seatNumber().text);
+    const position = getPosition(ctx.position());
+    const chipCount = new BovadaChipCountVisitor().visit(ctx.chipCount()).toString();
+    const isHero = !!ctx.ME();
+
+    return [{ type: 'player', name: position, position, seatNumber, chipCount, isHero }];
   }
 
-  visitLineHandsDealt(ctx: LineHandsDealtContext): Result {
-    return this.useHero(!!ctx.ME(), () => this.visitChildren(ctx));
-  }
-
-  visitLinePlayer(ctx: LinePlayerContext): Result {
-    const stackSize = ctx.ME() ? parseNumber(ctx.chipCount().value().text) : undefined;
-    return partialResult({ occupiedSeats: [Number(ctx.INT().text)], stackSize });
-  }
-
-  visitLinePost(ctx: LinePostContext): Result {
-    return this.useHero(!!ctx.ME(), () => this.visitChildren(ctx));
-  }
-
-  visitLineUncalled(ctx: LineUncalledContext): Result {
-    return this.useHero(!!ctx.ME(), () => this.visitChildren(ctx));
-  }
-
-  visitLineResult(ctx: LineResultContext): Result {
-    return this.useHero(!!ctx.ME(), () => this.visitChildren(ctx));
-  }
-
-  visitLineStreet(ctx: LineStreetContext): Result {
-    const result: Partial<Result> = {
-      street: getStreet(ctx.STREET().text),
-    };
-    if (result.street !== undefined && !this.heroFolded) {
-      result.lastStreetSeen = result.street;
-    }
-    return partialResult({ ...this.visitChildren(ctx), ...result });
-  }
-
-  visitLineBoard(ctx: LineBoardContext): Result {
-    const board: string[] = [];
-    ctx
-      .board()
-      .cards()
-      .children?.forEach((child) => {
-        if (child instanceof CardContext) {
-          board.push(child.text);
-        }
-      });
-    return partialResult({ board });
-  }
-
-  visitLineMuck(ctx: LineMuckContext): Result {
-    return this.useHero(!!ctx.ME(), () => this.visitChildren(ctx));
-  }
-
-  visitLineShowdown(ctx: LineShowdownContext): Result {
-    return this.useHero(!!ctx.ME(), () => ({ ...this.visitChildren(ctx), wentToShowdown: true }));
-  }
-
-  // sometimes the SUMMARY data is missing (this seems to occur more in Zone/Fast-Fold Poker
-  // hands), so we have to reconstruct the board from the last street encountered.
-  visitBoardSections(ctx: BoardSectionsContext): Result {
-    const board: string[] = [];
-    ctx.board().forEach((boardContext) => {
-      boardContext.cards().children?.forEach((child) => {
-        if (child instanceof CardContext) {
-          board.push(child.text);
-        }
-      });
-    });
-    return partialResult({ board });
-  }
-
-  visitChipCount(ctx: ChipCountContext): Result {
-    const blinds: BigNumber[] = [];
-    let won = new BigNumber(0);
-    const amount = parseNumber(ctx.value().text);
-
-    const isBlind =
-      hasAncestor(ctx, LineBigBlindContext) || hasAncestor(ctx, LineSmallBlindContext);
-
-    // capture blinds/stakes
-    if (isBlind) {
-      blinds.push(amount);
+  public visitLineStreet(ctx: LineStreetContext): Line[] {
+    const street = getStreet(ctx.STREET());
+    if (!street || street === 'preflop') {
+      return [];
     }
 
-    // hero posted blind
-    if (isBlind && this.isHero) {
-      won = amount.times(-1);
-    }
+    const boardSections = ctx.boardSections();
+    const cards =
+      boardSections
+        ?.board()
+        .at(-1)
+        ?.cards()
+        .card()
+        .map((card) => card.text) ?? [];
 
-    // hero posted dead blind
-    if (this.isHero && hasAncestor(ctx, LinePostContext)) {
-      won = amount.times(-1);
-    }
-
-    // hero won the pot
-    if (this.isHero && hasAncestor(ctx, LineResultContext)) {
-      won = amount;
-    }
-
-    // hero bet, called, or called all-in
-    if (
-      this.isHero &&
-      (hasAncestor(ctx, ActionBetContext) ||
-        hasAncestor(ctx, ActionCallContext) ||
-        hasAncestor(ctx, ActionAllInContext))
-    ) {
-      won = amount.times(-1);
-    }
-
-    // hero raised or raised all-in
-    if (
-      this.isHero &&
-      (hasAncestor(ctx, ActionRaiseContext) || hasAncestor(ctx, ActionAllInRaiseContext))
-    ) {
-      if (ctx.parent?.getChild(ctx.parent?.childCount - 1) !== ctx) {
-        won = amount.times(-1);
-      }
-    }
-
-    // hero has an uncalled bet returned
-    if (this.isHero && hasAncestor(ctx, LineUncalledContext)) {
-      won = amount;
-    }
-
-    return partialResult({ blinds, won });
+    return [{ type: 'action', action: { type: 'deal-board', street, cards } }];
   }
 
-  visitCard(ctx: CardContext): Result {
-    if (this.isHero && hasAncestor(ctx, LineHandsDealtContext)) {
-      return partialResult({ cards: [ctx.text] });
-    }
-    return this.visitChildren(ctx);
+  public visitLineHandsDealt(ctx: LineHandsDealtContext): Line[] {
+    const playerName = ctx.position().text;
+    const cards =
+      ctx
+        .hand()
+        .cards()
+        .card()
+        .map((card) => card.text) ?? [];
+
+    return [{ type: 'action', action: { type: 'deal-hand', playerName, cards } }];
   }
 
-  visitLimit(ctx: LimitContext): Result {
-    const value = ctx.text;
-    switch (value) {
-      case 'Limit':
-        return partialResult({ limit: 'limit' });
-      case 'No Limit':
-        return partialResult({ limit: 'no limit' });
-      case 'Pot Limit':
-        return partialResult({ limit: 'pot limit' });
-      default:
-        throw new Error(`Unexpected limit: "${value}"`);
-    }
+  public visitLineMuck(ctx: LineMuckContext): Line[] {
+    const playerName = ctx.position().text;
+    return [{ type: 'action', action: { type: 'muck', playerName } }];
   }
 
-  visitPosition(ctx: PositionContext): Result {
-    if (this.isHero && hasAncestor(ctx, LineHandsDealtContext)) {
-      const value = ctx.text;
-      switch (value) {
-        case 'Small Blind':
-          return partialResult({ position: 'SB' });
-        case 'Big Blind':
-          return partialResult({ position: 'BB' });
-        case 'UTG':
-          return partialResult({ position: 'UTG' });
-        case 'UTG+1':
-          return partialResult({ position: 'UTG+1' });
-        case 'UTG+2':
-          return partialResult({ position: 'UTG+2' });
-        case 'Dealer':
-          return partialResult({ position: 'BTN' });
-        default:
-          throw new Error(`Unexpected position: "${value}"`);
-      }
-    }
-    return this.visitChildren(ctx);
+  public visitLineShowdown(ctx: LineShowdownContext): Line[] {
+    const playerName = ctx.position().text;
+    const handStrength = getHandStrength(ctx.handStrength());
+    return [{ type: 'action', action: { type: 'showdown', playerName, handStrength } }];
   }
 
-  visitActionFold(ctx: ActionFoldContext): Result {
-    if (this.isHero) {
-      this.heroFolded = true;
-    }
-
-    return {
-      ...this.visitChildren(ctx),
-      numFolds: this.isHero ? 1 : 0,
-    };
-  }
-
-  visitActionCheck(ctx: ActionCheckContext): Result {
-    return {
-      ...this.visitChildren(ctx),
-      numChecks: this.isHero ? 1 : 0,
-    };
-  }
-
-  visitActionCall(ctx: ActionCallContext): Result {
-    return {
-      ...this.visitChildren(ctx),
-      numCalls: this.isHero ? 1 : 0,
-    };
-  }
-
-  visitActionBet(ctx: ActionBetContext): Result {
-    return {
-      ...this.visitChildren(ctx),
-      numBets: this.isHero ? 1 : 0,
-    };
-  }
-
-  visitActionRaise(ctx: ActionRaiseContext): Result {
-    return {
-      ...this.visitChildren(ctx),
-      numRaises: this.isHero ? 1 : 0,
-    };
-  }
-
-  visitHandStrength(ctx: HandStrengthContext): Result {
-    if (this.isHero) {
-      return partialResult({ handStrength: getHandStrength(ctx.text) });
-    }
-    return this.visitChildren(ctx);
-  }
-
-  private useHero(isHero: boolean, callback: () => Result) {
-    const originalValue = this.isHero;
-    this.isHero = isHero;
-    try {
-      return callback();
-    } finally {
-      this.isHero = originalValue;
-    }
-  }
-
-  private getSubstring(ctx: ParserRuleContext): string {
-    const { start, stop } = ctx;
-    if (!start.inputStream || !stop || start.startIndex < 0 || stop.stopIndex < 0) {
-      return start.text ?? '';
-    }
-    return start.inputStream.getText(Interval.of(start.startIndex, stop.stopIndex));
+  public visitLineResult(ctx: LineResultContext): Line[] {
+    const playerName = ctx.position().text;
+    const isSidePot = !!ctx.SIDEPOT();
+    const chipCount = new BovadaChipCountVisitor().visit(ctx.chipCount()).toString();
+    return [
+      { type: 'action', action: { type: 'award-pot', playerName, amount: chipCount, isSidePot } },
+    ];
   }
 }

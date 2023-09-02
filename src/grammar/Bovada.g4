@@ -24,11 +24,11 @@ line:
 
 // lines of text
 lineMeta       : 'Bovada Hand' '#' handNumber fastFold? ('TBL#' | 'ID#') INT game limit '-' timestamp;
-linePlayer     : 'Seat' INT COLON position ME? '(' chipCount 'in chips)';
+linePlayer     : 'Seat' seatNumber COLON position ME? '(' chipCount 'in chips)';
 lineDealer     : ('Dealer' ME? COLON)? 'Set dealer' ('[' INT ']')?;
 lineSmallBlind : ('Small Blind' | 'Dealer') ME? COLON 'Small Blind' chipCount;
 lineBigBlind   : 'Big Blind' ME? COLON 'Big blind' chipCount;
-linePost       : position ME? COLON 'Posts' 'dead'? 'chip' chipCount;
+linePost       : position ME? COLON 'Posts' DEAD? 'chip' chipCount;
 lineStreet     : '***' STREET '***' boardSections?;
 lineHandsDealt : position ME? COLON 'Card dealt to a spot' hand;
 lineMisc       :
@@ -49,7 +49,7 @@ lineAction     : position ME? COLON action;
 lineMuck       : position ME? COLON 'Does not show' hand '(' handStrength ')';
 lineUncalled   : position ME? COLON 'Return uncalled portion of bet' chipCount;
 lineShowdown   : position ME? COLON showdownAction  hand? '(' handStrength ')';
-lineResult     : position ME? COLON 'Hand result' ('-' 'Side pot')? chipCount;
+lineResult     : position ME? COLON 'Hand result' ('-' SIDEPOT)? chipCount;
 lineTotalPot   : 'Total Pot' '(' chipCount ')';
 lineBoard      : 'Board' board;
 lineActionSummary:
@@ -64,6 +64,7 @@ lineActionSummary:
 
 // parser rules
 handNumber   : INT;
+seatNumber   : INT;
 timestamp    : INT '-' INT '-' INT INT ':' INT ':' INT;
 game         : 'HOLDEM' | 'OMAHA' | 'HOLDEMZonePoker' | 'OMAHAZonePoker';
 limit        : 'No Limit' | 'Pot Limit' | 'Limit';
@@ -93,6 +94,8 @@ showdownAction: 'Showdown' | 'Mucks';
 ME           : '[ME]';
 STREET       : 'HOLE CARDS' | 'FLOP' | 'TURN' | 'RIVER' | 'SUMMARY';
 FASTFOLD     : 'Zone Poker';
+DEAD         : 'dead';
+SIDEPOT      : 'Side pot';
 COLON        : ':';
 INT          : [0-9]+;
 CARD         : [2-9TJQKA][cdhs];
