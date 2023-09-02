@@ -10,5 +10,6 @@ module.exports = {
         alias: { '~': path.resolve(__dirname, 'src') },
       },
     ],
+    '@babel/plugin-transform-runtime',
   ],
 };
