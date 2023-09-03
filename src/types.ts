@@ -102,6 +102,7 @@ export interface RaiseAction extends BaseAction {
   type: 'raise';
   playerName: string;
   amount: string;
+  totalBet: string;
   isAllIn: boolean;
 }
 

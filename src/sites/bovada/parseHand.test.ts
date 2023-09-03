@@ -572,9 +572,10 @@ describe('parseHand', () => {
             "type": "fold",
           },
           {
-            "amount": "1",
+            "amount": "0.9",
             "isAllIn": false,
             "playerName": "Small Blind",
+            "totalBet": "1",
             "type": "raise",
           },
           {
@@ -765,6 +766,7 @@ describe('parseHand', () => {
             "amount": "1",
             "isAllIn": false,
             "playerName": "Dealer",
+            "totalBet": "1",
             "type": "raise",
           },
           {
@@ -772,9 +774,10 @@ describe('parseHand', () => {
             "type": "fold",
           },
           {
-            "amount": "3.5",
+            "amount": "3.25",
             "isAllIn": false,
             "playerName": "Big Blind",
+            "totalBet": "3.5",
             "type": "raise",
           },
           {
@@ -1170,6 +1173,7 @@ describe('parseHand', () => {
             "amount": "3.19",
             "isAllIn": false,
             "playerName": "Small Blind",
+            "totalBet": "3.19",
             "type": "raise",
           },
           {
@@ -1348,6 +1352,7 @@ describe('parseHand', () => {
             "amount": "0.62",
             "isAllIn": false,
             "playerName": "Dealer",
+            "totalBet": "0.62",
             "type": "raise",
           },
           {
@@ -1383,6 +1388,7 @@ describe('parseHand', () => {
             "amount": "1.47",
             "isAllIn": false,
             "playerName": "Small Blind",
+            "totalBet": "1.47",
             "type": "raise",
           },
           {
@@ -1550,6 +1556,7 @@ describe('parseHand', () => {
             "amount": "0.65",
             "isAllIn": false,
             "playerName": "UTG",
+            "totalBet": "0.65",
             "type": "raise",
           },
           {
@@ -1593,18 +1600,21 @@ describe('parseHand', () => {
             "amount": "2.25",
             "isAllIn": false,
             "playerName": "Big Blind",
+            "totalBet": "2.25",
             "type": "raise",
           },
           {
-            "amount": "4",
+            "amount": "3.25",
             "isAllIn": false,
             "playerName": "UTG",
+            "totalBet": "4",
             "type": "raise",
           },
           {
-            "amount": "34",
+            "amount": "31.75",
             "isAllIn": true,
             "playerName": "Big Blind",
+            "totalBet": "34",
             "type": "raise",
           },
           {
@@ -2032,6 +2042,7 @@ describe('parseHand', () => {
             "amount": "2.8",
             "isAllIn": false,
             "playerName": "Big Blind",
+            "totalBet": "2.8",
             "type": "raise",
           },
           {
@@ -2187,6 +2198,7 @@ describe('parseHand', () => {
             "amount": "4.5",
             "isAllIn": false,
             "playerName": "UTG+1",
+            "totalBet": "4.5",
             "type": "raise",
           },
           {
@@ -2206,21 +2218,24 @@ describe('parseHand', () => {
             "type": "fold",
           },
           {
-            "amount": "15",
+            "amount": "14",
             "isAllIn": false,
             "playerName": "UTG",
+            "totalBet": "15",
             "type": "raise",
           },
           {
-            "amount": "46.5",
+            "amount": "42",
             "isAllIn": false,
             "playerName": "UTG+1",
+            "totalBet": "46.5",
             "type": "raise",
           },
           {
-            "amount": "48.51",
+            "amount": "33.51",
             "isAllIn": true,
             "playerName": "UTG",
+            "totalBet": "48.51",
             "type": "raise",
           },
           {
@@ -2398,6 +2413,7 @@ describe('parseHand', () => {
             "amount": "0.75",
             "isAllIn": false,
             "playerName": "UTG",
+            "totalBet": "0.75",
             "type": "raise",
           },
           {
@@ -2441,12 +2457,14 @@ describe('parseHand', () => {
             "amount": "2.1",
             "isAllIn": false,
             "playerName": "UTG+1",
+            "totalBet": "2.1",
             "type": "raise",
           },
           {
-            "amount": "8.06",
+            "amount": "7.01",
             "isAllIn": false,
             "playerName": "UTG",
+            "totalBet": "8.06",
             "type": "raise",
           },
           {
@@ -2611,9 +2629,10 @@ describe('parseHand', () => {
             "type": "fold",
           },
           {
-            "amount": "5",
+            "amount": "4",
             "isAllIn": false,
             "playerName": "Small Blind",
+            "totalBet": "5",
             "type": "raise",
           },
           {
@@ -2641,6 +2660,7 @@ describe('parseHand', () => {
             "amount": "15",
             "isAllIn": false,
             "playerName": "Big Blind",
+            "totalBet": "15",
             "type": "raise",
           },
           {
@@ -2670,6 +2690,7 @@ describe('parseHand', () => {
             "amount": "1046.03",
             "isAllIn": true,
             "playerName": "Small Blind",
+            "totalBet": "1046.03",
             "type": "raise",
           },
           {

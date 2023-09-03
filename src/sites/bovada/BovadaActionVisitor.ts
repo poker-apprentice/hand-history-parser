@@ -22,35 +22,38 @@ export class BovadaActionVisitor
 
     const allInAction = action.actionAllIn();
     if (allInAction) {
-      const chipCount = new BovadaChipCountVisitor().visit(allInAction.chipCount());
+      const amount = new BovadaChipCountVisitor().visit(allInAction.chipCount()).toString();
       const playerName = ctx.position().text;
 
       // This all-in action could actually represent a bet or a call. Unfortunately,
       // Bovada hand histories don't clarify which it is. To address this, we just
       // treat it as a bet here, and we'll rectify it in the parent function where we
       // can compare against the previous actions.
-      return [{ type: 'bet', playerName, amount: chipCount.toString(), isAllIn: true }];
+      return [{ type: 'bet', playerName, amount, isAllIn: true }];
     }
 
     const allInRaiseAction = action.actionAllInRaise();
     if (allInRaiseAction) {
-      const chipCount = new BovadaChipCountVisitor().visit(allInRaiseAction.chipCount()[1]);
+      const amount = new BovadaChipCountVisitor().visit(allInRaiseAction.chipCount()[0]).toString();
+      const totalBet = new BovadaChipCountVisitor()
+        .visit(allInRaiseAction.chipCount()[1])
+        .toString();
       const playerName = ctx.position().text;
-      return [{ type: 'raise', playerName, amount: chipCount.toString(), isAllIn: true }];
+      return [{ type: 'raise', playerName, amount, totalBet, isAllIn: true }];
     }
 
     const betAction = action.actionBet();
     if (betAction) {
-      const chipCount = new BovadaChipCountVisitor().visit(betAction.chipCount());
+      const amount = new BovadaChipCountVisitor().visit(betAction.chipCount()).toString();
       const playerName = ctx.position().text;
-      return [{ type: 'bet', playerName, amount: chipCount.toString(), isAllIn: false }];
+      return [{ type: 'bet', playerName, amount, isAllIn: false }];
     }
 
     const callAction = action.actionCall();
     if (callAction) {
-      const chipCount = new BovadaChipCountVisitor().visit(callAction.chipCount());
+      const amount = new BovadaChipCountVisitor().visit(callAction.chipCount()).toString();
       const playerName = ctx.position().text;
-      return [{ type: 'call', playerName, amount: chipCount.toString(), isAllIn: false }];
+      return [{ type: 'call', playerName, amount, isAllIn: false }];
     }
 
     const checkAction = action.actionCheck();
@@ -67,9 +70,10 @@ export class BovadaActionVisitor
 
     const raiseAction = action.actionRaise();
     if (raiseAction) {
-      const chipCount = new BovadaChipCountVisitor().visit(raiseAction.chipCount()[1]);
+      const amount = new BovadaChipCountVisitor().visit(raiseAction.chipCount()[0]).toString();
+      const totalBet = new BovadaChipCountVisitor().visit(raiseAction.chipCount()[1]).toString();
       const playerName = ctx.position().text;
-      return [{ type: 'raise', playerName, amount: chipCount.toString(), isAllIn: false }];
+      return [{ type: 'raise', playerName, amount, totalBet, isAllIn: false }];
     }
 
     throw new NotImplementedError();
