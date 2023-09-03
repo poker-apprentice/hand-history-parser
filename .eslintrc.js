@@ -1,16 +1,3 @@
-const fs = require('fs');
-
-const generageTypescriptConfigAliases = () => {
-  const aliases = {};
-  const tsconfig = JSON.parse(fs.readFileSync('./tsconfig.json', 'utf-8'));
-  Object.entries(tsconfig.compilerOptions.paths).forEach(([pattern, paths]) => {
-    const patternKey = pattern.endsWith('/*') ? pattern.slice(0, -2) : pattern;
-    const target = paths[0].endsWith('/*') ? paths[0].slice(0, -2) : paths[0];
-    aliases[patternKey] = target;
-  });
-  return aliases;
-};
-
 module.exports = {
   env: {
     browser: true,
@@ -60,7 +47,9 @@ module.exports = {
   settings: {
     'import/resolver': {
       'eslint-import-resolver-custom-alias': {
-        alias: generageTypescriptConfigAliases(),
+        alias: {
+          '~': './src',
+        },
         extensions: ['.js', '.ts'],
       },
     },
