@@ -17,13 +17,14 @@
     "build:types": "tsc --declaration --emitDeclarationOnly --isolatedModules false --outFile dist/types/index.d.ts",
     "build:grammar": "antlr4ts -visitor src/grammar/*.g4",
     "build:rollup": "NODE_ENV=production rollup -c",
+    "clean": "rimraf dist",
     "lint": "eslint src",
     "lint:fix": "yarn lint src --fix",
     "format": "prettier . --check",
     "format:fix": "prettier . --write",
     "test": "NODE_ENV=test jest",
     "prepare": "husky install",
-    "prepublishOnly": "yarn lint && yarn format && yarn build"
+    "prepublishOnly": "yarn clean && yarn lint && yarn format && yarn build"
   },
   "lint-staged": {
     "*.{js,ts}": "yarn lint",
@@ -52,6 +53,7 @@
     "lint-staged": "^14.0.1",
     "prettier": "^3.0.3",
     "prettier-2": "npm:prettier@^2",
+    "rimraf": "^5.0.1",
     "rollup": "^3.28.1",
     "ts-node": "^10.9.1"
   },
