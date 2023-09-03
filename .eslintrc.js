@@ -52,6 +52,9 @@ module.exports = {
         },
         extensions: ['.js', '.ts'],
       },
+      node: {
+        extensions: ['.js', '.ts'],
+      },
     },
   },
 };

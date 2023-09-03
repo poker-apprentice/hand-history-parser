@@ -14,7 +14,7 @@
   ],
   "scripts": {
     "build": "yarn build:types && yarn build:grammar && yarn build:rollup",
-    "build:types": "tsc --declaration --emitDeclarationOnly --isolatedModules false --outFile dist/types/index.d.ts",
+    "build:types": "tsc -b .",
     "build:grammar": "antlr4ts -visitor src/grammar/*.g4",
     "build:rollup": "NODE_ENV=production rollup -c",
     "clean": "rimraf dist",
