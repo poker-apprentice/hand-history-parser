@@ -23,7 +23,7 @@
     "format:fix": "prettier . --write",
     "test": "NODE_ENV=test jest",
     "prepare": "husky install",
-    "prepublish": "yarn lint && yarn format && yarn build"
+    "prepublishOnly": "yarn lint && yarn format && yarn build"
   },
   "lint-staged": {
     "*.{js,ts}": "yarn lint",
