@@ -607,6 +607,11 @@ describe('parseHand', () => {
             "type": "fold",
           },
           {
+            "amount": "1.15",
+            "playerName": "Small Blind",
+            "type": "return-bet",
+          },
+          {
             "playerName": "Small Blind",
             "type": "muck",
           },
@@ -779,6 +784,11 @@ describe('parseHand', () => {
           {
             "playerName": "Dealer",
             "type": "fold",
+          },
+          {
+            "amount": "2.5",
+            "playerName": "Big Blind",
+            "type": "return-bet",
           },
           {
             "playerName": "Big Blind",
@@ -1418,6 +1428,11 @@ describe('parseHand', () => {
             "type": "fold",
           },
           {
+            "amount": "11.82",
+            "playerName": "Small Blind",
+            "type": "return-bet",
+          },
+          {
             "playerName": "Small Blind",
             "type": "muck",
           },
@@ -1597,6 +1612,11 @@ describe('parseHand', () => {
             "isAllIn": true,
             "playerName": "UTG",
             "type": "call",
+          },
+          {
+            "amount": "10",
+            "playerName": "Big Blind",
+            "type": "return-bet",
           },
           {
             "cards": [
@@ -1801,6 +1821,11 @@ describe('parseHand', () => {
           {
             "playerName": "UTG",
             "type": "fold",
+          },
+          {
+            "amount": "0.57",
+            "playerName": "Big Blind",
+            "type": "return-bet",
           },
           {
             "playerName": "Big Blind",
@@ -2012,6 +2037,11 @@ describe('parseHand', () => {
           {
             "playerName": "Small Blind",
             "type": "fold",
+          },
+          {
+            "amount": "1.4",
+            "playerName": "Big Blind",
+            "type": "return-bet",
           },
           {
             "playerName": "Big Blind",
@@ -2424,6 +2454,11 @@ describe('parseHand', () => {
             "type": "fold",
           },
           {
+            "amount": "5.96",
+            "playerName": "UTG",
+            "type": "return-bet",
+          },
+          {
             "playerName": "UTG",
             "type": "muck",
           },
@@ -2642,6 +2677,11 @@ describe('parseHand', () => {
             "isAllIn": true,
             "playerName": "Big Blind",
             "type": "call",
+          },
+          {
+            "amount": "955.88",
+            "playerName": "Small Blind",
+            "type": "return-bet",
           },
           {
             "cards": [

@@ -16,6 +16,7 @@ import {
   LineShowdownContext,
   LineSmallBlindContext,
   LineStreetContext,
+  LineUncalledContext,
   PositionContext,
 } from '~/grammar/BovadaParser';
 import { BovadaVisitor } from '~/grammar/BovadaVisitor';
@@ -192,6 +193,12 @@ export class BovadaHandHistoryVisitor
         action: { type: 'post', amount: chipCount, playerName, postType: isDead ? 'dead' : 'ante' },
       },
     ];
+  }
+
+  public visitLineUncalled(ctx: LineUncalledContext): Line[] {
+    const chipCount = new BovadaChipCountVisitor().visit(ctx.chipCount()).toString();
+    const playerName = ctx.position().text;
+    return [{ type: 'action', action: { type: 'return-bet', playerName, amount: chipCount } }];
   }
 
   public visitLinePlayer(ctx: LinePlayerContext): Line[] {

@@ -105,6 +105,12 @@ export interface RaiseAction extends BaseAction {
   isAllIn: boolean;
 }
 
+export interface ReturnBetAction extends BaseAction {
+  type: 'return-bet';
+  playerName: string;
+  amount: string;
+}
+
 export interface ShowdownAction extends BaseAction {
   type: 'showdown';
   playerName: string;
@@ -133,6 +139,7 @@ export type Action =
   | CheckAction
   | FoldAction
   | RaiseAction
+  | ReturnBetAction
   | ShowdownAction
   | AwardPotAction
   | MuckAction;
