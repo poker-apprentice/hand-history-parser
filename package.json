@@ -24,7 +24,7 @@
     "format:fix": "prettier . --write",
     "test": "cross-env NODE_ENV=test jest",
     "prepare": "husky install",
-    "prepublishOnly": "yarn clean && yarn lint && yarn format && yarn build"
+    "prepublishOnly": "yarn clean && yarn lint && yarn format && yarn test && yarn build"
   },
   "lint-staged": {
     "*.{js,ts}": "yarn lint",
