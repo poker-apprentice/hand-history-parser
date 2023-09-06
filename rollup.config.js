@@ -32,8 +32,6 @@ module.exports = {
     {
       dir: 'dist/esm',
       format: 'es',
-      preserveModules: true,
-      preserveModulesRoot: 'src',
       sourcemap: env === 'production' ? true : 'inline',
     },
   ],
