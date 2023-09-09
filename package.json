@@ -9,6 +9,15 @@
   "author": "Matt Huggins <matt.huggins@gmail.com>",
   "license": "MIT",
   "private": false,
+  "keywords": [
+    "poker",
+    "poker hand",
+    "holdem",
+    "casino",
+    "parser",
+    "parse",
+    "parsing"
+  ],
   "files": [
     "dist"
   ],
