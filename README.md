@@ -38,7 +38,7 @@ try {
 }
 ```
 
-The value returned is represented as a [`HandHistory`](https://github.com/poker-apprentice/hand-history-parser/blob/main/src/types.ts#L140) type object. For example:
+The value returned is represented as a [`HandHistory`](https://github.com/poker-apprentice/hand-history-parser/blob/main/src/types.ts#L276) type object. For example:
 
 ```js
 {
