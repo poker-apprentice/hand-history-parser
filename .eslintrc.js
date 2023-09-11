@@ -18,6 +18,17 @@ module.exports = {
   plugins: ['@typescript-eslint', 'import'],
   rules: {
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    'no-restricted-imports': [
+      'error',
+      {
+        paths: [
+          {
+            name: 'lodash',
+            message: 'Prefer individual module import from lodash.',
+          },
+        ],
+      },
+    ],
     'import/order': [
       'error',
       {
