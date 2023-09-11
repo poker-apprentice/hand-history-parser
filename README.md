@@ -1,4 +1,4 @@
-# `@poker-apprentice/hand-history-parser`
+# Hand History Parser
 
 Parse hand histories from online poker sites in JavaScript & TypeScript.
 
