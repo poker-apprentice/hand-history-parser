@@ -55,6 +55,7 @@ The value returned is represented as a [`HandHistory`](https://github.com/poker-
   "players": [
     {
       "chipStack": "25",
+      "isAnonymous": false,
       "isHero": true,
       "name": "BB",
       "position": "BB",
@@ -62,6 +63,7 @@ The value returned is represented as a [`HandHistory`](https://github.com/poker-
     },
     {
       "chipStack": "24.4",
+      "isAnonymous": true,
       "isHero": false,
       "name": "UTG",
       "position": "UTG",
@@ -69,6 +71,7 @@ The value returned is represented as a [`HandHistory`](https://github.com/poker-
     },
     {
       "chipStack": "7.5",
+      "isAnonymous": true,
       "isHero": false,
       "name": "UTG+1",
       "position": "UTG+1",
@@ -76,6 +79,7 @@ The value returned is represented as a [`HandHistory`](https://github.com/poker-
     },
     {
       "chipStack": "33.77",
+      "isAnonymous": true,
       "isHero": false,
       "name": "UTG+2",
       "position": "UTG+2",
@@ -83,6 +87,7 @@ The value returned is represented as a [`HandHistory`](https://github.com/poker-
     },
     {
       "chipStack": "26.87",
+      "isAnonymous": true,
       "isHero": false,
       "name": "BTN",
       "position": "BTN",
@@ -90,6 +95,7 @@ The value returned is represented as a [`HandHistory`](https://github.com/poker-
     },
     {
       "chipStack": "23.3",
+      "isAnonymous": true,
       "isHero": false,
       "name": "SB",
       "position": "SB",

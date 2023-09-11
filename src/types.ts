@@ -38,6 +38,7 @@ export interface Player {
   position: Position;
   chipStack: string;
   isHero: boolean;
+  isAnonymous: boolean;
 }
 
 export interface PlayerHand {

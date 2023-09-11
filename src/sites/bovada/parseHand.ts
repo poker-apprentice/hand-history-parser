@@ -43,6 +43,7 @@ const getPlayers = (lines: LineDictionary): HandHistory['players'] => {
     seatNumber: player.seatNumber,
     chipStack: player.chipCount,
     isHero: player.isHero,
+    isAnonymous: player.isAnonymous,
   }));
 };
 

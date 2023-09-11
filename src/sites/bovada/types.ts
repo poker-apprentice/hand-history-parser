@@ -25,6 +25,7 @@ export interface LinePlayer extends BaseLine {
   seatNumber: number;
   chipCount: string;
   isHero: boolean;
+  isAnonymous: boolean;
 }
 
 export interface LineSmallBlind extends BaseLine {

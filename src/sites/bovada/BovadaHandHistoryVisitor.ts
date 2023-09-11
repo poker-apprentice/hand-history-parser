@@ -206,8 +206,11 @@ export class BovadaHandHistoryVisitor
     const position = getPosition(ctx.position());
     const chipCount = new BovadaChipCountVisitor().visit(ctx.chipCount()).toString();
     const isHero = !!ctx.ME();
+    const isAnonymous = !isHero;
 
-    return [{ type: 'player', name: position, position, seatNumber, chipCount, isHero }];
+    return [
+      { type: 'player', name: position, position, seatNumber, chipCount, isHero, isAnonymous },
+    ];
   }
 
   public visitLineStreet(ctx: LineStreetContext): Line[] {

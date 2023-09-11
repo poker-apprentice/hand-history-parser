@@ -207,6 +207,7 @@ describe('parseHand', () => {
         "players": [
           {
             "chipStack": "25",
+            "isAnonymous": false,
             "isHero": true,
             "name": "BB",
             "position": "BB",
@@ -214,6 +215,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "24.4",
+            "isAnonymous": true,
             "isHero": false,
             "name": "UTG",
             "position": "UTG",
@@ -221,6 +223,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "7.5",
+            "isAnonymous": true,
             "isHero": false,
             "name": "UTG+1",
             "position": "UTG+1",
@@ -228,6 +231,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "33.77",
+            "isAnonymous": true,
             "isHero": false,
             "name": "UTG+2",
             "position": "UTG+2",
@@ -235,6 +239,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "26.87",
+            "isAnonymous": true,
             "isHero": false,
             "name": "BTN",
             "position": "BTN",
@@ -242,6 +247,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "23.3",
+            "isAnonymous": true,
             "isHero": false,
             "name": "SB",
             "position": "SB",
@@ -444,6 +450,7 @@ describe('parseHand', () => {
         "players": [
           {
             "chipStack": "25",
+            "isAnonymous": false,
             "isHero": true,
             "name": "BB",
             "position": "BB",
@@ -451,6 +458,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "24.4",
+            "isAnonymous": true,
             "isHero": false,
             "name": "UTG",
             "position": "UTG",
@@ -458,6 +466,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "7.5",
+            "isAnonymous": true,
             "isHero": false,
             "name": "UTG+1",
             "position": "UTG+1",
@@ -465,6 +474,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "33.77",
+            "isAnonymous": true,
             "isHero": false,
             "name": "UTG+2",
             "position": "UTG+2",
@@ -472,6 +482,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "26.87",
+            "isAnonymous": true,
             "isHero": false,
             "name": "BTN",
             "position": "BTN",
@@ -479,6 +490,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "23.3",
+            "isAnonymous": true,
             "isHero": false,
             "name": "SB",
             "position": "SB",
@@ -639,6 +651,7 @@ describe('parseHand', () => {
         "players": [
           {
             "chipStack": "20.5",
+            "isAnonymous": false,
             "isHero": true,
             "name": "SB",
             "position": "SB",
@@ -646,6 +659,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "28.79",
+            "isAnonymous": true,
             "isHero": false,
             "name": "BB",
             "position": "BB",
@@ -653,6 +667,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "7.25",
+            "isAnonymous": true,
             "isHero": false,
             "name": "UTG",
             "position": "UTG",
@@ -660,6 +675,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "33.77",
+            "isAnonymous": true,
             "isHero": false,
             "name": "UTG+1",
             "position": "UTG+1",
@@ -667,6 +683,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "26.87",
+            "isAnonymous": true,
             "isHero": false,
             "name": "UTG+2",
             "position": "UTG+2",
@@ -674,6 +691,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "24.9",
+            "isAnonymous": true,
             "isHero": false,
             "name": "BTN",
             "position": "BTN",
@@ -820,6 +838,7 @@ describe('parseHand', () => {
         "players": [
           {
             "chipStack": "21.64",
+            "isAnonymous": false,
             "isHero": true,
             "name": "UTG",
             "position": "UTG",
@@ -827,6 +846,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "28.44",
+            "isAnonymous": true,
             "isHero": false,
             "name": "UTG+1",
             "position": "UTG+1",
@@ -834,6 +854,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "11.45",
+            "isAnonymous": true,
             "isHero": false,
             "name": "UTG+2",
             "position": "UTG+2",
@@ -841,6 +862,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "25.98",
+            "isAnonymous": true,
             "isHero": false,
             "name": "BTN",
             "position": "BTN",
@@ -848,6 +870,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "28.77",
+            "isAnonymous": true,
             "isHero": false,
             "name": "SB",
             "position": "SB",
@@ -855,6 +878,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "25",
+            "isAnonymous": true,
             "isHero": false,
             "name": "BB",
             "position": "BB",
@@ -976,6 +1000,7 @@ describe('parseHand', () => {
         "players": [
           {
             "chipStack": "25.83",
+            "isAnonymous": false,
             "isHero": true,
             "name": "BB",
             "position": "BB",
@@ -983,6 +1008,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "9.68",
+            "isAnonymous": true,
             "isHero": false,
             "name": "UTG",
             "position": "UTG",
@@ -990,6 +1016,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "26.92",
+            "isAnonymous": true,
             "isHero": false,
             "name": "UTG+1",
             "position": "UTG+1",
@@ -997,6 +1024,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "25",
+            "isAnonymous": true,
             "isHero": false,
             "name": "UTG+2",
             "position": "UTG+2",
@@ -1004,6 +1032,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "30.55",
+            "isAnonymous": true,
             "isHero": false,
             "name": "BTN",
             "position": "BTN",
@@ -1011,6 +1040,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "25",
+            "isAnonymous": true,
             "isHero": false,
             "name": "SB",
             "position": "SB",
@@ -1251,6 +1281,7 @@ describe('parseHand', () => {
         "players": [
           {
             "chipStack": "26.54",
+            "isAnonymous": true,
             "isHero": false,
             "name": "UTG",
             "position": "UTG",
@@ -1258,6 +1289,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "10.65",
+            "isAnonymous": true,
             "isHero": false,
             "name": "UTG+1",
             "position": "UTG+1",
@@ -1265,6 +1297,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "14.57",
+            "isAnonymous": true,
             "isHero": false,
             "name": "UTG+2",
             "position": "UTG+2",
@@ -1272,6 +1305,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "24.89",
+            "isAnonymous": true,
             "isHero": false,
             "name": "BTN",
             "position": "BTN",
@@ -1279,6 +1313,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "47.51",
+            "isAnonymous": false,
             "isHero": true,
             "name": "SB",
             "position": "SB",
@@ -1286,6 +1321,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "27.1",
+            "isAnonymous": true,
             "isHero": false,
             "name": "BB",
             "position": "BB",
@@ -1465,6 +1501,7 @@ describe('parseHand', () => {
         "players": [
           {
             "chipStack": "16.56",
+            "isAnonymous": false,
             "isHero": true,
             "name": "SB",
             "position": "SB",
@@ -1472,6 +1509,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "33.64",
+            "isAnonymous": true,
             "isHero": false,
             "name": "BB",
             "position": "BB",
@@ -1479,6 +1517,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "32.01",
+            "isAnonymous": true,
             "isHero": false,
             "name": "UTG",
             "position": "UTG",
@@ -1486,6 +1525,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "25.01",
+            "isAnonymous": true,
             "isHero": false,
             "name": "BTN",
             "position": "BTN",
@@ -1675,6 +1715,7 @@ describe('parseHand', () => {
         "players": [
           {
             "chipStack": "24.65",
+            "isAnonymous": true,
             "isHero": false,
             "name": "UTG",
             "position": "UTG",
@@ -1682,6 +1723,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "25",
+            "isAnonymous": true,
             "isHero": false,
             "name": "UTG+1",
             "position": "UTG+1",
@@ -1689,6 +1731,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "7.15",
+            "isAnonymous": true,
             "isHero": false,
             "name": "BTN",
             "position": "BTN",
@@ -1696,6 +1739,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "24.75",
+            "isAnonymous": true,
             "isHero": false,
             "name": "SB",
             "position": "SB",
@@ -1703,6 +1747,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "34.65",
+            "isAnonymous": false,
             "isHero": true,
             "name": "BB",
             "position": "BB",
@@ -1864,6 +1909,7 @@ describe('parseHand', () => {
         "players": [
           {
             "chipStack": "21.89",
+            "isAnonymous": true,
             "isHero": false,
             "name": "UTG+1",
             "position": "UTG+1",
@@ -1871,6 +1917,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "25",
+            "isAnonymous": false,
             "isHero": true,
             "name": "UTG+2",
             "position": "UTG+2",
@@ -1878,6 +1925,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "26.95",
+            "isAnonymous": true,
             "isHero": false,
             "name": "BB",
             "position": "BB",
@@ -1885,6 +1933,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "47.01",
+            "isAnonymous": true,
             "isHero": false,
             "name": "UTG",
             "position": "UTG",
@@ -1892,6 +1941,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "29.93",
+            "isAnonymous": true,
             "isHero": false,
             "name": "BTN",
             "position": "BTN",
@@ -1899,6 +1949,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "52.8",
+            "isAnonymous": true,
             "isHero": false,
             "name": "SB",
             "position": "SB",
@@ -2081,6 +2132,7 @@ describe('parseHand', () => {
         "players": [
           {
             "chipStack": "38.96",
+            "isAnonymous": true,
             "isHero": false,
             "name": "BTN",
             "position": "BTN",
@@ -2088,6 +2140,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "11",
+            "isAnonymous": true,
             "isHero": false,
             "name": "SB",
             "position": "SB",
@@ -2095,6 +2148,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "7.5",
+            "isAnonymous": true,
             "isHero": false,
             "name": "BB",
             "position": "BB",
@@ -2102,6 +2156,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "25",
+            "isAnonymous": false,
             "isHero": true,
             "name": "UTG",
             "position": "UTG",
@@ -2300,6 +2355,7 @@ describe('parseHand', () => {
         "players": [
           {
             "chipStack": "152.7",
+            "isAnonymous": true,
             "isHero": false,
             "name": "SB",
             "position": "SB",
@@ -2307,6 +2363,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "92",
+            "isAnonymous": false,
             "isHero": true,
             "name": "BB",
             "position": "BB",
@@ -2314,6 +2371,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "48.51",
+            "isAnonymous": true,
             "isHero": false,
             "name": "UTG",
             "position": "UTG",
@@ -2321,6 +2379,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "80.31",
+            "isAnonymous": true,
             "isHero": false,
             "name": "UTG+1",
             "position": "UTG+1",
@@ -2328,6 +2387,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "65.01",
+            "isAnonymous": true,
             "isHero": false,
             "name": "UTG+2",
             "position": "UTG+2",
@@ -2335,6 +2395,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "98",
+            "isAnonymous": true,
             "isHero": false,
             "name": "BTN",
             "position": "BTN",
@@ -2503,6 +2564,7 @@ describe('parseHand', () => {
         "players": [
           {
             "chipStack": "26.3",
+            "isAnonymous": true,
             "isHero": false,
             "name": "BTN",
             "position": "BTN",
@@ -2510,6 +2572,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "22.18",
+            "isAnonymous": true,
             "isHero": false,
             "name": "SB",
             "position": "SB",
@@ -2517,6 +2580,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "30.36",
+            "isAnonymous": true,
             "isHero": false,
             "name": "BB",
             "position": "BB",
@@ -2524,6 +2588,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "25.1",
+            "isAnonymous": false,
             "isHero": true,
             "name": "UTG",
             "position": "UTG",
@@ -2531,6 +2596,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "30.84",
+            "isAnonymous": true,
             "isHero": false,
             "name": "UTG+1",
             "position": "UTG+1",
@@ -2538,6 +2604,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "34.47",
+            "isAnonymous": true,
             "isHero": false,
             "name": "UTG+2",
             "position": "UTG+2",
@@ -2744,6 +2811,7 @@ describe('parseHand', () => {
         "players": [
           {
             "chipStack": "200.18",
+            "isAnonymous": true,
             "isHero": false,
             "name": "UTG+1",
             "position": "UTG+1",
@@ -2751,6 +2819,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "90.76",
+            "isAnonymous": true,
             "isHero": false,
             "name": "UTG+2",
             "position": "UTG+2",
@@ -2758,6 +2827,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "176.74",
+            "isAnonymous": true,
             "isHero": false,
             "name": "BTN",
             "position": "BTN",
@@ -2765,6 +2835,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "1066.03",
+            "isAnonymous": false,
             "isHero": true,
             "name": "SB",
             "position": "SB",
@@ -2772,6 +2843,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "110.15",
+            "isAnonymous": true,
             "isHero": false,
             "name": "BB",
             "position": "BB",
@@ -2779,6 +2851,7 @@ describe('parseHand', () => {
           },
           {
             "chipStack": "525.33",
+            "isAnonymous": true,
             "isHero": false,
             "name": "UTG",
             "position": "UTG",
