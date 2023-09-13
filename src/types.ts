@@ -162,15 +162,6 @@ export interface DealBoardAction extends BaseAction {
 }
 
 /**
- * An action representing the state of the board.
- * @todo This action may not be needed since "deal-board" provides the same insight.
- */
-export interface BoardAction extends BaseAction {
-  type: 'board';
-  cards: string[];
-}
-
-/**
  * An action representing a player making a bet.
  */
 export interface BetAction extends BaseAction {
@@ -234,6 +225,7 @@ export interface ShowdownAction extends BaseAction {
   type: 'showdown';
   playerName: string;
   handStrength: HandStrength;
+  mucked: boolean;
 }
 
 /**
@@ -246,20 +238,10 @@ export interface AwardPotAction extends BaseAction {
   isSidePot: boolean;
 }
 
-/**
- * An action representing a player mucking their hand at showdown.
- * @todo This action can potentially be consolidated with "showdown" by including muck flag on it.
- */
-export interface MuckAction extends BaseAction {
-  type: 'muck';
-  playerName: string;
-}
-
 export type Action =
   | PostAction
   | DealHandAction
   | DealBoardAction
-  | BoardAction
   | BetAction
   | CallAction
   | CheckAction
@@ -267,8 +249,7 @@ export type Action =
   | RaiseAction
   | ReturnBetAction
   | ShowdownAction
-  | AwardPotAction
-  | MuckAction;
+  | AwardPotAction;
 
 /**
  * The parsed hand history details.

@@ -245,13 +245,18 @@ export class BovadaHandHistoryVisitor
 
   public visitLineMuck(ctx: LineMuckContext): Line[] {
     const playerName = ctx.position().text;
-    return [{ type: 'action', action: { type: 'muck', playerName } }];
+    const handStrength = getHandStrength(ctx.handStrength());
+    return [
+      { type: 'action', action: { type: 'showdown', playerName, handStrength, mucked: true } },
+    ];
   }
 
   public visitLineShowdown(ctx: LineShowdownContext): Line[] {
     const playerName = ctx.position().text;
     const handStrength = getHandStrength(ctx.handStrength());
-    return [{ type: 'action', action: { type: 'showdown', playerName, handStrength } }];
+    return [
+      { type: 'action', action: { type: 'showdown', playerName, handStrength, mucked: false } },
+    ];
   }
 
   public visitLineResult(ctx: LineResultContext): Line[] {
