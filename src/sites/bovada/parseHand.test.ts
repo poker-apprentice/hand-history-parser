@@ -176,11 +176,13 @@ describe('parseHand', () => {
           },
           {
             "handStrength": 5,
+            "mucked": false,
             "playerName": "UTG",
             "type": "showdown",
           },
           {
             "handStrength": 2,
+            "mucked": false,
             "playerName": "Big Blind",
             "type": "showdown",
           },
@@ -419,11 +421,13 @@ describe('parseHand', () => {
           },
           {
             "handStrength": 5,
+            "mucked": false,
             "playerName": "UTG",
             "type": "showdown",
           },
           {
             "handStrength": 2,
+            "mucked": false,
             "playerName": "Big Blind",
             "type": "showdown",
           },
@@ -625,8 +629,10 @@ describe('parseHand', () => {
             "type": "return-bet",
           },
           {
+            "handStrength": 1,
+            "mucked": true,
             "playerName": "Small Blind",
-            "type": "muck",
+            "type": "showdown",
           },
           {
             "amount": "2.14",
@@ -812,8 +818,10 @@ describe('parseHand', () => {
             "type": "return-bet",
           },
           {
+            "handStrength": 0,
+            "mucked": true,
             "playerName": "Big Blind",
-            "type": "muck",
+            "type": "showdown",
           },
           {
             "amount": "2.35",
@@ -974,8 +982,10 @@ describe('parseHand', () => {
             "type": "fold",
           },
           {
+            "handStrength": 0,
+            "mucked": true,
             "playerName": "Big Blind",
-            "type": "muck",
+            "type": "showdown",
           },
           {
             "amount": "0.35",
@@ -1245,16 +1255,19 @@ describe('parseHand', () => {
           },
           {
             "handStrength": 5,
+            "mucked": false,
             "playerName": "Small Blind",
             "type": "showdown",
           },
           {
             "handStrength": 4,
+            "mucked": false,
             "playerName": "Big Blind",
             "type": "showdown",
           },
           {
             "handStrength": 1,
+            "mucked": false,
             "playerName": "UTG+1",
             "type": "showdown",
           },
@@ -1475,8 +1488,10 @@ describe('parseHand', () => {
             "type": "return-bet",
           },
           {
+            "handStrength": 5,
+            "mucked": true,
             "playerName": "Small Blind",
-            "type": "muck",
+            "type": "showdown",
           },
           {
             "amount": "9.25",
@@ -1684,11 +1699,13 @@ describe('parseHand', () => {
           },
           {
             "handStrength": 2,
+            "mucked": false,
             "playerName": "UTG",
             "type": "showdown",
           },
           {
             "handStrength": 2,
+            "mucked": false,
             "playerName": "Big Blind",
             "type": "showdown",
           },
@@ -1883,8 +1900,10 @@ describe('parseHand', () => {
             "type": "return-bet",
           },
           {
+            "handStrength": 2,
+            "mucked": true,
             "playerName": "Big Blind",
-            "type": "muck",
+            "type": "showdown",
           },
           {
             "amount": "0.57",
@@ -2106,8 +2125,10 @@ describe('parseHand', () => {
             "type": "return-bet",
           },
           {
+            "handStrength": 6,
+            "mucked": true,
             "playerName": "Big Blind",
-            "type": "muck",
+            "type": "showdown",
           },
           {
             "amount": "4.06",
@@ -2324,11 +2345,13 @@ describe('parseHand', () => {
           },
           {
             "handStrength": 9,
+            "mucked": false,
             "playerName": "UTG",
             "type": "showdown",
           },
           {
             "handStrength": 4,
+            "mucked": false,
             "playerName": "UTG+1",
             "type": "showdown",
           },
@@ -2538,8 +2561,10 @@ describe('parseHand', () => {
             "type": "return-bet",
           },
           {
+            "handStrength": 1,
+            "mucked": true,
             "playerName": "UTG",
-            "type": "muck",
+            "type": "showdown",
           },
           {
             "amount": "5.75",
@@ -2780,11 +2805,13 @@ describe('parseHand', () => {
           },
           {
             "handStrength": 1,
+            "mucked": false,
             "playerName": "Small Blind",
             "type": "showdown",
           },
           {
             "handStrength": 2,
+            "mucked": false,
             "playerName": "Big Blind",
             "type": "showdown",
           },
