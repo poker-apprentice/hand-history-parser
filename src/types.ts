@@ -1,3 +1,5 @@
+import { Card } from '@poker-apprentice/types';
+
 /**
  * The name of the poker site.
  */
@@ -114,7 +116,7 @@ export interface PlayerHand {
    * The array of cards the player's hand contains (e.g.: `["Kc", "Ad"]` representing big slick in
    * a game of Texas Hold'em).
    */
-  cards: string[];
+  cards: Card[];
   /**
    * The array of cards representing the best possible made hand (e.g.:
    * `["Ac", "Ad", "As", "Kc", "Kh"]` representing a full house, aces full of kings).
@@ -149,7 +151,7 @@ export interface PostAction extends BaseAction {
 export interface DealHandAction extends BaseAction {
   type: 'deal-hand';
   playerName: string;
-  cards: string[];
+  cards: Card[];
 }
 
 /**
@@ -158,7 +160,7 @@ export interface DealHandAction extends BaseAction {
 export interface DealBoardAction extends BaseAction {
   type: 'deal-board';
   street: Street;
-  cards: string[];
+  cards: Card[];
 }
 
 /**

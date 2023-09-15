@@ -11,7 +11,7 @@ import {
   HAND_SITTING_OUT,
   HAND_STRAIGHT_FLUSH,
   HAND_THOUSANDS_OF_DOLLARS,
-} from '~/__mocks__/hands/bovada';
+} from '~/__fixtures__/hands/bovada';
 import { parseHand } from './parseHand';
 
 describe('parseHand', () => {

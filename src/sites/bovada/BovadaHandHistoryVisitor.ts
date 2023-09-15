@@ -1,3 +1,4 @@
+import { assertCard } from '@poker-apprentice/types';
 import { ParserRuleContext } from 'antlr4ts';
 import { Interval } from 'antlr4ts/misc/Interval';
 import { AbstractParseTreeVisitor } from 'antlr4ts/tree/AbstractParseTreeVisitor';
@@ -220,25 +221,27 @@ export class BovadaHandHistoryVisitor
     }
 
     const boardSections = ctx.boardSections();
-    const cards =
+    const cardStrings =
       boardSections
         ?.board()
         .at(-1)
         ?.cards()
         .card()
         .map((card) => card.text) ?? [];
+    const cards = cardStrings.filter(assertCard);
 
     return [{ type: 'action', action: { type: 'deal-board', street, cards } }];
   }
 
   public visitLineHandsDealt(ctx: LineHandsDealtContext): Line[] {
     const playerName = ctx.position().text;
-    const cards =
+    const cardStrings =
       ctx
         .hand()
         .cards()
         .card()
         .map((card) => card.text) ?? [];
+    const cards = cardStrings.filter(assertCard);
 
     return [{ type: 'action', action: { type: 'deal-hand', playerName, cards } }];
   }
