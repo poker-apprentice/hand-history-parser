@@ -7,6 +7,7 @@ module.exports = {
   extends: [
     'plugin:import/recommended',
     'plugin:import/typescript',
+    'plugin:jsdoc/recommended',
     'plugin:@typescript-eslint/recommended',
     'prettier',
   ],
@@ -15,7 +16,7 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['@typescript-eslint', 'import'],
+  plugins: ['@typescript-eslint', 'import', 'jsdoc'],
   rules: {
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     'no-restricted-imports': [
