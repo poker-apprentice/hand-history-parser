@@ -1,4 +1,4 @@
-import { InvalidSiteError } from '~/InvalidSiteError';
+import { InvalidSiteError } from '~/errors/InvalidSiteError';
 import { SiteLexer } from '~/grammar/SiteLexer';
 import { SiteParser } from '~/grammar/SiteParser';
 import { Site } from '~/types';

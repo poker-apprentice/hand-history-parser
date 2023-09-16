@@ -1,6 +1,7 @@
 import assertNever from 'assert-never';
+import { InvalidHandError } from './errors/InvalidHandError';
 import { parseSite } from './sites/all/parseSite';
-import { Site } from './types';
+import { HandHistory, Site } from './types';
 
 const getParser = async (site: Site) => {
   switch (site) {
@@ -11,8 +12,12 @@ const getParser = async (site: Site) => {
   }
 };
 
-export const parseHand = async (hand: string) => {
+export const parseHand = async (hand: string): Promise<HandHistory> => {
   const site = parseSite(hand);
-  const parse = await getParser(site);
-  return parse(hand);
+  try {
+    const parse = await getParser(site);
+    return parse(hand);
+  } catch (err) {
+    throw new InvalidHandError();
+  }
 };

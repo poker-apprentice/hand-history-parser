@@ -1,5 +1,5 @@
-import { InvalidSiteError } from '~/InvalidSiteError';
 import { HAND_ALL_IN as HAND_BOVADA } from '~/__fixtures__/hands/bovada';
+import { InvalidSiteError } from '~/errors/InvalidSiteError';
 import { parseSite } from './parseSite';
 
 describe('parseSite', () => {
