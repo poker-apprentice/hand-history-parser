@@ -17,11 +17,11 @@ Add `@poker-apprentice/hand-history-parser` as a dependency.
 
 ## Usage
 
-This package exports a `parseHand` promise-based function that can be used for parsing hand histories from any [support poker site](#supported-poker-sites). To use it, simply pass a hand history along with the site that the hand is from.
+This package exports a `parseHand` promise-based function that can be used for parsing hand histories from any [support poker site](#supported-poker-sites). To use it, simply pass the contents of an individual hand history.
 
 ```ts
 // assumes `hand` is a string containing the hand history file contents
-const handHistory = parseHand({ hand, site: 'bovada' })
+const handHistory = parseHand(hand)
   .then((handHistory) => console.log(handHistory))
   .catch((err) => console.error(err));
 ```
@@ -31,7 +31,7 @@ If preferred, an async/await implementation can be used instead.
 ```ts
 // assumes `hand` is a string containing the hand history file contents
 try {
-  const handHistory = await parseHand({ hand, site: 'bovada' });
+  const handHistory = await parseHand(hand);
   console.log(handHistory);
 } catch (err) {
   console.error(err);

@@ -4,7 +4,6 @@ import {
   BailErrorStrategy,
   CharStreams,
   CommonTokenStream,
-  ConsoleErrorListener,
   Lexer,
   Parser,
   Token,
@@ -28,7 +27,7 @@ export const getParser = <L extends Lexer, P extends Parser>(
     lexer: LexerClass,
     parser: ParserClass,
     errorHandler = new BailErrorStrategy(),
-    errorListener = new ConsoleErrorListener(),
+    errorListener,
   }: Options<L, P>,
 ) => {
   const inputStream = CharStreams.fromString(str);
@@ -37,9 +36,12 @@ export const getParser = <L extends Lexer, P extends Parser>(
   const parser = new ParserClass(tokenStream);
 
   parser.errorHandler = errorHandler;
+
   parser.removeErrorListeners();
+  lexer.removeErrorListeners();
   if (errorListener) {
     parser.addErrorListener(errorListener);
+    lexer.addErrorListener(errorListener);
   }
 
   return parser;
