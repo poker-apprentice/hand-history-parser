@@ -8,7 +8,7 @@ export type Site = 'bovada';
 /**
  * The name of the poker variant.
  */
-export type Game = 'holdem' | 'omaha';
+export type Variant = 'holdem' | 'omaha';
 
 /**
  * The strength of the hand.
@@ -60,7 +60,7 @@ export interface GameInfo {
   /**
    * The variant of poker played during the hand.
    */
-  game: Game;
+  variant: Variant;
   /**
    * The betting structure used during the hand.
    */

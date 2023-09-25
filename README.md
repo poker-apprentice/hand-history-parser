@@ -45,13 +45,13 @@ The value returned is represented as a [`HandHistory`](https://github.com/poker-
   "info": {
     "blinds": ["0.1", "0.25"],
     "currency": "USD",
-    "game": "holdem",
     "handNumber": "4290322948",
     "isFastFold": false,
     "limit": "no limit",
     "site": "bovada",
     "tableSize": 6,
     "timestamp": new Date("2022-05-26T14:16:24.000Z"),
+    "variant": "holdem",
   },
   "players": [
     {
@@ -292,10 +292,10 @@ The architecture is as straightforward as possible, with the most complex part i
 1. Add a parser for your poker site under `sites/[pokersite]/parseHand.ts`.
    This function is intended to delegate to the Visitor class implemented above, massaging the return value into a `HandHistory` object as a return value.
 1. Include tests for common & uncommon parsing scenarios that demonstrate the `parseHand` function is working as intended. Common & uncommon scenarios include:
-   - Different games of poker (e.g.: Hold'em, Omaha, Omaha-8, etc.),
-   - Different currencies,
+   - Multiple variants (e.g.: Hold'em, Omaha, Omaha-8, etc.),
+   - Multiple betting structures (i.e.: limit, no-limit, pot-limit, spread-limit, cap-limit),
+   - Multiple currencies,
    - Cash & tournament games,
-   - Limit & no-limit games,
    - Chopped pots & side pots,
    - Antes & bounties, and
    - Player disconnections & timeouts.

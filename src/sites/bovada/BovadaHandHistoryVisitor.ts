@@ -4,7 +4,6 @@ import { Interval } from 'antlr4ts/misc/Interval';
 import { AbstractParseTreeVisitor } from 'antlr4ts/tree/AbstractParseTreeVisitor';
 import { TerminalNode } from 'antlr4ts/tree/TerminalNode';
 import {
-  GameContext,
   HandStrengthContext,
   LimitContext,
   LineActionContext,
@@ -19,9 +18,10 @@ import {
   LineStreetContext,
   LineUncalledContext,
   PositionContext,
+  VariantContext,
 } from '~/grammar/BovadaParser';
 import { BovadaVisitor } from '~/grammar/BovadaVisitor';
-import { Game, HandStrength, Limit, Position, Street } from '~/types';
+import { HandStrength, Limit, Position, Street, Variant } from '~/types';
 import { BovadaActionVisitor } from './BovadaActionVisitor';
 import { BovadaChipCountVisitor } from './BovadaChipCountVisitor';
 import { Line } from './types';
@@ -34,7 +34,7 @@ const getSubstring = (ctx: ParserRuleContext): string => {
   return start.inputStream.getText(Interval.of(start.startIndex, stop.stopIndex));
 };
 
-const getGame = (ctx: GameContext): Game => {
+const getVariant = (ctx: VariantContext): Variant => {
   switch (ctx.text) {
     case 'HOLDEM':
     case 'HOLDEMZonePoker':
@@ -43,7 +43,7 @@ const getGame = (ctx: GameContext): Game => {
     case 'OMAHAZonePoker':
       return 'omaha';
     default:
-      throw new Error(`Unexpected game: "${ctx.text}"`);
+      throw new Error(`Unexpected variant: "${ctx.text}"`);
   }
 };
 
@@ -143,21 +143,21 @@ export class BovadaHandHistoryVisitor
   public visitLineMeta(ctx: LineMetaContext): Line[] {
     const handNumber = ctx.handNumber().text;
 
-    const gameContext = ctx.game();
-    const game = getGame(gameContext);
+    const variantContext = ctx.variant();
+    const variant = getVariant(variantContext);
 
     const limit = getLimit(ctx.limit());
 
     const fastFold =
       !!ctx.fastFold() ||
-      gameContext.text === 'HOLDEMZonePoker' ||
-      gameContext.text === 'OMAHAZonePoker'; // TODO: OMAHA8 version of ZonePoker?
+      variantContext.text === 'HOLDEMZonePoker' ||
+      variantContext.text === 'OMAHAZonePoker'; // TODO: OMAHA8 version of ZonePoker?
 
     const text = getSubstring(ctx.timestamp());
     const t = text.split(/\D/).map(Number);
     const timestamp = new Date(t[0], t[1] - 1, t[2], t[3], t[4], t[5]);
 
-    return [{ type: 'meta', handNumber, fastFold, game, limit, timestamp }];
+    return [{ type: 'meta', handNumber, fastFold, variant, limit, timestamp }];
   }
 
   public visitLineSmallBlind(ctx: LineSmallBlindContext): Line[] {

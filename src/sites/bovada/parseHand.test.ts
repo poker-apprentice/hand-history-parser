@@ -199,13 +199,13 @@ describe('parseHand', () => {
             "0.25",
           ],
           "currency": "USD",
-          "game": "holdem",
           "handNumber": "4290322948",
           "isFastFold": false,
           "limit": "no limit",
           "site": "bovada",
           "tableSize": 6,
           "timestamp": 2022-05-26T14:16:24.000Z,
+          "variant": "holdem",
         },
         "players": [
           {
@@ -403,13 +403,13 @@ describe('parseHand', () => {
             "0.25",
           ],
           "currency": "USD",
-          "game": "holdem",
           "handNumber": "4290323128",
           "isFastFold": false,
           "limit": "no limit",
           "site": "bovada",
           "tableSize": 6,
           "timestamp": 2022-05-26T14:17:19.000Z,
+          "variant": "holdem",
         },
         "players": [
           {
@@ -593,13 +593,13 @@ describe('parseHand', () => {
             "0.25",
           ],
           "currency": "USD",
-          "game": "holdem",
           "handNumber": "4290323643",
           "isFastFold": false,
           "limit": "no limit",
           "site": "bovada",
           "tableSize": 6,
           "timestamp": 2022-05-26T14:19:56.000Z,
+          "variant": "holdem",
         },
         "players": [
           {
@@ -758,13 +758,13 @@ describe('parseHand', () => {
             "0.25",
           ],
           "currency": "USD",
-          "game": "holdem",
           "handNumber": "4290328383",
           "isFastFold": false,
           "limit": "no limit",
           "site": "bovada",
           "tableSize": 6,
           "timestamp": 2022-05-26T14:44:06.000Z,
+          "variant": "holdem",
         },
         "players": [
           {
@@ -1043,13 +1043,13 @@ describe('parseHand', () => {
             "0.25",
           ],
           "currency": "USD",
-          "game": "holdem",
           "handNumber": "4290392098",
           "isFastFold": false,
           "limit": "no limit",
           "site": "bovada",
           "tableSize": 6,
           "timestamp": 2022-05-26T19:39:38.000Z,
+          "variant": "holdem",
         },
         "players": [
           {
@@ -1266,13 +1266,13 @@ describe('parseHand', () => {
             "0.25",
           ],
           "currency": "USD",
-          "game": "holdem",
           "handNumber": "4290335080",
           "isFastFold": false,
           "limit": "no limit",
           "site": "bovada",
           "tableSize": 6,
           "timestamp": 2022-05-26T15:17:34.000Z,
+          "variant": "holdem",
         },
         "players": [
           {
@@ -1483,13 +1483,13 @@ describe('parseHand', () => {
             "0.25",
           ],
           "currency": "USD",
-          "game": "holdem",
           "handNumber": "4290373378",
           "isFastFold": false,
           "limit": "no limit",
           "site": "bovada",
           "tableSize": 6,
           "timestamp": 2022-05-26T18:12:06.000Z,
+          "variant": "holdem",
         },
         "players": [
           {
@@ -1680,13 +1680,13 @@ describe('parseHand', () => {
             "0.25",
           ],
           "currency": "USD",
-          "game": "holdem",
           "handNumber": "4292190612",
           "isFastFold": false,
           "limit": "no limit",
           "site": "bovada",
           "tableSize": 6,
           "timestamp": 2022-05-30T18:23:41.000Z,
+          "variant": "holdem",
         },
         "players": [
           {
@@ -1906,13 +1906,13 @@ describe('parseHand', () => {
             "0.25",
           ],
           "currency": "USD",
-          "game": "omaha",
           "handNumber": "4293638974",
           "isFastFold": false,
           "limit": "pot limit",
           "site": "bovada",
           "tableSize": 6,
           "timestamp": 2022-06-02T23:58:50.000Z,
+          "variant": "omaha",
         },
         "players": [
           {
@@ -2132,13 +2132,13 @@ describe('parseHand', () => {
             "1",
           ],
           "currency": "USD",
-          "game": "omaha",
           "handNumber": "4296950465",
           "isFastFold": false,
           "limit": "pot limit",
           "site": "bovada",
           "tableSize": 6,
           "timestamp": 2022-06-10T17:42:20.000Z,
+          "variant": "omaha",
         },
         "players": [
           {
@@ -2344,13 +2344,13 @@ describe('parseHand', () => {
             "0.25",
           ],
           "currency": "USD",
-          "game": "holdem",
           "handNumber": "4384116451",
           "isFastFold": true,
           "limit": "no limit",
           "site": "bovada",
           "tableSize": 6,
           "timestamp": 2022-12-06T01:22:58.000Z,
+          "variant": "holdem",
         },
         "players": [
           {
@@ -2594,13 +2594,13 @@ describe('parseHand', () => {
             "2",
           ],
           "currency": "USD",
-          "game": "holdem",
           "handNumber": "4515975493",
           "isFastFold": true,
           "limit": "no limit",
           "site": "bovada",
           "tableSize": 6,
           "timestamp": 2023-08-23T06:00:26.000Z,
+          "variant": "holdem",
         },
         "players": [
           {

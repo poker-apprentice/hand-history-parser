@@ -30,7 +30,7 @@ const getInfo = (lines: LineDictionary): HandHistory['info'] => {
   return {
     blinds: [smallBlind.chipCount, bigBlind.chipCount],
     currency: 'USD',
-    game: meta.game,
+    variant: meta.variant,
     handNumber: meta.handNumber,
     isFastFold: meta.fastFold,
     limit: meta.limit,

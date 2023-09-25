@@ -1,4 +1,4 @@
-import { Action, Game, Limit, Position } from '~/types';
+import { Action, Limit, Position, Variant } from '~/types';
 
 interface BaseLine {
   type: string;
@@ -13,7 +13,7 @@ export interface LineMeta extends BaseLine {
   type: 'meta';
   handNumber: string;
   fastFold: boolean;
-  game: Game;
+  variant: Variant;
   limit: Limit;
   timestamp: Date;
 }
