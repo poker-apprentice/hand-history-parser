@@ -29,7 +29,7 @@ export enum HandStrength {
 /**
  * The betting structure.
  */
-export type BettingStructure = 'limit' | 'pot limit' | 'no limit';
+export type BettingStructure = 'limit' | 'pot limit' | 'no limit' | 'spread limit' | 'cap limit';
 
 /**
  * The relative position of a player.
