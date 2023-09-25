@@ -204,6 +204,7 @@ describe('parseHand', () => {
           "isFastFold": false,
           "limit": "no limit",
           "site": "bovada",
+          "tableSize": 6,
           "timestamp": 2022-05-26T14:16:24.000Z,
         },
         "players": [
@@ -407,6 +408,7 @@ describe('parseHand', () => {
           "isFastFold": false,
           "limit": "no limit",
           "site": "bovada",
+          "tableSize": 6,
           "timestamp": 2022-05-26T14:17:19.000Z,
         },
         "players": [
@@ -596,6 +598,7 @@ describe('parseHand', () => {
           "isFastFold": false,
           "limit": "no limit",
           "site": "bovada",
+          "tableSize": 6,
           "timestamp": 2022-05-26T14:19:56.000Z,
         },
         "players": [
@@ -760,6 +763,7 @@ describe('parseHand', () => {
           "isFastFold": false,
           "limit": "no limit",
           "site": "bovada",
+          "tableSize": 6,
           "timestamp": 2022-05-26T14:44:06.000Z,
         },
         "players": [
@@ -1044,6 +1048,7 @@ describe('parseHand', () => {
           "isFastFold": false,
           "limit": "no limit",
           "site": "bovada",
+          "tableSize": 6,
           "timestamp": 2022-05-26T19:39:38.000Z,
         },
         "players": [
@@ -1266,6 +1271,7 @@ describe('parseHand', () => {
           "isFastFold": false,
           "limit": "no limit",
           "site": "bovada",
+          "tableSize": 6,
           "timestamp": 2022-05-26T15:17:34.000Z,
         },
         "players": [
@@ -1482,6 +1488,7 @@ describe('parseHand', () => {
           "isFastFold": false,
           "limit": "no limit",
           "site": "bovada",
+          "tableSize": 6,
           "timestamp": 2022-05-26T18:12:06.000Z,
         },
         "players": [
@@ -1678,6 +1685,7 @@ describe('parseHand', () => {
           "isFastFold": false,
           "limit": "no limit",
           "site": "bovada",
+          "tableSize": 6,
           "timestamp": 2022-05-30T18:23:41.000Z,
         },
         "players": [
@@ -1903,6 +1911,7 @@ describe('parseHand', () => {
           "isFastFold": false,
           "limit": "pot limit",
           "site": "bovada",
+          "tableSize": 6,
           "timestamp": 2022-06-02T23:58:50.000Z,
         },
         "players": [
@@ -2128,6 +2137,7 @@ describe('parseHand', () => {
           "isFastFold": false,
           "limit": "pot limit",
           "site": "bovada",
+          "tableSize": 6,
           "timestamp": 2022-06-10T17:42:20.000Z,
         },
         "players": [
@@ -2339,6 +2349,7 @@ describe('parseHand', () => {
           "isFastFold": true,
           "limit": "no limit",
           "site": "bovada",
+          "tableSize": 6,
           "timestamp": 2022-12-06T01:22:58.000Z,
         },
         "players": [
@@ -2588,6 +2599,7 @@ describe('parseHand', () => {
           "isFastFold": true,
           "limit": "no limit",
           "site": "bovada",
+          "tableSize": 6,
           "timestamp": 2023-08-23T06:00:26.000Z,
         },
         "players": [

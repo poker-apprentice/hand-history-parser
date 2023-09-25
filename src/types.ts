@@ -81,6 +81,10 @@ export interface GameInfo {
    * Whether the game is a "fast fold" game (i.e.: Zoom Poker, Zone Poker, etc.).
    */
   isFastFold: boolean;
+  /**
+   * The total number seats available at the table, whether they are occupied or not.
+   */
+  tableSize: 2 | 6 | 8 | 9;
 }
 
 export interface Player {
