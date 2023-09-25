@@ -257,9 +257,9 @@ The value returned is represented as a [`HandHistory`](https://github.com/poker-
 
 This package currently supports the following poker sites:
 
-| Site   | Cash Games | Tournaments | Hold'em |  Omaha  | Omaha-8 | Stud | Currencies |
-| ------ | :--------: | :---------: | :-----: | :-----: | :-----: | :--: | ---------- |
-| Bovada |  &#9989;   |  &#10060;   | &#9989; | &#9989; | &#9989; | N/A  | USD        |
+| Site   | Cash Games | Tournaments | Hold'em |  Omaha  | Omaha-8  | Stud | Currencies |
+| ------ | :--------: | :---------: | :-----: | :-----: | :------: | :--: | ---------- |
+| Bovada |  &#9989;   |  &#10060;   | &#9989; | &#9989; | &#10060; | N/A  | USD        |
 
 The parser is built in a way that it is relatively straightforward to extend with new poker sites. The main thing that is missing for this to happen is a combination of sample hand histories to implement against & time.
 
