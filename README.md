@@ -43,11 +43,11 @@ The value returned is represented as a [`HandHistory`](https://github.com/poker-
 ```js
 {
   "info": {
+    "bettingStructure": "no limit",
     "blinds": ["0.1", "0.25"],
     "currency": "USD",
     "handNumber": "4290322948",
     "isFastFold": false,
-    "limit": "no limit",
     "site": "bovada",
     "tableSize": 6,
     "timestamp": new Date("2022-05-26T14:16:24.000Z"),

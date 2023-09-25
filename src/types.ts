@@ -29,7 +29,7 @@ export enum HandStrength {
 /**
  * The betting structure.
  */
-export type Limit = 'limit' | 'pot limit' | 'no limit';
+export type BettingStructure = 'limit' | 'pot limit' | 'no limit';
 
 /**
  * The relative position of a player.
@@ -64,7 +64,7 @@ export interface GameInfo {
   /**
    * The betting structure used during the hand.
    */
-  limit: Limit;
+  bettingStructure: BettingStructure;
   /**
    * An array of blind that were posted during the hand.  For games that include a small and big
    * blind, this array will contain two items with small blind at index 0 and the big blind at

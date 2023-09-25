@@ -1,4 +1,4 @@
-import { Action, Limit, Position, Variant } from '~/types';
+import { Action, BettingStructure, Position, Variant } from '~/types';
 
 interface BaseLine {
   type: string;
@@ -14,7 +14,7 @@ export interface LineMeta extends BaseLine {
   handNumber: string;
   fastFold: boolean;
   variant: Variant;
-  limit: Limit;
+  bettingStructure: BettingStructure;
   timestamp: Date;
 }
 

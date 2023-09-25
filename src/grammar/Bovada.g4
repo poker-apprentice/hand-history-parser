@@ -23,7 +23,7 @@ line:
   );
 
 // lines of text
-lineMeta       : 'Bovada Hand' '#' handNumber fastFold? ('TBL#' | 'ID#') INT variant limit '-' timestamp;
+lineMeta       : 'Bovada Hand' '#' handNumber fastFold? ('TBL#' | 'ID#') INT variant bettingStructure '-' timestamp;
 linePlayer     : 'Seat' seatNumber COLON position ME? '(' chipCount 'in chips)';
 lineDealer     : ('Dealer' ME? COLON)? 'Set dealer' ('[' INT ']')?;
 lineSmallBlind : ('Small Blind' | 'Dealer') ME? COLON 'Small Blind' chipCount;
@@ -67,7 +67,7 @@ handNumber   : INT;
 seatNumber   : INT;
 timestamp    : INT '-' INT '-' INT INT ':' INT ':' INT;
 variant      : 'HOLDEM' | 'OMAHA' | 'HOLDEMZonePoker' | 'OMAHAZonePoker';
-limit        : 'No Limit' | 'Pot Limit' | 'Limit';
+bettingStructure : 'No Limit' | 'Pot Limit' | 'Limit';
 fastFold     : FASTFOLD;
 position     : 'Small Blind' | 'Big Blind' | 'UTG' | 'UTG+1' | 'UTG+2' | 'Dealer';
 chipCount    : '$' value;

@@ -4,8 +4,8 @@ import { Interval } from 'antlr4ts/misc/Interval';
 import { AbstractParseTreeVisitor } from 'antlr4ts/tree/AbstractParseTreeVisitor';
 import { TerminalNode } from 'antlr4ts/tree/TerminalNode';
 import {
+  BettingStructureContext,
   HandStrengthContext,
-  LimitContext,
   LineActionContext,
   LineHandsDealtContext,
   LineMetaContext,
@@ -21,7 +21,7 @@ import {
   VariantContext,
 } from '~/grammar/BovadaParser';
 import { BovadaVisitor } from '~/grammar/BovadaVisitor';
-import { HandStrength, Limit, Position, Street, Variant } from '~/types';
+import { BettingStructure, HandStrength, Position, Street, Variant } from '~/types';
 import { BovadaActionVisitor } from './BovadaActionVisitor';
 import { BovadaChipCountVisitor } from './BovadaChipCountVisitor';
 import { Line } from './types';
@@ -47,7 +47,7 @@ const getVariant = (ctx: VariantContext): Variant => {
   }
 };
 
-const getLimit = (ctx: LimitContext): Limit => {
+const getBettingStructure = (ctx: BettingStructureContext): BettingStructure => {
   switch (ctx.text) {
     case 'Limit':
       return 'limit';
@@ -56,7 +56,7 @@ const getLimit = (ctx: LimitContext): Limit => {
     case 'Pot Limit':
       return 'pot limit';
     default:
-      throw new Error(`Unexpected limit: "${ctx.text}"`);
+      throw new Error(`Unexpected betting structure: "${ctx.text}"`);
   }
 };
 
@@ -146,7 +146,7 @@ export class BovadaHandHistoryVisitor
     const variantContext = ctx.variant();
     const variant = getVariant(variantContext);
 
-    const limit = getLimit(ctx.limit());
+    const bettingStructure = getBettingStructure(ctx.bettingStructure());
 
     const fastFold =
       !!ctx.fastFold() ||
@@ -157,7 +157,7 @@ export class BovadaHandHistoryVisitor
     const t = text.split(/\D/).map(Number);
     const timestamp = new Date(t[0], t[1] - 1, t[2], t[3], t[4], t[5]);
 
-    return [{ type: 'meta', handNumber, fastFold, variant, limit, timestamp }];
+    return [{ type: 'meta', handNumber, fastFold, variant, bettingStructure, timestamp }];
   }
 
   public visitLineSmallBlind(ctx: LineSmallBlindContext): Line[] {

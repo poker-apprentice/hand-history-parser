@@ -33,7 +33,7 @@ const getInfo = (lines: LineDictionary): HandHistory['info'] => {
     variant: meta.variant,
     handNumber: meta.handNumber,
     isFastFold: meta.fastFold,
-    limit: meta.limit,
+    bettingStructure: meta.bettingStructure,
     site: 'bovada',
     tableSize,
     timestamp: meta.timestamp,
