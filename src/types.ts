@@ -70,7 +70,7 @@ export interface GameInfo {
    * blind, this array will contain two items with small blind at index 0 and the big blind at
    * index 1.  If more or fewer than two blinds were posted during a hand for any reason, the array
    * length will reflect that with the smallest blind being at index 0 and the biggest blind being
-   * at index N-1.
+   * at index N-1.  Guaranteed to contain at least one value.
    */
   blinds: string[];
   /**

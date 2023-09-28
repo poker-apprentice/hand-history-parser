@@ -4,7 +4,7 @@ import { HandHistory } from '~/types';
 import { getParser } from '~/utils/getParser';
 import { Dictionary, groupBy } from '~/utils/groupBy';
 import { BovadaHandHistoryVisitor } from './BovadaHandHistoryVisitor';
-import { Line, LineAction, LineMeta, LinePlayer } from './types';
+import { Line, LineAction, LineBigBlind, LineMeta, LinePlayer, LineSmallBlind } from './types';
 
 type LineDictionary = Dictionary<Line>;
 
@@ -16,11 +16,17 @@ const getInfo = (lines: LineDictionary): HandHistory['info'] => {
     throw new LineNotFoundError('Missing meta information');
   }
 
-  const smallBlind = lines.smallBlind?.[0];
-  const bigBlind = lines.bigBlind?.[0];
-  if (!smallBlind && !bigBlind) {
-    throw new LineNotFoundError('Missing blind information');
+  // the big blind is always required, the small blind is not
+  const smallBlind: LineSmallBlind | undefined = lines.smallBlind?.[0];
+  const bigBlind: LineBigBlind | undefined = lines.bigBlind?.[0];
+  const blinds: string[] = [];
+  if (smallBlind) {
+    blinds.push(smallBlind.chipCount);
   }
+  if (!bigBlind) {
+    throw new LineNotFoundError('Missing big blind information');
+  }
+  blinds.push(bigBlind.chipCount);
 
   // Bovada only has 6-person and 9-person tables. Fast-fold games are all 6-max, otherwise make a
   // best guess on table size based upon the number of players recorded in the hand.
@@ -28,7 +34,7 @@ const getInfo = (lines: LineDictionary): HandHistory['info'] => {
   const tableSize = meta.fastFold ? 6 : playerCount > 6 ? 9 : 6;
 
   return {
-    blinds: [smallBlind.chipCount, bigBlind.chipCount],
+    blinds,
     currency: 'USD',
     variant: meta.variant,
     handNumber: meta.handNumber,

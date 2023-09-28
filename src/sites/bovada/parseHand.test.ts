@@ -7,6 +7,7 @@ import {
   HAND_FULL_BOARD_LOST,
   HAND_FULL_BOARD_WON,
   HAND_NO_FLOP,
+  HAND_NO_SMALL_BLIND,
   HAND_OMAHA,
   HAND_SITTING_OUT,
   HAND_STRAIGHT_FLUSH,
@@ -2649,6 +2650,211 @@ describe('parseHand', () => {
             "isHero": false,
             "name": "UTG",
             "position": "UTG",
+            "seatNumber": 6,
+          },
+        ],
+      }
+    `);
+  });
+
+  it('parses unknown', () => {
+    expect(parseHand(HAND_NO_SMALL_BLIND)).toMatchInlineSnapshot(`
+      {
+        "actions": [
+          {
+            "amount": "0.25",
+            "playerName": "Big Blind",
+            "postType": "blind",
+            "type": "post",
+          },
+          {
+            "cards": [
+              "5s",
+              "Ad",
+            ],
+            "playerName": "UTG",
+            "type": "deal-hand",
+          },
+          {
+            "cards": [
+              "6d",
+              "Js",
+            ],
+            "playerName": "UTG+1",
+            "type": "deal-hand",
+          },
+          {
+            "cards": [
+              "5c",
+              "9s",
+            ],
+            "playerName": "Dealer",
+            "type": "deal-hand",
+          },
+          {
+            "cards": [
+              "As",
+              "Qs",
+            ],
+            "playerName": "Big Blind",
+            "type": "deal-hand",
+          },
+          {
+            "amount": "0.25",
+            "isAllIn": false,
+            "playerName": "UTG",
+            "type": "call",
+          },
+          {
+            "playerName": "UTG+1",
+            "type": "fold",
+          },
+          {
+            "playerName": "Dealer",
+            "type": "fold",
+          },
+          {
+            "amount": "0.75",
+            "isAllIn": false,
+            "playerName": "Big Blind",
+            "totalBet": "1",
+            "type": "raise",
+          },
+          {
+            "amount": "0.75",
+            "isAllIn": false,
+            "playerName": "UTG",
+            "type": "call",
+          },
+          {
+            "cards": [
+              "Ac",
+              "4h",
+              "7h",
+            ],
+            "street": "flop",
+            "type": "deal-board",
+          },
+          {
+            "playerName": "Big Blind",
+            "type": "check",
+          },
+          {
+            "playerName": "UTG",
+            "type": "check",
+          },
+          {
+            "cards": [
+              "Kh",
+            ],
+            "street": "turn",
+            "type": "deal-board",
+          },
+          {
+            "amount": "1.5",
+            "isAllIn": false,
+            "playerName": "Big Blind",
+            "type": "bet",
+          },
+          {
+            "amount": "3",
+            "isAllIn": false,
+            "playerName": "UTG",
+            "totalBet": "3",
+            "type": "raise",
+          },
+          {
+            "amount": "1.5",
+            "isAllIn": false,
+            "playerName": "Big Blind",
+            "type": "call",
+          },
+          {
+            "cards": [
+              "6s",
+            ],
+            "street": "river",
+            "type": "deal-board",
+          },
+          {
+            "playerName": "Big Blind",
+            "type": "check",
+          },
+          {
+            "amount": "3.8",
+            "isAllIn": false,
+            "playerName": "UTG",
+            "type": "bet",
+          },
+          {
+            "amount": "3.8",
+            "isAllIn": false,
+            "playerName": "Big Blind",
+            "type": "call",
+          },
+          {
+            "handStrength": 1,
+            "mucked": false,
+            "playerName": "UTG",
+            "type": "showdown",
+          },
+          {
+            "handStrength": 1,
+            "mucked": false,
+            "playerName": "Big Blind",
+            "type": "showdown",
+          },
+          {
+            "amount": "14.82",
+            "isSidePot": false,
+            "playerName": "Big Blind",
+            "type": "award-pot",
+          },
+        ],
+        "info": {
+          "bettingStructure": "no limit",
+          "blinds": [
+            "0.25",
+          ],
+          "currency": "USD",
+          "handNumber": "4290336243",
+          "isFastFold": false,
+          "site": "bovada",
+          "tableSize": 6,
+          "timestamp": 2022-05-26T15:23:28.000Z,
+          "variant": "holdem",
+        },
+        "players": [
+          {
+            "chipStack": "18.26",
+            "isAnonymous": true,
+            "isHero": false,
+            "name": "UTG",
+            "position": "UTG",
+            "seatNumber": 2,
+          },
+          {
+            "chipStack": "23.91",
+            "isAnonymous": false,
+            "isHero": true,
+            "name": "UTG+1",
+            "position": "UTG+1",
+            "seatNumber": 3,
+          },
+          {
+            "chipStack": "54.38",
+            "isAnonymous": true,
+            "isHero": false,
+            "name": "BTN",
+            "position": "BTN",
+            "seatNumber": 4,
+          },
+          {
+            "chipStack": "54.15",
+            "isAnonymous": true,
+            "isHero": false,
+            "name": "BB",
+            "position": "BB",
             "seatNumber": 6,
           },
         ],

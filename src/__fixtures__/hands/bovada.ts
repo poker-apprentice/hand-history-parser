@@ -539,3 +539,47 @@ Seat+3: Dealer lost with Two pair [5s Ah]
 Seat+4: Small Blind lost with One pair [7h Qc-Qs Qc As Tc 7h]  
 Seat+5: Big Blind $216.30  with Two pair [4h 5d-5d 5c 4h 4d As]  
 Seat+6: UTG Folded before the RIVER`;
+
+export const HAND_NO_SMALL_BLIND = `Bovada Hand #4290336243 TBL#26728930 HOLDEM No Limit - 2022-05-26 10:23:28
+Seat 2: UTG ($18.26 in chips)
+Seat 3: UTG+1 [ME] ($23.91 in chips)
+Seat 4: Dealer ($54.38 in chips)
+Seat 6: Big Blind ($54.15 in chips)
+Dealer : Set dealer [4] 
+Big Blind : Big blind $0.25 
+*** HOLE CARDS ***
+UTG : Card dealt to a spot [5s Ad] 
+UTG+1  [ME] : Card dealt to a spot [6d Js] 
+Dealer : Card dealt to a spot [5c 9s] 
+Big Blind : Card dealt to a spot [As Qs] 
+UTG : Calls $0.25 
+Seat stand
+Table leave user
+UTG+1  [ME] : Folds
+Dealer : Folds
+Big Blind : Raises $0.75 to $1
+UTG : Calls $0.75 
+*** FLOP *** [Ac 4h 7h]
+Big Blind : Checks
+UTG : Checks
+*** TURN *** [Ac 4h 7h] [Kh]
+Big Blind : Bets $1.50 
+UTG : Raises $3 to $3
+Table enter user
+Seat sit down
+Table deposit $25 
+Big Blind : Calls $1.50 
+*** RIVER *** [Ac 4h 7h Kh] [6s]
+Big Blind : Checks
+UTG : Bets $3.80 
+Big Blind : Calls $3.80 
+UTG : Showdown [Ad Ac Kh 7h 6s] (One pair)
+Big Blind : Showdown [As Ac Kh Qs 7h] (One pair)
+Big Blind : Hand result $14.82 
+*** SUMMARY ***
+Total Pot($15.60)
+Board [Ac 4h 7h Kh 6s]
+Seat+2: UTG lost with One pair [5s Ad-Ad Ac Kh 7h 6s]  
+Seat+3: UTG+1 Folded before the FLOP
+Seat+4: Dealer Folded before the FLOP
+Seat+6: Big Blind $14.82  with One pair [As Qs-As Ac Kh Qs 7h]`;
