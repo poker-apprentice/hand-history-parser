@@ -1,5 +1,4 @@
 import { AbstractParseTreeVisitor } from 'antlr4ts/tree/AbstractParseTreeVisitor';
-import { InvalidSiteError } from '~/errors/InvalidSiteError';
 import { SiteBovadaContext } from '~/grammar/SiteParser';
 import { SiteVisitor } from '~/grammar/SiteVisitor';
 import { Site } from '~/types';
@@ -22,7 +21,7 @@ export class SiteSwitchVisitor
       case 'Ignition':
         return 'ignition';
       default:
-        throw new InvalidSiteError(site);
+        throw new Error(`Unexpected site: "${ctx.text}"`);
     }
   }
 }
