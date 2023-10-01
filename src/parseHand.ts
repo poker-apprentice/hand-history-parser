@@ -1,13 +1,14 @@
 import assertNever from 'assert-never';
 import { InvalidHandError } from './errors/InvalidHandError';
 import { InvalidSiteError } from './errors/InvalidSiteError';
-import { parseSite } from './sites/all/parseSite';
+import { parseSite } from './networks/all/parseSite';
 import { HandHistory, Site } from './types';
 
 const getParser = async (site: Site) => {
   switch (site) {
     case 'bovada':
-      return (await import('./sites/bovada/parseHand')).parseHand;
+    case 'ignition':
+      return (await import('./networks/ignition/parseHand')).parseHand;
     default:
       return assertNever(site);
   }

@@ -1,4 +1,4 @@
-grammar Bovada;
+grammar Ignition;
 
 // file entry
 handHistory: line | ((line EOL)+ line);
@@ -23,7 +23,7 @@ line:
   );
 
 // lines of text
-lineMeta       : 'Bovada Hand' '#' handNumber fastFold? ('TBL#' | 'ID#') INT variant bettingStructure '-' timestamp;
+lineMeta       : site 'Hand' '#' handNumber fastFold? ('TBL#' | 'ID#') INT variant bettingStructure '-' timestamp;
 linePlayer     : 'Seat' seatNumber COLON position ME? '(' chipCount 'in chips)';
 lineDealer     : ('Dealer' ME? COLON)? 'Set dealer' ('[' INT ']')?;
 lineSmallBlind : ('Small Blind' | 'Dealer') ME? COLON 'Small Blind' chipCount;
@@ -66,6 +66,7 @@ lineActionSummary:
 handNumber   : INT;
 seatNumber   : INT;
 timestamp    : INT '-' INT '-' INT INT ':' INT ':' INT;
+site         : 'Bovada' | 'Ignition';
 variant      : 'HOLDEM' | 'OMAHA' | 'HOLDEMZonePoker' | 'OMAHAZonePoker';
 bettingStructure : 'No Limit' | 'Pot Limit' | 'Limit';
 fastFold     : FASTFOLD;

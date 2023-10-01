@@ -253,13 +253,14 @@ The value returned is represented as a [`HandHistory`](https://github.com/poker-
 }
 ```
 
-## Supported Poker Sites
+## Supported Poker Sites/Networks
 
-This package currently supports the following poker sites:
+This package currently supports the following poker sites & networks:
 
-| Site   | Cash Games | Tournaments | Hold'em |  Omaha  | Omaha-8  | Stud | Currencies |
-| ------ | :--------: | :---------: | :-----: | :-----: | :------: | :--: | ---------- |
-| Bovada |  &#9989;   |  &#10060;   | &#9989; | &#9989; | &#10060; | N/A  | USD        |
+| Site     | Network  | Cash Games | Tournaments | Hold'em |  Omaha  | Omaha-8  | Stud | Currencies |
+| -------- | -------- | :--------: | :---------: | :-----: | :-----: | :------: | :--: | ---------- |
+| Bovada   | Ignition |  &#9989;   |  &#10060;   | &#9989; | &#9989; | &#10060; | N/A  | USD        |
+| Ignition | Ignition |  &#9989;   |  &#10060;   | &#9989; | &#9989; | &#10060; | N/A  | USD        |
 
 The parser is built in a way that it is relatively straightforward to extend with new poker sites. The main thing that is missing for this to happen is a combination of sample hand histories to implement against & time.
 
@@ -287,9 +288,9 @@ The architecture is as straightforward as possible, with the most complex part i
    ```bash
    yarn build:grammar
    ```
-1. Add a visitor for your poker site under `sites/[pokersite]/[PokerSite]HandHistoryVisitor.ts`.
+1. Add a visitor for your poker site under `networks/[pokersite]/[PokerSite]HandHistoryVisitor.ts`.
    The visitor is responsible for returning a value representing the current node that is being parsed bym ANTLR. Ideally each line being parsed can return an object representing one of the three types of metadata outlined above. However, it may be necessary to utilize a custom return type that may or may not wrap the shared `Action`, `Player`, and `GameInfo` types depending on the poker site's hand history structure.
-1. Add a parser for your poker site under `sites/[pokersite]/parseHand.ts`.
+1. Add a parser for your poker site under `networks/[pokersite]/parseHand.ts`.
    This function is intended to delegate to the Visitor class implemented above, massaging the return value into a `HandHistory` object as a return value.
 1. Include tests for common & uncommon parsing scenarios that demonstrate the `parseHand` function is working as intended. Common & uncommon scenarios include:
    - Multiple variants (e.g.: Hold'em, Omaha, Omaha-8, etc.),

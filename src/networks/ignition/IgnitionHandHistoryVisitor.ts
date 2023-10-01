@@ -18,13 +18,25 @@ import {
   LineStreetContext,
   LineUncalledContext,
   PositionContext,
+  SiteContext,
   VariantContext,
-} from '~/grammar/BovadaParser';
-import { BovadaVisitor } from '~/grammar/BovadaVisitor';
-import { BettingStructure, HandStrength, Position, Street, Variant } from '~/types';
-import { BovadaActionVisitor } from './BovadaActionVisitor';
-import { BovadaChipCountVisitor } from './BovadaChipCountVisitor';
+} from '~/grammar/IgnitionParser';
+import { IgnitionVisitor } from '~/grammar/IgnitionVisitor';
+import { BettingStructure, HandStrength, Position, Site, Street, Variant } from '~/types';
+import { IgnitionActionVisitor } from './IgnitionActionVisitor';
+import { IgnitionChipCountVisitor } from './IgnitionChipCountVisitor';
 import { Line } from './types';
+
+const getSite = (ctx: SiteContext): Site => {
+  switch (ctx.text) {
+    case 'Bovada':
+      return 'bovada';
+    case 'Ignition':
+      return 'ignition';
+    default:
+      throw new Error(`Unexpected site: "${ctx.text}"`);
+  }
+};
 
 const getSubstring = (ctx: ParserRuleContext): string => {
   const { start, stop } = ctx;
@@ -123,9 +135,9 @@ const getHandStrength = (ctx: HandStrengthContext): HandStrength => {
   }
 };
 
-export class BovadaHandHistoryVisitor
+export class IgnitionHandHistoryVisitor
   extends AbstractParseTreeVisitor<Line[]>
-  implements BovadaVisitor<Line[]>
+  implements IgnitionVisitor<Line[]>
 {
   protected defaultResult(): Line[] {
     return [];
@@ -136,11 +148,13 @@ export class BovadaHandHistoryVisitor
   }
 
   public visitLineAction(ctx: LineActionContext): Line[] {
-    const actions = new BovadaActionVisitor().visit(ctx);
+    const actions = new IgnitionActionVisitor().visit(ctx);
     return actions.map((action) => ({ type: 'action', action }));
   }
 
   public visitLineMeta(ctx: LineMetaContext): Line[] {
+    const site = getSite(ctx.site());
+
     const handNumber = ctx.handNumber().text;
 
     const variantContext = ctx.variant();
@@ -157,11 +171,11 @@ export class BovadaHandHistoryVisitor
     const t = text.split(/\D/).map(Number);
     const timestamp = new Date(t[0], t[1] - 1, t[2], t[3], t[4], t[5]);
 
-    return [{ type: 'meta', handNumber, fastFold, variant, bettingStructure, timestamp }];
+    return [{ type: 'meta', site, handNumber, fastFold, variant, bettingStructure, timestamp }];
   }
 
   public visitLineSmallBlind(ctx: LineSmallBlindContext): Line[] {
-    const chipCount = new BovadaChipCountVisitor().visit(ctx.chipCount()).toString();
+    const chipCount = new IgnitionChipCountVisitor().visit(ctx.chipCount()).toString();
     const playerName = 'Small Blind';
     return [
       { type: 'smallBlind', chipCount },
@@ -173,7 +187,7 @@ export class BovadaHandHistoryVisitor
   }
 
   public visitLineBigBlind(ctx: LineSmallBlindContext): Line[] {
-    const chipCount = new BovadaChipCountVisitor().visit(ctx.chipCount()).toString();
+    const chipCount = new IgnitionChipCountVisitor().visit(ctx.chipCount()).toString();
     const playerName = 'Big Blind';
     return [
       { type: 'bigBlind', chipCount },
@@ -185,7 +199,7 @@ export class BovadaHandHistoryVisitor
   }
 
   public visitLinePost(ctx: LinePostContext): Line[] {
-    const chipCount = new BovadaChipCountVisitor().visit(ctx.chipCount()).toString();
+    const chipCount = new IgnitionChipCountVisitor().visit(ctx.chipCount()).toString();
     const isDead = !!ctx.DEAD();
     const playerName = ctx.position().text;
     return [
@@ -197,7 +211,7 @@ export class BovadaHandHistoryVisitor
   }
 
   public visitLineUncalled(ctx: LineUncalledContext): Line[] {
-    const chipCount = new BovadaChipCountVisitor().visit(ctx.chipCount()).toString();
+    const chipCount = new IgnitionChipCountVisitor().visit(ctx.chipCount()).toString();
     const playerName = ctx.position().text;
     return [{ type: 'action', action: { type: 'return-bet', playerName, amount: chipCount } }];
   }
@@ -205,7 +219,7 @@ export class BovadaHandHistoryVisitor
   public visitLinePlayer(ctx: LinePlayerContext): Line[] {
     const seatNumber = Number(ctx.seatNumber().text);
     const position = getPosition(ctx.position());
-    const chipCount = new BovadaChipCountVisitor().visit(ctx.chipCount()).toString();
+    const chipCount = new IgnitionChipCountVisitor().visit(ctx.chipCount()).toString();
     const isHero = !!ctx.ME();
     const isAnonymous = !isHero;
 
@@ -265,7 +279,7 @@ export class BovadaHandHistoryVisitor
   public visitLineResult(ctx: LineResultContext): Line[] {
     const playerName = ctx.position().text;
     const isSidePot = !!ctx.SIDEPOT();
-    const chipCount = new BovadaChipCountVisitor().visit(ctx.chipCount()).toString();
+    const chipCount = new IgnitionChipCountVisitor().visit(ctx.chipCount()).toString();
     return [
       { type: 'action', action: { type: 'award-pot', playerName, amount: chipCount, isSidePot } },
     ];

@@ -13,6 +13,7 @@ import {
   HAND_STRAIGHT_FLUSH,
   HAND_THOUSANDS_OF_DOLLARS,
 } from '~/__fixtures__/hands/bovada';
+import { HAND as HAND_IGNITION } from '~/__fixtures__/hands/ignition';
 import { parseHand } from './parseHand';
 
 describe('parseHand', () => {
@@ -2860,5 +2861,172 @@ describe('parseHand', () => {
         ],
       }
     `);
+  });
+
+  describe('sites', () => {
+    it('parses Ignition hand histories', () => {
+      expect(parseHand(HAND_IGNITION)).toMatchInlineSnapshot(`
+        {
+          "actions": [
+            {
+              "amount": "0.1",
+              "playerName": "Small Blind",
+              "postType": "blind",
+              "type": "post",
+            },
+            {
+              "amount": "0.25",
+              "playerName": "Big Blind",
+              "postType": "blind",
+              "type": "post",
+            },
+            {
+              "cards": [
+                "2c",
+                "Kc",
+              ],
+              "playerName": "UTG",
+              "type": "deal-hand",
+            },
+            {
+              "cards": [
+                "Ah",
+                "5c",
+              ],
+              "playerName": "UTG+1",
+              "type": "deal-hand",
+            },
+            {
+              "cards": [
+                "2s",
+                "3c",
+              ],
+              "playerName": "UTG+2",
+              "type": "deal-hand",
+            },
+            {
+              "cards": [
+                "Jc",
+                "9h",
+              ],
+              "playerName": "Dealer",
+              "type": "deal-hand",
+            },
+            {
+              "cards": [
+                "3s",
+                "5s",
+              ],
+              "playerName": "Small Blind",
+              "type": "deal-hand",
+            },
+            {
+              "cards": [
+                "3h",
+                "6s",
+              ],
+              "playerName": "Big Blind",
+              "type": "deal-hand",
+            },
+            {
+              "playerName": "UTG",
+              "type": "fold",
+            },
+            {
+              "playerName": "UTG+1",
+              "type": "fold",
+            },
+            {
+              "playerName": "UTG+2",
+              "type": "fold",
+            },
+            {
+              "playerName": "Dealer",
+              "type": "fold",
+            },
+            {
+              "playerName": "Small Blind",
+              "type": "fold",
+            },
+            {
+              "handStrength": 0,
+              "mucked": true,
+              "playerName": "Big Blind",
+              "type": "showdown",
+            },
+            {
+              "amount": "0.35",
+              "isSidePot": false,
+              "playerName": "Big Blind",
+              "type": "award-pot",
+            },
+          ],
+          "info": {
+            "bettingStructure": "no limit",
+            "blinds": [
+              "0.1",
+              "0.25",
+            ],
+            "currency": "USD",
+            "handNumber": "3579164007",
+            "isFastFold": true,
+            "site": "ignition",
+            "tableSize": 6,
+            "timestamp": 2018-03-13T12:37:42.000Z,
+            "variant": "holdem",
+          },
+          "players": [
+            {
+              "chipStack": "10.45",
+              "isAnonymous": true,
+              "isHero": false,
+              "name": "UTG",
+              "position": "UTG",
+              "seatNumber": 1,
+            },
+            {
+              "chipStack": "24.75",
+              "isAnonymous": true,
+              "isHero": false,
+              "name": "UTG+1",
+              "position": "UTG+1",
+              "seatNumber": 2,
+            },
+            {
+              "chipStack": "23.29",
+              "isAnonymous": true,
+              "isHero": false,
+              "name": "UTG+2",
+              "position": "UTG+2",
+              "seatNumber": 3,
+            },
+            {
+              "chipStack": "127.59",
+              "isAnonymous": true,
+              "isHero": false,
+              "name": "BTN",
+              "position": "BTN",
+              "seatNumber": 4,
+            },
+            {
+              "chipStack": "12.47",
+              "isAnonymous": true,
+              "isHero": false,
+              "name": "SB",
+              "position": "SB",
+              "seatNumber": 5,
+            },
+            {
+              "chipStack": "25",
+              "isAnonymous": false,
+              "isHero": true,
+              "name": "BB",
+              "position": "BB",
+              "seatNumber": 6,
+            },
+          ],
+        }
+      `);
+    });
   });
 });

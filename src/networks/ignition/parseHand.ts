@@ -1,9 +1,9 @@
-import { BovadaLexer } from '~/grammar/BovadaLexer';
-import { BovadaParser } from '~/grammar/BovadaParser';
+import { IgnitionLexer } from '~/grammar/IgnitionLexer';
+import { IgnitionParser } from '~/grammar/IgnitionParser';
 import { HandHistory } from '~/types';
 import { getParser } from '~/utils/getParser';
 import { Dictionary, groupBy } from '~/utils/groupBy';
-import { BovadaHandHistoryVisitor } from './BovadaHandHistoryVisitor';
+import { IgnitionHandHistoryVisitor } from './IgnitionHandHistoryVisitor';
 import { Line, LineAction, LineBigBlind, LineMeta, LinePlayer, LineSmallBlind } from './types';
 
 type LineDictionary = Dictionary<Line>;
@@ -40,7 +40,7 @@ const getInfo = (lines: LineDictionary): HandHistory['info'] => {
     handNumber: meta.handNumber,
     isFastFold: meta.fastFold,
     bettingStructure: meta.bettingStructure,
-    site: 'bovada',
+    site: meta.site,
     tableSize,
     timestamp: meta.timestamp,
   };
@@ -79,10 +79,10 @@ const getActions = (lines: LineDictionary): HandHistory['actions'] => {
 };
 
 export const parseHand = (hand: string): HandHistory => {
-  const parser = getParser(hand, { lexer: BovadaLexer, parser: BovadaParser });
+  const parser = getParser(hand, { lexer: IgnitionLexer, parser: IgnitionParser });
   const context = parser.handHistory();
 
-  const visitor = new BovadaHandHistoryVisitor();
+  const visitor = new IgnitionHandHistoryVisitor();
   const lines = visitor.visit(context);
   const groupedLines = groupBy(lines, 'type');
 

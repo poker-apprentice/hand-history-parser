@@ -1,13 +1,13 @@
 import { AbstractParseTreeVisitor } from 'antlr4ts/tree/AbstractParseTreeVisitor';
-import { LineActionContext } from '~/grammar/BovadaParser';
-import { BovadaVisitor } from '~/grammar/BovadaVisitor';
+import { LineActionContext } from '~/grammar/IgnitionParser';
+import { IgnitionVisitor } from '~/grammar/IgnitionVisitor';
 import { Action } from '~/types';
-import { BovadaChipCountVisitor } from './BovadaChipCountVisitor';
+import { IgnitionChipCountVisitor } from './IgnitionChipCountVisitor';
 import { NotImplementedError } from './types';
 
-export class BovadaActionVisitor
+export class IgnitionActionVisitor
   extends AbstractParseTreeVisitor<Action[]>
-  implements BovadaVisitor<Action[]>
+  implements IgnitionVisitor<Action[]>
 {
   protected defaultResult(): Action[] {
     return [];
@@ -22,7 +22,7 @@ export class BovadaActionVisitor
 
     const allInAction = action.actionAllIn();
     if (allInAction) {
-      const amount = new BovadaChipCountVisitor().visit(allInAction.chipCount()).toString();
+      const amount = new IgnitionChipCountVisitor().visit(allInAction.chipCount()).toString();
       const playerName = ctx.position().text;
 
       // This all-in action could actually represent a bet or a call. Unfortunately,
@@ -34,8 +34,10 @@ export class BovadaActionVisitor
 
     const allInRaiseAction = action.actionAllInRaise();
     if (allInRaiseAction) {
-      const amount = new BovadaChipCountVisitor().visit(allInRaiseAction.chipCount()[0]).toString();
-      const totalBet = new BovadaChipCountVisitor()
+      const amount = new IgnitionChipCountVisitor()
+        .visit(allInRaiseAction.chipCount()[0])
+        .toString();
+      const totalBet = new IgnitionChipCountVisitor()
         .visit(allInRaiseAction.chipCount()[1])
         .toString();
       const playerName = ctx.position().text;
@@ -44,14 +46,14 @@ export class BovadaActionVisitor
 
     const betAction = action.actionBet();
     if (betAction) {
-      const amount = new BovadaChipCountVisitor().visit(betAction.chipCount()).toString();
+      const amount = new IgnitionChipCountVisitor().visit(betAction.chipCount()).toString();
       const playerName = ctx.position().text;
       return [{ type: 'bet', playerName, amount, isAllIn: false }];
     }
 
     const callAction = action.actionCall();
     if (callAction) {
-      const amount = new BovadaChipCountVisitor().visit(callAction.chipCount()).toString();
+      const amount = new IgnitionChipCountVisitor().visit(callAction.chipCount()).toString();
       const playerName = ctx.position().text;
       return [{ type: 'call', playerName, amount, isAllIn: false }];
     }
@@ -70,8 +72,8 @@ export class BovadaActionVisitor
 
     const raiseAction = action.actionRaise();
     if (raiseAction) {
-      const amount = new BovadaChipCountVisitor().visit(raiseAction.chipCount()[0]).toString();
-      const totalBet = new BovadaChipCountVisitor().visit(raiseAction.chipCount()[1]).toString();
+      const amount = new IgnitionChipCountVisitor().visit(raiseAction.chipCount()[0]).toString();
+      const totalBet = new IgnitionChipCountVisitor().visit(raiseAction.chipCount()[1]).toString();
       const playerName = ctx.position().text;
       return [{ type: 'raise', playerName, amount, totalBet, isAllIn: false }];
     }

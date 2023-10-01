@@ -1,4 +1,4 @@
-import { Action, BettingStructure, Position, Variant } from '~/types';
+import { Action, BettingStructure, Position, Site, Variant } from '~/types';
 
 interface BaseLine {
   type: string;
@@ -11,6 +11,7 @@ export interface LineAction extends BaseLine {
 
 export interface LineMeta extends BaseLine {
   type: 'meta';
+  site: Site & ('bovada' | 'ignition');
   handNumber: string;
   fastFold: boolean;
   variant: Variant;
