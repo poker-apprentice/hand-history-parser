@@ -3,7 +3,7 @@ import { Card } from '@poker-apprentice/types';
 /**
  * The name of the poker site.
  */
-export type Site = 'bovada' | 'ignition';
+export type Site = 'bodog' | 'bovada' | 'ignition';
 
 /**
  * The name of the poker variant.

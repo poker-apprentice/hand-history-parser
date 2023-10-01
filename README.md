@@ -259,6 +259,7 @@ This package currently supports the following poker sites & networks:
 
 | Site     | Network  | Cash Games | Tournaments | Hold'em |  Omaha  | Omaha-8  | Stud | Currencies |
 | -------- | -------- | :--------: | :---------: | :-----: | :-----: | :------: | :--: | ---------- |
+| Bodog    | Ignition |  &#9989;   |  &#10060;   | &#9989; | &#9989; | &#10060; | N/A  | USD        |
 | Bovada   | Ignition |  &#9989;   |  &#10060;   | &#9989; | &#9989; | &#10060; | N/A  | USD        |
 | Ignition | Ignition |  &#9989;   |  &#10060;   | &#9989; | &#9989; | &#10060; | N/A  | USD        |
 

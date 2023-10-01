@@ -13,7 +13,7 @@ site: siteBovada;
 siteBovada: bovadaSite 'Hand' '#' INT bovadaFastFold? ('TBL#' | 'ID#') INT bovadaVariant bovadaBettingStructure '-' bovadaTimestamp;
 
 // lexer rules for individual sites & networks
-bovadaSite: 'Bovada' | 'Ignition';
+bovadaSite: 'Bodog' | 'Bovada' | 'Ignition';
 bovadaFastFold: 'Zone Poker';
 bovadaVariant: 'HOLDEM' | 'OMAHA' | 'HOLDEMZonePoker' | 'OMAHAZonePoker';
 bovadaBettingStructure: 'No Limit' | 'Pot Limit' | 'Limit';

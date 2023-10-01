@@ -1,3 +1,4 @@
+import { HAND as HAND_BODOG } from '~/__fixtures__/hands/bodog';
 import {
   HAND_ALL_IN,
   HAND_ALL_IN_RAISE,
@@ -3022,6 +3023,171 @@ describe('parseHand', () => {
               "isHero": true,
               "name": "BB",
               "position": "BB",
+              "seatNumber": 6,
+            },
+          ],
+        }
+      `);
+    });
+
+    it('parses Bodog hand histories', () => {
+      expect(parseHand(HAND_BODOG)).toMatchInlineSnapshot(`
+        {
+          "actions": [
+            {
+              "amount": "1",
+              "playerName": "Small Blind",
+              "postType": "blind",
+              "type": "post",
+            },
+            {
+              "amount": "2",
+              "playerName": "Big Blind",
+              "postType": "blind",
+              "type": "post",
+            },
+            {
+              "cards": [
+                "7d",
+                "8c",
+              ],
+              "playerName": "Dealer",
+              "type": "deal-hand",
+            },
+            {
+              "cards": [
+                "3c",
+                "4h",
+              ],
+              "playerName": "Small Blind",
+              "type": "deal-hand",
+            },
+            {
+              "cards": [
+                "9c",
+                "4c",
+              ],
+              "playerName": "Big Blind",
+              "type": "deal-hand",
+            },
+            {
+              "cards": [
+                "3h",
+                "Qc",
+              ],
+              "playerName": "UTG",
+              "type": "deal-hand",
+            },
+            {
+              "cards": [
+                "Ts",
+                "Kd",
+              ],
+              "playerName": "UTG+1",
+              "type": "deal-hand",
+            },
+            {
+              "cards": [
+                "6d",
+                "2h",
+              ],
+              "playerName": "UTG+2",
+              "type": "deal-hand",
+            },
+            {
+              "playerName": "UTG",
+              "type": "fold",
+            },
+            {
+              "playerName": "UTG+1",
+              "type": "fold",
+            },
+            {
+              "playerName": "UTG+2",
+              "type": "fold",
+            },
+            {
+              "playerName": "Dealer",
+              "type": "fold",
+            },
+            {
+              "playerName": "Small Blind",
+              "type": "fold",
+            },
+            {
+              "handStrength": 0,
+              "mucked": false,
+              "playerName": "Big Blind",
+              "type": "showdown",
+            },
+            {
+              "amount": "3",
+              "isSidePot": false,
+              "playerName": "Big Blind",
+              "type": "award-pot",
+            },
+          ],
+          "info": {
+            "bettingStructure": "no limit",
+            "blinds": [
+              "1",
+              "2",
+            ],
+            "currency": "USD",
+            "handNumber": "3821268000",
+            "isFastFold": true,
+            "site": "bodog",
+            "tableSize": 6,
+            "timestamp": 2019-09-09T21:16:05.000Z,
+            "variant": "holdem",
+          },
+          "players": [
+            {
+              "chipStack": "202",
+              "isAnonymous": true,
+              "isHero": false,
+              "name": "BTN",
+              "position": "BTN",
+              "seatNumber": 1,
+            },
+            {
+              "chipStack": "334.8",
+              "isAnonymous": true,
+              "isHero": false,
+              "name": "SB",
+              "position": "SB",
+              "seatNumber": 2,
+            },
+            {
+              "chipStack": "179.95",
+              "isAnonymous": true,
+              "isHero": false,
+              "name": "BB",
+              "position": "BB",
+              "seatNumber": 3,
+            },
+            {
+              "chipStack": "254.75",
+              "isAnonymous": false,
+              "isHero": true,
+              "name": "UTG",
+              "position": "UTG",
+              "seatNumber": 4,
+            },
+            {
+              "chipStack": "199",
+              "isAnonymous": true,
+              "isHero": false,
+              "name": "UTG+1",
+              "position": "UTG+1",
+              "seatNumber": 5,
+            },
+            {
+              "chipStack": "222.78",
+              "isAnonymous": true,
+              "isHero": false,
+              "name": "UTG+2",
+              "position": "UTG+2",
               "seatNumber": 6,
             },
           ],

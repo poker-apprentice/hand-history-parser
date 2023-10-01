@@ -29,6 +29,8 @@ import { Line } from './types';
 
 const getSite = (ctx: SiteContext): Site => {
   switch (ctx.text) {
+    case 'Bodog':
+      return 'bodog';
     case 'Bovada':
       return 'bovada';
     case 'Ignition':

@@ -15,6 +15,8 @@ export class SiteSwitchVisitor
   visitSiteBovada(ctx: SiteBovadaContext): Site {
     const site = ctx.bovadaSite().text;
     switch (site) {
+      case 'Bodog':
+        return 'bodog';
       case 'Bovada':
         return 'bovada';
       case 'Ignition':

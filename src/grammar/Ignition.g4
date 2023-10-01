@@ -66,7 +66,7 @@ lineActionSummary:
 handNumber   : INT;
 seatNumber   : INT;
 timestamp    : INT '-' INT '-' INT INT ':' INT ':' INT;
-site         : 'Bovada' | 'Ignition';
+site         : 'Bodog' | 'Bovada' | 'Ignition';
 variant      : 'HOLDEM' | 'OMAHA' | 'HOLDEMZonePoker' | 'OMAHAZonePoker';
 bettingStructure : 'No Limit' | 'Pot Limit' | 'Limit';
 fastFold     : FASTFOLD;

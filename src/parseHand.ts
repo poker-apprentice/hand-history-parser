@@ -6,6 +6,7 @@ import { HandHistory, Site } from './types';
 
 const getParser = async (site: Site) => {
   switch (site) {
+    case 'bodog':
     case 'bovada':
     case 'ignition':
       return (await import('./networks/ignition/parseHand')).parseHand;
