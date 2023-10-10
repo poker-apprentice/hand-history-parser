@@ -220,14 +220,14 @@ export class IgnitionHandHistoryVisitor
 
   public visitLinePlayer(ctx: LinePlayerContext): Line[] {
     const seatNumber = Number(ctx.seatNumber().text);
-    const position = getPosition(ctx.position());
+    const positionContext = ctx.position();
+    const name = positionContext.text;
+    const position = getPosition(positionContext);
     const chipCount = new IgnitionChipCountVisitor().visit(ctx.chipCount()).toString();
     const isHero = !!ctx.ME();
     const isAnonymous = !isHero;
 
-    return [
-      { type: 'player', name: position, position, seatNumber, chipCount, isHero, isAnonymous },
-    ];
+    return [{ type: 'player', name, position, seatNumber, chipCount, isHero, isAnonymous }];
   }
 
   public visitLineStreet(ctx: LineStreetContext): Line[] {
