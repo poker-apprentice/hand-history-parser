@@ -207,7 +207,7 @@ describe('parseHand', () => {
           "isFastFold": false,
           "site": "bovada",
           "tableSize": 6,
-          "timestamp": 2022-05-26T14:16:24.000Z,
+          "timestamp": 2022-05-26T09:16:24.000Z,
           "variant": "holdem",
         },
         "players": [
@@ -411,7 +411,7 @@ describe('parseHand', () => {
           "isFastFold": false,
           "site": "bovada",
           "tableSize": 6,
-          "timestamp": 2022-05-26T14:17:19.000Z,
+          "timestamp": 2022-05-26T09:17:19.000Z,
           "variant": "holdem",
         },
         "players": [
@@ -601,7 +601,7 @@ describe('parseHand', () => {
           "isFastFold": false,
           "site": "bovada",
           "tableSize": 6,
-          "timestamp": 2022-05-26T14:19:56.000Z,
+          "timestamp": 2022-05-26T09:19:56.000Z,
           "variant": "holdem",
         },
         "players": [
@@ -766,7 +766,7 @@ describe('parseHand', () => {
           "isFastFold": false,
           "site": "bovada",
           "tableSize": 6,
-          "timestamp": 2022-05-26T14:44:06.000Z,
+          "timestamp": 2022-05-26T09:44:06.000Z,
           "variant": "holdem",
         },
         "players": [
@@ -1051,7 +1051,7 @@ describe('parseHand', () => {
           "isFastFold": false,
           "site": "bovada",
           "tableSize": 6,
-          "timestamp": 2022-05-26T19:39:38.000Z,
+          "timestamp": 2022-05-26T14:39:38.000Z,
           "variant": "holdem",
         },
         "players": [
@@ -1274,7 +1274,7 @@ describe('parseHand', () => {
           "isFastFold": false,
           "site": "bovada",
           "tableSize": 6,
-          "timestamp": 2022-05-26T15:17:34.000Z,
+          "timestamp": 2022-05-26T10:17:34.000Z,
           "variant": "holdem",
         },
         "players": [
@@ -1491,7 +1491,7 @@ describe('parseHand', () => {
           "isFastFold": false,
           "site": "bovada",
           "tableSize": 6,
-          "timestamp": 2022-05-26T18:12:06.000Z,
+          "timestamp": 2022-05-26T13:12:06.000Z,
           "variant": "holdem",
         },
         "players": [
@@ -1688,7 +1688,7 @@ describe('parseHand', () => {
           "isFastFold": false,
           "site": "bovada",
           "tableSize": 6,
-          "timestamp": 2022-05-30T18:23:41.000Z,
+          "timestamp": 2022-05-30T13:23:41.000Z,
           "variant": "holdem",
         },
         "players": [
@@ -1914,7 +1914,7 @@ describe('parseHand', () => {
           "isFastFold": false,
           "site": "bovada",
           "tableSize": 6,
-          "timestamp": 2022-06-02T23:58:50.000Z,
+          "timestamp": 2022-06-02T18:58:50.000Z,
           "variant": "omaha",
         },
         "players": [
@@ -2140,7 +2140,7 @@ describe('parseHand', () => {
           "isFastFold": false,
           "site": "bovada",
           "tableSize": 6,
-          "timestamp": 2022-06-10T17:42:20.000Z,
+          "timestamp": 2022-06-10T12:42:20.000Z,
           "variant": "omaha",
         },
         "players": [
@@ -2352,7 +2352,7 @@ describe('parseHand', () => {
           "isFastFold": true,
           "site": "bovada",
           "tableSize": 6,
-          "timestamp": 2022-12-06T01:22:58.000Z,
+          "timestamp": 2022-12-05T19:22:58.000Z,
           "variant": "holdem",
         },
         "players": [
@@ -2602,7 +2602,7 @@ describe('parseHand', () => {
           "isFastFold": true,
           "site": "bovada",
           "tableSize": 6,
-          "timestamp": 2023-08-23T06:00:26.000Z,
+          "timestamp": 2023-08-23T01:00:26.000Z,
           "variant": "holdem",
         },
         "players": [
@@ -2823,7 +2823,7 @@ describe('parseHand', () => {
           "isFastFold": false,
           "site": "bovada",
           "tableSize": 6,
-          "timestamp": 2022-05-26T15:23:28.000Z,
+          "timestamp": 2022-05-26T10:23:28.000Z,
           "variant": "holdem",
         },
         "players": [
@@ -2973,7 +2973,7 @@ describe('parseHand', () => {
             "isFastFold": true,
             "site": "ignition",
             "tableSize": 6,
-            "timestamp": 2018-03-13T12:37:42.000Z,
+            "timestamp": 2018-03-13T07:37:42.000Z,
             "variant": "holdem",
           },
           "players": [
@@ -3138,7 +3138,7 @@ describe('parseHand', () => {
             "isFastFold": true,
             "site": "bodog",
             "tableSize": 6,
-            "timestamp": 2019-09-09T21:16:05.000Z,
+            "timestamp": 2019-09-09T16:16:05.000Z,
             "variant": "holdem",
           },
           "players": [
