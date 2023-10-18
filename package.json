@@ -22,7 +22,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "yarn build:types && yarn build:grammar && yarn build:rollup",
+    "build": "yarn build:grammar && yarn build:types && yarn build:rollup",
     "build:types": "tsc --project tsconfig.build.json",
     "build:grammar": "antlr4ts -visitor src/grammar/*.g4",
     "build:rollup": "cross-env NODE_ENV=production rollup -c",
