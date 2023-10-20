@@ -1,7 +1,7 @@
 import assertNever from 'assert-never';
 import { InvalidHandError } from './errors/InvalidHandError';
 import { InvalidSiteError } from './errors/InvalidSiteError';
-import { parseSite } from './networks/all/parseSite';
+import { parseSite } from './parseSite';
 import { HandHistory, Site } from './types';
 
 const getParser = async (site: Site) => {
