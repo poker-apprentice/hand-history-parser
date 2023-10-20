@@ -17,7 +17,9 @@ Add `@poker-apprentice/hand-history-parser` as a dependency.
 
 ## Usage
 
-This package exports a `parseHand` promise-based function that can be used for parsing hand histories from any [support poker site](#supported-poker-sites). To use it, simply pass the contents of an individual hand history.
+### `parseHand`
+
+This promise-based function can be used to parse hand histories from any [support poker site](#supported-poker-sites). To use it, simply pass the contents of an individual hand history.
 
 ```ts
 // assumes `hand` is a string containing the hand history file contents
@@ -38,7 +40,7 @@ try {
 }
 ```
 
-The value returned is represented as a [`HandHistory`](https://github.com/poker-apprentice/hand-history-parser/blob/main/src/types.ts#L276) type object. For example:
+The value returned is represented as a [`HandHistory`](https://github.com/poker-apprentice/hand-history-parser/blob/main/src/types.ts#L263) type object. For example:
 
 ```js
 {
@@ -252,6 +254,18 @@ The value returned is represented as a [`HandHistory`](https://github.com/poker-
   ],
 }
 ```
+
+### `parseSite`
+
+This function can be used to determine the [support poker site](#supported-poker-sites) on which a hand was played. To use it, simply pass the contents of an individual hand history.
+
+```ts
+// assumes `hand` is a string containing the hand history file contents
+const site = parseSite(hand);
+console.log(site);
+```
+
+The value returned is represented as a [`Site`](https://github.com/poker-apprentice/hand-history-parser/blob/main/src/types.ts#6) string union type.
 
 ## Supported Poker Sites/Networks
 
