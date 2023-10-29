@@ -40,5 +40,3 @@ export interface LineBigBlind extends BaseLine {
 }
 
 export type Line = LineAction | LineMeta | LinePlayer | LineSmallBlind | LineBigBlind;
-
-export class NotImplementedError extends Error {}

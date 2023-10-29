@@ -1,9 +1,9 @@
 import { AbstractParseTreeVisitor } from 'antlr4ts/tree/AbstractParseTreeVisitor';
+import { NotImplementedError } from '~/errors/NotImplementedError';
 import { LineActionContext } from '~/grammar/IgnitionParser';
 import { IgnitionVisitor } from '~/grammar/IgnitionVisitor';
 import { Action } from '~/types';
 import { IgnitionChipCountVisitor } from './IgnitionChipCountVisitor';
-import { NotImplementedError } from './types';
 
 export class IgnitionActionVisitor
   extends AbstractParseTreeVisitor<Action[]>

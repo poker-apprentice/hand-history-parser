@@ -1,3 +1,4 @@
+import { LineNotFoundError } from '~/errors/LineNotFoundError';
 import { IgnitionLexer } from '~/grammar/IgnitionLexer';
 import { IgnitionParser } from '~/grammar/IgnitionParser';
 import { HandHistory } from '~/types';
@@ -7,8 +8,6 @@ import { IgnitionHandHistoryVisitor } from './IgnitionHandHistoryVisitor';
 import { Line, LineAction, LineBigBlind, LineMeta, LinePlayer, LineSmallBlind } from './types';
 
 type LineDictionary = Dictionary<Line>;
-
-class LineNotFoundError extends Error {}
 
 const getInfo = (lines: LineDictionary): HandHistory['info'] => {
   const meta: LineMeta | undefined = lines.meta?.[0];

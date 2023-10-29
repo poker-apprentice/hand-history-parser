@@ -1,6 +1,4 @@
 import { assertCard } from '@poker-apprentice/types';
-import { ParserRuleContext } from 'antlr4ts';
-import { Interval } from 'antlr4ts/misc/Interval';
 import { AbstractParseTreeVisitor } from 'antlr4ts/tree/AbstractParseTreeVisitor';
 import { TerminalNode } from 'antlr4ts/tree/TerminalNode';
 import {
@@ -22,12 +20,13 @@ import {
   VariantContext,
 } from '~/grammar/IgnitionParser';
 import { IgnitionVisitor } from '~/grammar/IgnitionVisitor';
-import { BettingStructure, HandStrength, Position, Site, Street, Variant } from '~/types';
+import { BettingStructure, HandStrength, Position, Street, Variant } from '~/types';
+import { getParserContextSubstring } from '~/utils/getParserContextSubstring';
 import { IgnitionActionVisitor } from './IgnitionActionVisitor';
 import { IgnitionChipCountVisitor } from './IgnitionChipCountVisitor';
-import { Line } from './types';
+import { Line, LineMeta } from './types';
 
-const getSite = (ctx: SiteContext): Site => {
+const getSite = (ctx: SiteContext): LineMeta['site'] => {
   switch (ctx.text) {
     case 'Bodog':
       return 'bodog';
@@ -38,14 +37,6 @@ const getSite = (ctx: SiteContext): Site => {
     default:
       throw new Error(`Unexpected site: "${ctx.text}"`);
   }
-};
-
-const getSubstring = (ctx: ParserRuleContext): string => {
-  const { start, stop } = ctx;
-  if (!start.inputStream || !stop || start.startIndex < 0 || stop.stopIndex < 0) {
-    return start.text ?? '';
-  }
-  return start.inputStream.getText(Interval.of(start.startIndex, stop.stopIndex));
 };
 
 const getVariant = (ctx: VariantContext): Variant => {
@@ -169,7 +160,7 @@ export class IgnitionHandHistoryVisitor
       variantContext.text === 'HOLDEMZonePoker' ||
       variantContext.text === 'OMAHAZonePoker'; // TODO: OMAHA8 version of ZonePoker?
 
-    const text = getSubstring(ctx.timestamp());
+    const text = getParserContextSubstring(ctx.timestamp());
     const t = text.split(/\D/).map(Number);
     const timestamp = new Date(t[0], t[1] - 1, t[2], t[3], t[4], t[5]);
 

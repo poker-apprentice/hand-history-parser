@@ -271,11 +271,12 @@ The value returned is represented as a [`Site`](https://github.com/poker-apprent
 
 This package currently supports the following poker sites & networks:
 
-| Site     | Network  | Cash Games | Tournaments | Hold'em |  Omaha  | Omaha-8  | Stud | Currencies |
-| -------- | -------- | :--------: | :---------: | :-----: | :-----: | :------: | :--: | ---------- |
-| Bodog    | Ignition |  &#9989;   |  &#10060;   | &#9989; | &#9989; | &#10060; | N/A  | USD        |
-| Bovada   | Ignition |  &#9989;   |  &#10060;   | &#9989; | &#9989; | &#10060; | N/A  | USD        |
-| Ignition | Ignition |  &#9989;   |  &#10060;   | &#9989; | &#9989; | &#10060; | N/A  | USD        |
+| Site     | Network  | Cash Games | Tournaments | Hold'em |  Omaha   |  Stud   |  Hi/Lo   | Currencies |
+| -------- | -------- | :--------: | :---------: | :-----: | :------: | :-----: | :------: | ---------- |
+| Bodog    | Ignition |  &#9989;   |  &#10060;   | &#9989; | &#9989;  |   N/A   | &#10060; | USD        |
+| Bovada   | Ignition |  &#9989;   |  &#10060;   | &#9989; | &#9989;  |   N/A   | &#10060; | USD        |
+| Ignition | Ignition |  &#9989;   |  &#10060;   | &#9989; | &#9989;  |   N/A   | &#10060; | USD        |
+| ACR      | ACR      |  &#9989;   |  &#10060;   | &#9989; | &#10060; | &#9989; | &#9989;  | USD        |
 
 The parser is built in a way that it is relatively straightforward to extend with new poker sites. The main thing that is missing for this to happen is a combination of sample hand histories to implement against & time.
 

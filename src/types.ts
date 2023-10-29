@@ -3,12 +3,12 @@ import { Card } from '@poker-apprentice/types';
 /**
  * The name of the poker site.
  */
-export type Site = 'bodog' | 'bovada' | 'ignition';
+export type Site = 'acr' | 'bodog' | 'bovada' | 'ignition';
 
 /**
  * The name of the poker variant.
  */
-export type Variant = 'holdem' | 'omaha';
+export type Variant = 'holdem' | 'omaha' | 'omaha-8' | 'stud' | 'stud-8';
 
 /**
  * The strength of the hand.
