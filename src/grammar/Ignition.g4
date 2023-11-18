@@ -56,10 +56,9 @@ lineActionSummary:
   'Seat+' INT COLON position
   (
     'Folded' ('before'|'on') 'the' STREET
-    | chipCount? '[Does not show]'
+    | 'HI'? chipCount? '[Does not show]'
     | '[Mucked]' hand
-    | winHighResult
-    | 'HI' winHighResult ('LO' winLowResult)?
+    | 'HI'? winHighResult ('LO' winLowResult)?
     | 'LO' winLowResult
     | loseResult
   );
