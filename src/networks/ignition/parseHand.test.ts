@@ -10,6 +10,8 @@ import {
   HAND_NO_FLOP,
   HAND_NO_SMALL_BLIND,
   HAND_OMAHA,
+  HAND_OMAHA_HILO_HIGH_AND_LOW,
+  HAND_OMAHA_HILO_HIGH_ONLY,
   HAND_SITTING_OUT,
   HAND_STRAIGHT_FLUSH,
   HAND_THOUSANDS_OF_DOLLARS,
@@ -1949,6 +1951,329 @@ describe('parseHand', () => {
             "name": "UTG",
             "position": "UTG",
             "seatNumber": 6,
+          },
+        ],
+      }
+    `);
+  });
+
+  it('parses omaha hi/lo hands with a high and low', () => {
+    expect(parseHand(HAND_OMAHA_HILO_HIGH_AND_LOW)).toMatchInlineSnapshot(`
+      {
+        "actions": [
+          {
+            "amount": "0.1",
+            "playerName": "Small Blind",
+            "postType": "blind",
+            "type": "post",
+          },
+          {
+            "amount": "0.25",
+            "playerName": "Big Blind",
+            "postType": "blind",
+            "type": "post",
+          },
+          {
+            "cards": [
+              "Kh",
+              "Kc",
+              "Ks",
+              "Th",
+            ],
+            "playerName": "Big Blind",
+            "type": "deal-hand",
+          },
+          {
+            "cards": [
+              "Td",
+              "Ad",
+              "As",
+              "4c",
+            ],
+            "playerName": "Dealer",
+            "type": "deal-hand",
+          },
+          {
+            "amount": "0.65",
+            "isAllIn": false,
+            "playerName": "Dealer",
+            "totalBet": "0.75",
+            "type": "raise",
+          },
+          {
+            "amount": "0.5",
+            "isAllIn": false,
+            "playerName": "Big Blind",
+            "type": "call",
+          },
+          {
+            "cards": [
+              "9d",
+              "2c",
+              "6h",
+            ],
+            "street": "flop",
+            "type": "deal-board",
+          },
+          {
+            "playerName": "Big Blind",
+            "type": "check",
+          },
+          {
+            "amount": "1.43",
+            "isAllIn": false,
+            "playerName": "Dealer",
+            "type": "bet",
+          },
+          {
+            "amount": "1.43",
+            "isAllIn": false,
+            "playerName": "Big Blind",
+            "type": "call",
+          },
+          {
+            "cards": [
+              "3h",
+            ],
+            "street": "turn",
+            "type": "deal-board",
+          },
+          {
+            "amount": "4.36",
+            "isAllIn": false,
+            "playerName": "Big Blind",
+            "type": "bet",
+          },
+          {
+            "amount": "8.72",
+            "isAllIn": false,
+            "playerName": "Dealer",
+            "totalBet": "8.72",
+            "type": "raise",
+          },
+          {
+            "amount": "0.3",
+            "isAllIn": true,
+            "playerName": "Big Blind",
+            "type": "call",
+          },
+          {
+            "amount": "4.06",
+            "playerName": "Dealer",
+            "type": "return-bet",
+          },
+          {
+            "cards": [
+              "3c",
+            ],
+            "street": "river",
+            "type": "deal-board",
+          },
+          {
+            "handStrength": 2,
+            "mucked": false,
+            "playerName": "Big Blind",
+            "type": "showdown",
+          },
+          {
+            "handStrength": 2,
+            "mucked": false,
+            "playerName": "Dealer",
+            "type": "showdown",
+          },
+          {
+            "amount": "13.18",
+            "isSidePot": false,
+            "playerName": "Dealer",
+            "type": "award-pot",
+          },
+        ],
+        "info": {
+          "bettingStructure": "pot limit",
+          "blinds": [
+            "0.1",
+            "0.25",
+          ],
+          "currency": "USD",
+          "handNumber": "4304661864",
+          "isFastFold": false,
+          "site": "bovada",
+          "tableSize": 6,
+          "timestamp": 2022-06-26T16:46:42.000Z,
+          "variant": "omaha-8",
+        },
+        "players": [
+          {
+            "chipStack": "6.84",
+            "isAnonymous": true,
+            "isHero": false,
+            "name": "Big Blind",
+            "position": "BB",
+            "seatNumber": 1,
+          },
+          {
+            "chipStack": "25.6",
+            "isAnonymous": false,
+            "isHero": true,
+            "name": "Dealer",
+            "position": "BTN",
+            "seatNumber": 4,
+          },
+        ],
+      }
+    `);
+  });
+
+  it('parses omaha hi/lo hands with a high only', () => {
+    expect(parseHand(HAND_OMAHA_HILO_HIGH_ONLY)).toMatchInlineSnapshot(`
+      {
+        "actions": [
+          {
+            "amount": "0.1",
+            "playerName": "Small Blind",
+            "postType": "blind",
+            "type": "post",
+          },
+          {
+            "amount": "0.25",
+            "playerName": "Big Blind",
+            "postType": "blind",
+            "type": "post",
+          },
+          {
+            "cards": [
+              "As",
+              "9d",
+              "6h",
+              "Jd",
+            ],
+            "playerName": "Dealer",
+            "type": "deal-hand",
+          },
+          {
+            "cards": [
+              "Kd",
+              "Js",
+              "6c",
+              "Jc",
+            ],
+            "playerName": "Big Blind",
+            "type": "deal-hand",
+          },
+          {
+            "amount": "0.15",
+            "isAllIn": false,
+            "playerName": "Dealer",
+            "type": "call",
+          },
+          {
+            "playerName": "Big Blind",
+            "type": "check",
+          },
+          {
+            "cards": [
+              "Kc",
+              "9h",
+              "Ks",
+            ],
+            "street": "flop",
+            "type": "deal-board",
+          },
+          {
+            "playerName": "Big Blind",
+            "type": "check",
+          },
+          {
+            "playerName": "Dealer",
+            "type": "check",
+          },
+          {
+            "cards": [
+              "4h",
+            ],
+            "street": "turn",
+            "type": "deal-board",
+          },
+          {
+            "playerName": "Big Blind",
+            "type": "check",
+          },
+          {
+            "amount": "0.41",
+            "isAllIn": false,
+            "playerName": "Dealer",
+            "type": "bet",
+          },
+          {
+            "amount": "0.41",
+            "isAllIn": false,
+            "playerName": "Big Blind",
+            "type": "call",
+          },
+          {
+            "cards": [
+              "Th",
+            ],
+            "street": "river",
+            "type": "deal-board",
+          },
+          {
+            "playerName": "Big Blind",
+            "type": "check",
+          },
+          {
+            "playerName": "Dealer",
+            "type": "check",
+          },
+          {
+            "handStrength": 3,
+            "mucked": false,
+            "playerName": "Big Blind",
+            "type": "showdown",
+          },
+          {
+            "handStrength": 2,
+            "mucked": false,
+            "playerName": "Dealer",
+            "type": "showdown",
+          },
+          {
+            "amount": "1.26",
+            "isSidePot": false,
+            "playerName": "Big Blind",
+            "type": "award-pot",
+          },
+        ],
+        "info": {
+          "bettingStructure": "pot limit",
+          "blinds": [
+            "0.1",
+            "0.25",
+          ],
+          "currency": "USD",
+          "handNumber": "4304661627",
+          "isFastFold": false,
+          "site": "bovada",
+          "tableSize": 6,
+          "timestamp": 2022-06-26T16:46:04.000Z,
+          "variant": "omaha-8",
+        },
+        "players": [
+          {
+            "chipStack": "7.5",
+            "isAnonymous": true,
+            "isHero": false,
+            "name": "Dealer",
+            "position": "BTN",
+            "seatNumber": 1,
+          },
+          {
+            "chipStack": "25",
+            "isAnonymous": false,
+            "isHero": true,
+            "name": "Big Blind",
+            "position": "BB",
+            "seatNumber": 4,
           },
         ],
       }

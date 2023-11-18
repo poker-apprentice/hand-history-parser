@@ -385,6 +385,76 @@ Seat+4: Small Blind Folded on the RIVER
 Seat+5: Big Blind $4.06 [Does not show]  
 Seat+6: UTG Folded before the FLOP`;
 
+export const HAND_OMAHA_HILO_HIGH_AND_LOW = `Bovada Hand #4304661864 TBL#26953916 OMAHA HiLo Pot Limit - 2022-06-26 16:46:42
+Seat 1: Big Blind ($6.84 in chips)
+Seat 4: Dealer [ME] ($25.60 in chips)
+Dealer  [ME] : Set dealer [4]
+Dealer  [ME] : Small Blind $0.10
+Big Blind : Big blind $0.25
+*** HOLE CARDS ***
+Big Blind : Card dealt to a spot [Kh Kc Ks Th]
+Dealer  [ME] : Card dealt to a spot [Td Ad As 4c]
+Dealer  [ME] : Raises $0.65 to $0.75
+Big Blind : Calls $0.50
+*** FLOP *** [9d 2c 6h]
+Big Blind : Checks
+Dealer  [ME] : Bets $1.43
+Big Blind : Calls $1.43
+*** TURN *** [9d 2c 6h] [3h]
+Big Blind : Bets $4.36
+Dealer  [ME] : Raises $8.72 to $8.72
+Big Blind : All-in $0.30
+Dealer  [ME] : Return uncalled portion of bet $4.06
+*** RIVER *** [9d 2c 6h 3h] [3c]
+Big Blind : Showdown [Kh Ks 9d 3h 3c] (Two pair)
+Dealer  [ME] : Showdown [Ad As 9d 3h 3c Ad 4c 2c 6h 3h] (Two pair)
+Dealer  [ME] : Hand result $13.18
+Big Blind : Seat sit out
+Big Blind : Seat stand
+Big Blind : Table leave user
+Dealer  [ME] : Seat stand
+Dealer  [ME] : Table leave user
+Table enter user
+Seat sit down
+Table deposit $25
+Seat stand
+Table leave user
+*** SUMMARY ***
+Total Pot($13.68)
+Board [9d 2c 6h 3h 3c]
+Seat+1: Big Blind lost with Two pair [Kh Kc Ks Th-Kh Ks 9d 3h 3c]
+Seat+4: Dealer HI $6.59  with Two pair [Td Ad As 4c-Ad As 9d 3h 3c] LO $6.59 [Td Ad As 4c-Ad 4c 2c 6h 3h]`;
+
+export const HAND_OMAHA_HILO_HIGH_ONLY = `Bovada Hand #4304661627 TBL#26953916 OMAHA HiLo Pot Limit - 2022-06-26 16:46:04
+Seat 1: Dealer ($7.50 in chips)
+Seat 4: Big Blind [ME] ($25 in chips)
+Dealer : Set dealer [1]
+Dealer : Small Blind $0.10
+Big Blind  [ME] : Big blind $0.25
+*** HOLE CARDS ***
+Dealer : Card dealt to a spot [As 9d 6h Jd]
+Big Blind  [ME] : Card dealt to a spot [Kd Js 6c Jc]
+Dealer : Calls $0.15
+Big Blind  [ME] : Checks
+*** FLOP *** [Kc 9h Ks]
+Big Blind  [ME] : Checks
+Dealer : Checks
+*** TURN *** [Kc 9h Ks] [4h]
+Big Blind  [ME] : Checks
+Dealer : Bets $0.41
+Big Blind  [ME] : Calls $0.41
+*** RIVER *** [Kc 9h Ks 4h] [Th]
+Big Blind  [ME] : Checks
+Dealer : Checks
+Big Blind  [ME] : Showdown [Kd Js Kc Ks Th] (Three of a kind)
+Dealer : Mucks [As 9d 6h Jd] (Two pair)
+Big Blind  [ME] : Hand result $1.26
+*** SUMMARY ***
+Total Pot($1.32)
+Board [Kc 9h Ks 4h Th]
+Seat+1: Dealer [Mucked] [As 9d 6h Jd   ]
+Seat+4: Big Blind HI $1.26  with Three of a kind [Kd Js 6c Jc-Kd Js Kc Ks Th]`;
+
 export const HAND_STRAIGHT_FLUSH = `Bovada Hand #4296950465 TBL#26829077 OMAHA Pot Limit - 2022-06-10 12:42:20
 Seat 1: Small Blind ($152.70 in chips)
 Seat 2: Big Blind [ME] ($92 in chips)

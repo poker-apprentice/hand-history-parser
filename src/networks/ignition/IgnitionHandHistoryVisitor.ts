@@ -56,6 +56,8 @@ const getVariant = (ctx: VariantContext): Variant => {
     case 'OMAHA':
     case 'OMAHAZonePoker':
       return 'omaha';
+    case 'OMAHA HiLo':
+      return 'omaha-8';
     default:
       throw new Error(`Unexpected variant: "${ctx.text}"`);
   }

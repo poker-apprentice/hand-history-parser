@@ -58,8 +58,10 @@ lineActionSummary:
     'Folded' ('before'|'on') 'the' STREET
     | chipCount? '[Does not show]'
     | '[Mucked]' hand
-    | chipCount 'with' handStrength (hand | handAndBoard)
-    | 'lost with' handStrength (hand | handAndBoard)
+    | winHighResult
+    | 'HI' winHighResult ('LO' winLowResult)?
+    | 'LO' winLowResult
+    | loseResult
   );
 
 // parser rules
@@ -67,7 +69,7 @@ handNumber   : INT;
 seatNumber   : INT;
 timestamp    : INT '-' INT '-' INT INT ':' INT ':' INT;
 site         : 'Bodog' | 'Bovada' | 'Ignition';
-variant      : 'HOLDEM' | 'OMAHA' | 'HOLDEMZonePoker' | 'OMAHAZonePoker';
+variant      : 'HOLDEM' | 'OMAHA' | 'OMAHA HiLo' | 'HOLDEMZonePoker' | 'OMAHAZonePoker';
 bettingStructure : 'No Limit' | 'Pot Limit' | 'Limit';
 fastFold     : FASTFOLD;
 position     : 'Small Blind' | 'Big Blind' | 'UTG' | 'UTG+1' | 'UTG+2' | 'Dealer';
@@ -90,6 +92,9 @@ actionAllIn  : 'All-in' chipCount;
 actionAllInRaise : 'All-in' '(raise)' chipCount 'to' chipCount;
 forcedActionReason : '(' ~')'* ')';
 showdownAction: 'Showdown' | 'Mucks';
+winHighResult: chipCount 'with' handStrength (hand | handAndBoard);
+winLowResult : chipCount (hand | handAndBoard);
+loseResult   : 'lost with' handStrength (hand | handAndBoard);
 
 // lexer rules
 ME           : '[ME]';
