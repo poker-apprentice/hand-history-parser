@@ -8,7 +8,7 @@ export type Site = 'bodog' | 'bovada' | 'ignition';
 /**
  * The name of the poker variant.
  */
-export type Variant = 'holdem' | 'omaha';
+export type Variant = 'holdem' | 'omaha' | 'omaha-8';
 
 /**
  * The strength of the hand.

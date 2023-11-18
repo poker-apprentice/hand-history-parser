@@ -15,7 +15,7 @@ siteBovada: bovadaSite 'Hand' '#' INT bovadaFastFold? ('TBL#' | 'ID#') INT bovad
 // lexer rules for individual sites & networks
 bovadaSite: 'Bodog' | 'Bovada' | 'Ignition';
 bovadaFastFold: 'Zone Poker';
-bovadaVariant: 'HOLDEM' | 'OMAHA' | 'HOLDEMZonePoker' | 'OMAHAZonePoker';
+bovadaVariant: 'HOLDEM' | 'OMAHA' | 'OMAHA HiLo' | 'HOLDEMZonePoker' | 'OMAHAZonePoker';
 bovadaBettingStructure: 'No Limit' | 'Pot Limit' | 'Limit';
 bovadaTimestamp: INT '-' INT '-' INT INT ':' INT ':' INT;
 
