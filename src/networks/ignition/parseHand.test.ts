@@ -12,6 +12,7 @@ import {
   HAND_OMAHA,
   HAND_OMAHA_HILO_HIGH_AND_LOW,
   HAND_OMAHA_HILO_HIGH_ONLY,
+  HAND_OMAHA_HILO_NO_SHOWDOWN,
   HAND_SITTING_OUT,
   HAND_STRAIGHT_FLUSH,
   HAND_THOUSANDS_OF_DOLLARS,
@@ -2274,6 +2275,107 @@ describe('parseHand', () => {
             "name": "Big Blind",
             "position": "BB",
             "seatNumber": 4,
+          },
+        ],
+      }
+    `);
+  });
+
+  it('parses omaha hi/lo hands with no showdown', () => {
+    expect(parseHand(HAND_OMAHA_HILO_NO_SHOWDOWN)).toMatchInlineSnapshot(`
+      {
+        "actions": [
+          {
+            "amount": "0.5",
+            "playerName": "Small Blind",
+            "postType": "blind",
+            "type": "post",
+          },
+          {
+            "amount": "1",
+            "playerName": "Big Blind",
+            "postType": "blind",
+            "type": "post",
+          },
+          {
+            "cards": [
+              "8h",
+              "4d",
+              "7c",
+              "Ad",
+            ],
+            "playerName": "Dealer",
+            "type": "deal-hand",
+          },
+          {
+            "cards": [
+              "4c",
+              "As",
+              "Kd",
+              "6s",
+            ],
+            "playerName": "Big Blind",
+            "type": "deal-hand",
+          },
+          {
+            "amount": "1.5",
+            "isAllIn": false,
+            "playerName": "Dealer",
+            "totalBet": "2",
+            "type": "raise",
+          },
+          {
+            "playerName": "Big Blind",
+            "type": "fold",
+          },
+          {
+            "amount": "1",
+            "playerName": "Dealer",
+            "type": "return-bet",
+          },
+          {
+            "handStrength": 0,
+            "mucked": true,
+            "playerName": "Dealer",
+            "type": "showdown",
+          },
+          {
+            "amount": "2",
+            "isSidePot": false,
+            "playerName": "Dealer",
+            "type": "award-pot",
+          },
+        ],
+        "info": {
+          "bettingStructure": "pot limit",
+          "blinds": [
+            "0.5",
+            "1",
+          ],
+          "currency": "USD",
+          "handNumber": "4304660846",
+          "isFastFold": false,
+          "site": "bovada",
+          "tableSize": 6,
+          "timestamp": 2022-06-26T16:43:59.000Z,
+          "variant": "omaha-8",
+        },
+        "players": [
+          {
+            "chipStack": "101.33",
+            "isAnonymous": false,
+            "isHero": true,
+            "name": "Dealer",
+            "position": "BTN",
+            "seatNumber": 2,
+          },
+          {
+            "chipStack": "26.95",
+            "isAnonymous": true,
+            "isHero": false,
+            "name": "Big Blind",
+            "position": "BB",
+            "seatNumber": 5,
           },
         ],
       }
