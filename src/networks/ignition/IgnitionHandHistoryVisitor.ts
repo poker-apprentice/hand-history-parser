@@ -1,4 +1,4 @@
-import { assertCard } from '@poker-apprentice/types';
+import { Card, HandStrength, assertCard } from '@poker-apprentice/types';
 import { ParserRuleContext } from 'antlr4ts';
 import { Interval } from 'antlr4ts/misc/Interval';
 import { AbstractParseTreeVisitor } from 'antlr4ts/tree/AbstractParseTreeVisitor';
@@ -22,7 +22,7 @@ import {
   VariantContext,
 } from '~/grammar/IgnitionParser';
 import { IgnitionVisitor } from '~/grammar/IgnitionVisitor';
-import { BettingStructure, HandStrength, Position, Site, Street, Variant } from '~/types';
+import { BettingStructure, Position, Site, Street, Variant } from '~/types';
 import { IgnitionActionVisitor } from './IgnitionActionVisitor';
 import { IgnitionChipCountVisitor } from './IgnitionChipCountVisitor';
 import { Line } from './types';
@@ -246,7 +246,10 @@ export class IgnitionHandHistoryVisitor
         ?.cards()
         .card()
         .map((card) => card.text) ?? [];
-    const cards = cardStrings.filter(assertCard);
+    const cards = cardStrings.map((card) => {
+      assertCard(card);
+      return card as Card;
+    });
 
     return [{ type: 'action', action: { type: 'deal-board', street, cards } }];
   }
@@ -259,7 +262,10 @@ export class IgnitionHandHistoryVisitor
         .cards()
         .card()
         .map((card) => card.text) ?? [];
-    const cards = cardStrings.filter(assertCard);
+    const cards = cardStrings.map((card) => {
+      assertCard(card);
+      return card as Card;
+    });
 
     return [{ type: 'action', action: { type: 'deal-hand', playerName, cards } }];
   }

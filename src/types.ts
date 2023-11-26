@@ -1,4 +1,4 @@
-import { Card } from '@poker-apprentice/types';
+import { Card, HandStrength } from '@poker-apprentice/types';
 
 /**
  * The name of the poker site.
@@ -9,22 +9,6 @@ export type Site = 'bodog' | 'bovada' | 'ignition';
  * The name of the poker variant.
  */
 export type Variant = 'holdem' | 'omaha' | 'omaha-8';
-
-/**
- * The strength of the hand.
- */
-export enum HandStrength {
-  HighCard = 0,
-  OnePair = 1,
-  TwoPair = 2,
-  ThreeOfAKind = 3,
-  Straight = 4,
-  Flush = 5,
-  FullHouse = 6,
-  FourOfAKind = 7,
-  StraightFlush = 8,
-  RoyalFlush = 9,
-}
 
 /**
  * The betting structure.
