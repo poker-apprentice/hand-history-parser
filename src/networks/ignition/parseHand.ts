@@ -38,6 +38,7 @@ const getInfo = (lines: LineDictionary): HandHistory['info'] => {
     currency: 'USD',
     variant: meta.variant,
     handNumber: meta.handNumber,
+    tableNumber: meta.tableNumber,
     isFastFold: meta.fastFold,
     bettingStructure: meta.bettingStructure,
     site: meta.site,

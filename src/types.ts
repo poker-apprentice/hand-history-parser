@@ -38,6 +38,10 @@ export interface GameInfo {
    */
   handNumber: string;
   /**
+   * The table number as provided by the poker site.
+   */
+  tableNumber: string;
+  /**
    * The date/time that the hand took place.
    */
   timestamp: Date;

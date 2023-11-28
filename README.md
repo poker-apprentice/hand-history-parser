@@ -50,6 +50,7 @@ The value returned is represented as a [`HandHistory`](https://github.com/poker-
     "currency": "USD",
     "handNumber": "4290322948",
     "isFastFold": false,
+    "tableNumber": "26728545",
     "site": "bovada",
     "tableSize": 6,
     "timestamp": new Date("2022-05-26T14:16:24.000Z"),

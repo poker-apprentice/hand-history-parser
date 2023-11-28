@@ -160,6 +160,7 @@ export class IgnitionHandHistoryVisitor
     const site = getSite(ctx.site());
 
     const handNumber = ctx.handNumber().text;
+    const tableNumber = ctx.tableNumber().text;
 
     const variantContext = ctx.variant();
     const variant = getVariant(variantContext);
@@ -175,7 +176,18 @@ export class IgnitionHandHistoryVisitor
     const t = text.split(/\D/).map(Number);
     const timestamp = new Date(t[0], t[1] - 1, t[2], t[3], t[4], t[5]);
 
-    return [{ type: 'meta', site, handNumber, fastFold, variant, bettingStructure, timestamp }];
+    return [
+      {
+        type: 'meta',
+        site,
+        handNumber,
+        tableNumber,
+        fastFold,
+        variant,
+        bettingStructure,
+        timestamp,
+      },
+    ];
   }
 
   public visitLineSmallBlind(ctx: LineSmallBlindContext): Line[] {

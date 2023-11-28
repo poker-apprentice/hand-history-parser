@@ -13,6 +13,7 @@ export interface LineMeta extends BaseLine {
   type: 'meta';
   site: Site & ('bodog' | 'bovada' | 'ignition');
   handNumber: string;
+  tableNumber: string;
   fastFold: boolean;
   variant: Variant;
   bettingStructure: BettingStructure;
