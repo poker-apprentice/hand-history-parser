@@ -19,7 +19,7 @@ Add `@poker-apprentice/hand-history-parser` as a dependency.
 
 ### `parseHand`
 
-This promise-based function can be used to parse hand histories from any [support poker site](#supported-poker-sites). To use it, simply pass the contents of an individual hand history.
+This promise-based function can be used to parse hand histories from any [support poker site](#supported-poker-sites). To use it, simply pass the contents of an individual hand history along with the filename.
 
 ```ts
 // Assumes `hand` is a string containing the hand history file contents & `filename`
