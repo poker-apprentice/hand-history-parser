@@ -8,7 +8,8 @@ import {
   HandStrengthContext,
   LineActionContext,
   LineHandsDealtContext,
-  LineMetaContext,
+  LineMetaCashContext,
+  LineMetaTournamentContext,
   LineMuckContext,
   LinePlayerContext,
   LinePostContext,
@@ -22,7 +23,7 @@ import {
   VariantContext,
 } from '~/grammar/IgnitionParser';
 import { IgnitionVisitor } from '~/grammar/IgnitionVisitor';
-import { BettingStructure, Position, Site, Street, Variant } from '~/types';
+import { BettingStructure, Position, Site, Street, TournamentSpeed, Variant } from '~/types';
 import { IgnitionActionVisitor } from './IgnitionActionVisitor';
 import { IgnitionChipCountVisitor } from './IgnitionChipCountVisitor';
 import { Line } from './types';
@@ -88,6 +89,11 @@ const getPosition = (ctx: PositionContext): Position => {
       return 'UTG+1';
     case 'UTG+2':
       return 'UTG+2';
+    case 'UTG+3':
+    case 'UTG+4':
+    case 'UTG+5':
+      // TODO: this isn't accurate
+      return 'CO';
     case 'Dealer':
       return 'BTN';
     default:
@@ -139,6 +145,17 @@ const getHandStrength = (ctx: HandStrengthContext): HandStrength => {
   }
 };
 
+const getTournamentSpeed = (speed: string): TournamentSpeed => {
+  switch (speed) {
+    case 'Turbo':
+      return 'turbo';
+    case 'Normal':
+      return 'normal';
+    default:
+      return 'normal';
+  }
+};
+
 export class IgnitionHandHistoryVisitor
   extends AbstractParseTreeVisitor<Line[]>
   implements IgnitionVisitor<Line[]>
@@ -156,7 +173,7 @@ export class IgnitionHandHistoryVisitor
     return actions.map((action) => ({ type: 'action', action }));
   }
 
-  public visitLineMeta(ctx: LineMetaContext): Line[] {
+  public visitLineMetaCash(ctx: LineMetaCashContext): Line[] {
     const site = getSite(ctx.site());
 
     const handNumber = ctx.handNumber().text;
@@ -179,12 +196,45 @@ export class IgnitionHandHistoryVisitor
     return [
       {
         type: 'meta',
+        gameType: 'cash',
         site,
         handNumber,
         tableNumber,
         fastFold,
         variant,
         bettingStructure,
+        timestamp,
+      },
+    ];
+  }
+
+  public visitLineMetaTournament(ctx: LineMetaTournamentContext): Line[] {
+    const site = getSite(ctx.site());
+
+    const handNumber = ctx.handNumber().text;
+    const tableNumber = ctx.tableNumber().text;
+
+    const variant = getVariant(ctx.variant());
+
+    const tournamentNumber = ctx.tournamentNumber().text;
+    const level = Number(ctx.tournamentLevel().text);
+    const speed = getTournamentSpeed(ctx.tournamentSpeed().text);
+
+    const text = getSubstring(ctx.timestamp());
+    const t = text.split(/\D/).map(Number);
+    const timestamp = new Date(t[0], t[1] - 1, t[2], t[3], t[4], t[5]);
+
+    return [
+      {
+        type: 'meta',
+        gameType: 'tournament',
+        site,
+        handNumber,
+        tableNumber,
+        tournamentNumber,
+        level,
+        speed,
+        variant,
         timestamp,
       },
     ];
