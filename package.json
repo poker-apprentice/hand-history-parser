@@ -36,8 +36,8 @@
     "prepublishOnly": "yarn clean && yarn lint && yarn format && yarn test && yarn build"
   },
   "lint-staged": {
-    "*.{js,ts}": "yarn lint",
-    "*.{js,ts,json,md}": "yarn format"
+    "*.{js,ts}": "eslint",
+    "*.{js,ts,json,md}": "prettier --check"
   },
   "dependencies": {
     "@babel/runtime": "^7.22.11",
