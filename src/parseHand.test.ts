@@ -6,7 +6,7 @@ import { Site } from './types';
 
 describe('parseHand', () => {
   const parseSiteFromHand = async (hand: string): Promise<Site> => {
-    const { info } = await parseHand(hand);
+    const { info } = await parseHand({ hand });
     return info.site;
   };
 

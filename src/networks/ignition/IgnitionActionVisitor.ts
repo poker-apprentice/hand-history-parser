@@ -78,6 +78,13 @@ export class IgnitionActionVisitor
       return [{ type: 'raise', playerName, amount, totalBet, isAllIn: false }];
     }
 
+    const anteAction = action.actionAnte();
+    if (anteAction) {
+      const amount = new IgnitionChipCountVisitor().visit(anteAction.chipCount()).toString();
+      const playerName = ctx.position().text;
+      return [{ type: 'post', postType: 'ante', playerName, amount }];
+    }
+
     throw new NotImplementedError();
   }
 }

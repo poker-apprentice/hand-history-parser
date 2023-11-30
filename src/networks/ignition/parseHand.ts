@@ -1,16 +1,42 @@
+import omit from 'lodash/omit';
 import { IgnitionLexer } from '~/grammar/IgnitionLexer';
 import { IgnitionParser } from '~/grammar/IgnitionParser';
-import { HandHistory } from '~/types';
+import { GameInfoBase, HandHistory } from '~/types';
+import { OmitStrict } from '~/types/OmitStrict';
 import { getParser } from '~/utils/getParser';
 import { Dictionary, groupBy } from '~/utils/groupBy';
 import { IgnitionHandHistoryVisitor } from './IgnitionHandHistoryVisitor';
+import { TournamentFilenameMeta, parseFilename } from './parseFilename';
 import { Line, LineAction, LineBigBlind, LineMeta, LinePlayer, LineSmallBlind } from './types';
 
 type LineDictionary = Dictionary<Line>;
 
 class LineNotFoundError extends Error {}
 
-const getInfo = (lines: LineDictionary): HandHistory['info'] => {
+const getFilenameInfo = (
+  filename: string | undefined,
+): OmitStrict<TournamentFilenameMeta, 'timestamp' | 'tournamentNumber' | 'variant'> => {
+  const info = filename ? parseFilename(filename) : undefined;
+
+  if (info?.type === 'tournament') {
+    return omit(info, ['timestamp', 'tournamentNumber', 'variant']);
+  }
+
+  // return sane defaults if parsing fails or is returning wrong game type for some reason
+  return {
+    type: 'tournament',
+    bettingStructure: 'no limit',
+    buyIn: '0',
+    entryFee: '0',
+    currency: 'USD',
+    format: 'freezeout',
+    guaranteedPrizePool: '0',
+    isSatellite: false,
+    name: 'Unknown',
+  };
+};
+
+const getInfo = (lines: LineDictionary, filename: string | undefined): HandHistory['info'] => {
   const meta: LineMeta | undefined = lines.meta?.[0];
   if (!meta) {
     throw new LineNotFoundError('Missing meta information');
@@ -28,22 +54,43 @@ const getInfo = (lines: LineDictionary): HandHistory['info'] => {
   }
   blinds.push(bigBlind.chipCount);
 
-  // Bovada only has 6-person and 9-person tables. Fast-fold games are all 6-max, otherwise make a
-  // best guess on table size based upon the number of players recorded in the hand.
+  // Bovada only has 6-person and 9-person cash game tables. Fast-fold games are all 6-max,
+  // otherwise make a best guess on table size based upon the number of players in the hand.
   const playerCount = (lines.player ?? []).length;
-  const tableSize = meta.fastFold ? 6 : playerCount > 6 ? 9 : 6;
+  const tableSize = meta.gameType === 'cash' && meta.fastFold ? 6 : playerCount > 6 ? 9 : 6;
 
-  return {
+  const baseInfo: GameInfoBase = {
+    type: meta.gameType,
     blinds,
-    currency: 'USD',
     variant: meta.variant,
     handNumber: meta.handNumber,
     tableNumber: meta.tableNumber,
-    isFastFold: meta.fastFold,
-    bettingStructure: meta.bettingStructure,
     site: meta.site,
     tableSize,
     timestamp: meta.timestamp,
+  };
+
+  if (meta.gameType === 'cash') {
+    return {
+      ...baseInfo,
+      type: 'cash',
+      currency: 'USD',
+      bettingStructure: meta.bettingStructure,
+      isFastFold: meta.fastFold,
+    };
+  }
+
+  // For tournaments, additional details are in the hand history filename.
+  // There's no need to parse the filename for cash games.
+  const filenameInfo = getFilenameInfo(filename);
+
+  return {
+    ...baseInfo,
+    ...filenameInfo,
+    type: 'tournament',
+    tournamentNumber: meta.tournamentNumber,
+    level: meta.level,
+    speed: meta.speed,
   };
 };
 
@@ -79,7 +126,7 @@ const getActions = (lines: LineDictionary): HandHistory['actions'] => {
   });
 };
 
-export const parseHand = (hand: string): HandHistory => {
+export const parseHand = ({ hand, filename }: { hand: string; filename?: string }): HandHistory => {
   const parser = getParser(hand, { lexer: IgnitionLexer, parser: IgnitionParser });
   const context = parser.handHistory();
 
@@ -88,7 +135,7 @@ export const parseHand = (hand: string): HandHistory => {
   const groupedLines = groupBy(lines, 'type');
 
   return {
-    info: getInfo(groupedLines),
+    info: getInfo(groupedLines, filename),
     players: getPlayers(groupedLines),
     actions: getActions(groupedLines),
   };

@@ -1,4 +1,4 @@
-import { Action, BettingStructure, Position, Site, Variant } from '~/types';
+import { Action, BettingStructure, Position, Site, TournamentSpeed, Variant } from '~/types';
 
 interface BaseLine {
   type: string;
@@ -9,15 +9,38 @@ export interface LineAction extends BaseLine {
   action: Action;
 }
 
-export interface LineMeta extends BaseLine {
+interface LineMetaBase extends BaseLine {
   type: 'meta';
+  gameType: string;
   site: Site & ('bodog' | 'bovada' | 'ignition');
   handNumber: string;
   tableNumber: string;
-  fastFold: boolean;
   variant: Variant;
-  bettingStructure: BettingStructure;
   timestamp: Date;
+}
+
+interface LineMetaCash extends LineMetaBase {
+  gameType: 'cash';
+  bettingStructure: BettingStructure;
+  fastFold: boolean;
+}
+
+interface LineMetaTournament extends LineMetaBase {
+  gameType: 'tournament';
+  tournamentNumber: string;
+  level: number;
+  speed: TournamentSpeed;
+}
+
+export type LineMeta = LineMetaCash | LineMetaTournament;
+
+export interface CashGame {
+  type: 'cash';
+  fastFold: boolean;
+}
+
+export interface TournamentGame {
+  type: 'tournament';
 }
 
 export interface LinePlayer extends BaseLine {

@@ -677,3 +677,59 @@ Seat+2: UTG lost with One pair [5s Ad-Ad Ac Kh 7h 6s]
 Seat+3: UTG+1 Folded before the FLOP
 Seat+4: Dealer Folded before the FLOP
 Seat+6: Big Blind $14.82  with One pair [As Qs-As Ac Kh Qs 7h]`;
+
+export const HAND_TOURNAMENT = `Bovada Hand #4561202298: OMAHA HiLo Tournament #47895702 TBL#2, Normal- Level 10 (200/400) - 2022-06-25 22:24:22
+Seat 30: UTG+2 (4,619 in chips)
+Seat 37: UTG+3 (6,282 in chips)
+Seat 86: Dealer (4,300 in chips)
+Seat 16: Small Blind (11,003 in chips)
+Seat 89: Big Blind [ME] (3,000 in chips)
+Seat 61: UTG (5,714 in chips)
+Seat 68: UTG+1 (15,486 in chips)
+Dealer : Set dealer [4]
+UTG+2 : Ante chip 40
+UTG+3 : Ante chip 40
+Dealer : Ante chip 40
+Small Blind : Ante chip 40
+Big Blind [ME] : Ante chip 40
+UTG : Ante chip 40
+UTG+1 : Ante chip 40
+Small Blind : Small blind 200
+Big Blind [ME] : Big blind 400
+*** HOLE CARDS ***
+UTG+2 : Card dealt to a spot [9d 5c 2c Td]
+UTG+3 : Card dealt to a spot [4c Ad Th 8h]
+Dealer : Card dealt to a spot [6h Ac 3s 7s]
+Small Blind : Card dealt to a spot [Qd 3d Ts 7d]
+Big Blind [ME] : Card dealt to a spot [Js As Jd 5s]
+UTG : Card dealt to a spot [6s 8c 7c Ah]
+UTG+1 : Card dealt to a spot [8s 9c 2h 3h]
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Raises 800 to 800
+UTG+3 : Folds
+Dealer : Fold(Blind Disconnected)
+Small Blind : Sit out
+Small Blind : Folds(timeout)
+Small Blind : Re-join
+Big Blind [ME] : Call 400
+*** FLOP *** [2d 4d Qh]
+Big Blind [ME] : Checks
+UTG+2 : Bets 2080
+Big Blind [ME] : All-in(raise) 2160 to 2160
+UTG+2 : Call 80
+*** TURN *** [2d 4d Qh] [Ks]
+*** RIVER *** [2d 4d Qh Ks] [Kh]
+UTG+2 : Showdown [2c Td 2d Ks Kh] (Two pair)
+Big Blind [ME] : Showdown [Js Jd Qh Ks Kh] (Two pair)
+Big Blind [ME] : Hand Result 6400
+*** SUMMARY ***
+Total Pot(6400)
+Board [2d 4d Qh Ks Kh]
+Seat+30: UTG+2 lose with Two pair [9d 5c 2c Td-2c Td 2d Ks Kh]
+Seat+37: UTG+3 Folded on the FLOP
+Seat+86: Dealer Folded on the FLOP
+Seat+16: Small Blind Folded on the FLOP
+Seat+89: Big Blind HI 6400  with Two pair [Js As Jd 5s-Js Jd Qh Ks Kh]
+Seat+61: UTG Folded on the FLOP
+Seat+68: UTG+1 Folded on the FLOP`;
