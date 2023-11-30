@@ -21,6 +21,8 @@ line:
   | lineTotalPot
   | lineBoard
   | lineActionSummary
+  | lineAwardBounty
+  | lineTournamentPlacement
   );
 
 // lines of text
@@ -33,6 +35,8 @@ lineBigBlind   : 'Big Blind' ME? COLON ('Big Blind' | 'Big blind') chipCount;
 linePost       : position ME? COLON 'Posts' DEAD? 'chip' chipCount;
 lineStreet     : '***' STREET '***' boardSections?;
 lineHandsDealt : position ME? COLON 'Card dealt to a spot' hand;
+lineAwardBounty: position ME? COLON 'BOUNTY PRIZE' '[' chipCount ']';
+lineTournamentPlacement: position ME? COLON 'Ranking' tournamentPlacement;
 lineMisc       :
   (position ME? COLON)?
   (
@@ -44,6 +48,7 @@ lineMisc       :
     | 'Re-join'
     | 'Table enter user'
     | 'Table leave user'
+    | 'Stand'
     | 'Sit out'
     | 'Sitout' forcedActionReason
     | 'Enter' forcedActionReason
@@ -57,13 +62,14 @@ lineResult     : position ME? COLON ('Hand Result' | 'Hand result') ('-' SIDEPOT
 lineTotalPot   : 'Total Pot' '(' chipCount ')';
 lineBoard      : 'Board' board;
 lineActionSummary:
-  'Seat+' INT COLON position
+  'Seat' '+'? INT COLON position
   (
     'Folded' ('before'|'on') 'the' STREET
     | 'HI'? chipCount? '[Does not show]'
     | '[Mucked]' hand
-    | 'HI'? winHighResult ('LO' winLowResult)?
-    | 'LO' winLowResult
+    | winHighResult bountyAwardResult?
+    | 'HI' winHighResult ('LO' winLowResult)? bountyAwardResult?
+    | 'LO' winLowResult bountyAwardResult?
     | loseResult
   );
 
@@ -74,6 +80,7 @@ tableNumber  : INT;
 tournamentNumber: INT;
 tournamentLevel: INT;
 tournamentSpeed: 'Normal' | 'Turbo';
+tournamentPlacement: INT;
 timestamp    : INT '-' INT '-' INT INT ':' INT ':' INT;
 site         : 'Bodog' | 'Bovada' | 'Ignition';
 variant      : 'HOLDEM' | 'OMAHA' | 'OMAHA HiLo' | 'HOLDEMZonePoker' | 'OMAHAZonePoker';
@@ -103,6 +110,7 @@ showdownAction: 'Showdown' | 'Mucks';
 winHighResult: chipCount 'with' handStrength (hand | handAndBoard);
 winLowResult : chipCount (hand | handAndBoard);
 loseResult   : ('lose with' | 'lost with') handStrength (hand | handAndBoard);
+bountyAwardResult: 'BOUNTY awarded' COLON chipCount;
 
 // lexer rules
 ME           : '[ME]';

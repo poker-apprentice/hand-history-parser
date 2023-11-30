@@ -733,3 +733,79 @@ Seat+16: Small Blind Folded on the FLOP
 Seat+89: Big Blind HI 6400  with Two pair [Js As Jd 5s-Js Jd Qh Ks Kh]
 Seat+61: UTG Folded on the FLOP
 Seat+68: UTG+1 Folded on the FLOP`;
+
+export const HAND_TOURNAMENT_PLACEMENT = `Bovada Hand #4561633395: HOLDEM Tournament #51169700 TBL#1, Turbo- Level 3 (25/50) - 2022-06-26 16:58:58
+Seat 4: Small Blind (1,125 in chips)
+Seat 1: Big Blind (845 in chips)
+Seat 3: UTG (760 in chips)
+Seat 5: Dealer [ME] (270 in chips)
+Dealer [ME] : Set dealer [5]
+Small Blind : Small blind 25
+Big Blind : Big blind 50
+*** HOLE CARDS ***
+Small Blind : Card dealt to a spot [Kc Kh]
+Big Blind : Card dealt to a spot [8s 7s]
+UTG : Card dealt to a spot [6h Jd]
+Dealer [ME] : Card dealt to a spot [5d As]
+UTG : Folds
+Dealer [ME] : All-in(raise) 270 to 270
+Small Blind : Call 245
+Big Blind : Folds
+*** FLOP *** [9c 4s 2c]
+*** TURN *** [9c 4s 2c] [Ts]
+*** RIVER *** [9c 4s 2c Ts] [7c]
+Small Blind : Showdown [Kh Kc Ts 9c 7c] (One pair)
+Dealer [ME] : Showdown [As Ts 9c 7c 5d] (High Card)
+Small Blind : Hand Result 590
+Dealer [ME] : Ranking 4
+Dealer [ME] : Stand
+*** SUMMARY ***
+Total Pot(590)
+Board [9c 4s 2c Ts 7c]
+Seat+4: Small Blind 590  with One pair [Kc Kh-Kh Kc Ts 9c 7c]
+Seat+1: Big Blind Folded on the FLOP
+Seat+3: UTG Folded on the FLOP
+Seat+5: Dealer lose with High Card [5d As-As Ts 9c 7c 5d]`;
+
+export const HAND_TOURNAMENT_BOUNTY_AWARDED = `Bovada Hand #4561646697: HOLDEM Tournament #51170049 TBL#1, Turbo- Level 4 (50/100) - 2022-06-26 17:19:45
+Seat 4: UTG+1 (1,840 in chips)
+Seat 14: UTG+2 (2,610 in chips)
+Seat 18: Dealer [ME] (2,155 in chips)
+Seat 9: Small Blind (2,250 in chips)
+Seat 3: Big Blind (615 in chips)
+Seat 2: UTG (4,030 in chips)
+Dealer [ME] : Set dealer [3]
+Small Blind : Small blind 50
+Big Blind : Big blind 100
+*** HOLE CARDS ***
+UTG+1 : Card dealt to a spot [4d 7h]
+UTG+2 : Card dealt to a spot [6d 4s]
+Dealer [ME] : Card dealt to a spot [Ah 6h]
+Small Blind : Card dealt to a spot [Jd Ad]
+Big Blind : Card dealt to a spot [Tc 7c]
+UTG : Card dealt to a spot [2c Jc]
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Folds
+Dealer [ME] : All-in(raise) 2155 to 2155
+Small Blind : All-in(raise) 2200 to 2250
+Big Blind : Folds
+Small Blind : Return uncalled portion of bet 95
+*** FLOP *** [8d Kc 8h]
+*** TURN *** [8d Kc 8h] [Ac]
+*** RIVER *** [8d Kc 8h Ac] [Ks]
+Dealer [ME] : Showdown [Ah Ac Ks Kc 8d] (Two pair)
+Small Blind : Showdown [Ad Ac Ks Kc Jd] (Two pair)
+Small Blind : Hand Result 4410
+Small Blind : BOUNTY PRIZE [$10]
+Dealer [ME] : Ranking 12
+Dealer [ME] : Stand
+*** SUMMARY ***
+Total Pot(4410)
+Board [8d Kc 8h Ac Ks]
+Seat+4: UTG+1 Folded on the FLOP
+Seat+14: UTG+2 Folded on the FLOP
+Seat+18: Dealer lose with Two pair [Ah 6h-Ah Ac Ks Kc 8d]
+Seat 9:Small Blind 4410  with Two pair [Jd Ad-Ad Ac Ks Kc Jd]   BOUNTY awarded:$10
+Seat+3: Big Blind Folded on the FLOP
+Seat+2: UTG Folded on the FLOP`;

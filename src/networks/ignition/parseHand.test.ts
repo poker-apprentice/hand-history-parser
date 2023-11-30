@@ -17,6 +17,8 @@ import {
   HAND_STRAIGHT_FLUSH,
   HAND_THOUSANDS_OF_DOLLARS,
   HAND_TOURNAMENT,
+  HAND_TOURNAMENT_BOUNTY_AWARDED,
+  HAND_TOURNAMENT_PLACEMENT,
 } from '~/__fixtures__/hands/bovada';
 import { HAND as HAND_IGNITION } from '~/__fixtures__/hands/ignition';
 import { parseHand } from './parseHand';
@@ -3972,6 +3974,419 @@ describe('parseHand', () => {
               "name": "UTG+1",
               "position": "UTG+1",
               "seatNumber": 68,
+            },
+          ],
+        }
+      `);
+    });
+
+    it('parses tournament placements', () => {
+      const filename =
+        'HH20220626-164936 - 6615315 - STT - Hyper Turbo (500 Chips) - $50-$2.50 - HOLDEM - NL -Tourney No.51169700.txt';
+
+      expect(parseHand({ hand: HAND_TOURNAMENT_PLACEMENT, filename })).toMatchInlineSnapshot(`
+        {
+          "actions": [
+            {
+              "amount": "25",
+              "playerName": "Small Blind",
+              "postType": "blind",
+              "type": "post",
+            },
+            {
+              "amount": "50",
+              "playerName": "Big Blind",
+              "postType": "blind",
+              "type": "post",
+            },
+            {
+              "cards": [
+                "Kc",
+                "Kh",
+              ],
+              "playerName": "Small Blind",
+              "type": "deal-hand",
+            },
+            {
+              "cards": [
+                "8s",
+                "7s",
+              ],
+              "playerName": "Big Blind",
+              "type": "deal-hand",
+            },
+            {
+              "cards": [
+                "6h",
+                "Jd",
+              ],
+              "playerName": "UTG",
+              "type": "deal-hand",
+            },
+            {
+              "cards": [
+                "5d",
+                "As",
+              ],
+              "playerName": "Dealer",
+              "type": "deal-hand",
+            },
+            {
+              "playerName": "UTG",
+              "type": "fold",
+            },
+            {
+              "amount": "270",
+              "isAllIn": true,
+              "playerName": "Dealer",
+              "totalBet": "270",
+              "type": "raise",
+            },
+            {
+              "amount": "245",
+              "isAllIn": false,
+              "playerName": "Small Blind",
+              "type": "call",
+            },
+            {
+              "playerName": "Big Blind",
+              "type": "fold",
+            },
+            {
+              "cards": [
+                "9c",
+                "4s",
+                "2c",
+              ],
+              "street": "flop",
+              "type": "deal-board",
+            },
+            {
+              "cards": [
+                "Ts",
+              ],
+              "street": "turn",
+              "type": "deal-board",
+            },
+            {
+              "cards": [
+                "7c",
+              ],
+              "street": "river",
+              "type": "deal-board",
+            },
+            {
+              "handStrength": 1,
+              "mucked": false,
+              "playerName": "Small Blind",
+              "type": "showdown",
+            },
+            {
+              "handStrength": 0,
+              "mucked": false,
+              "playerName": "Dealer",
+              "type": "showdown",
+            },
+            {
+              "amount": "590",
+              "isSidePot": false,
+              "playerName": "Small Blind",
+              "type": "award-pot",
+            },
+            {
+              "placement": 4,
+              "playerName": "Dealer",
+              "type": "tournament-placement",
+            },
+          ],
+          "info": {
+            "bettingStructure": "no limit",
+            "blinds": [
+              "25",
+              "50",
+            ],
+            "buyIn": "50",
+            "currency": "USD",
+            "entryFee": "2.50",
+            "format": "on-demand",
+            "guaranteedPrizePool": "0",
+            "handNumber": "4561633395",
+            "isSatellite": false,
+            "level": 3,
+            "name": "Hyper Turbo (500 Chips)",
+            "site": "bovada",
+            "speed": "turbo",
+            "tableNumber": "1",
+            "tableSize": 6,
+            "timestamp": 2022-06-26T16:58:58.000Z,
+            "tournamentNumber": "51169700",
+            "type": "tournament",
+            "variant": "holdem",
+          },
+          "players": [
+            {
+              "chipStack": "1125",
+              "isAnonymous": true,
+              "isHero": false,
+              "name": "Small Blind",
+              "position": "SB",
+              "seatNumber": 4,
+            },
+            {
+              "chipStack": "845",
+              "isAnonymous": true,
+              "isHero": false,
+              "name": "Big Blind",
+              "position": "BB",
+              "seatNumber": 1,
+            },
+            {
+              "chipStack": "760",
+              "isAnonymous": true,
+              "isHero": false,
+              "name": "UTG",
+              "position": "UTG",
+              "seatNumber": 3,
+            },
+            {
+              "chipStack": "270",
+              "isAnonymous": false,
+              "isHero": true,
+              "name": "Dealer",
+              "position": "BTN",
+              "seatNumber": 5,
+            },
+          ],
+        }
+      `);
+    });
+
+    it('parses tournament bounties', () => {
+      const filename =
+        'HH20220626-165412 - 6615316 - MSG - 2-Table ($10 Knockout) - $25-$2.50 - HOLDEM - NL -Tourney No.51170049.txt';
+
+      expect(parseHand({ hand: HAND_TOURNAMENT_BOUNTY_AWARDED, filename })).toMatchInlineSnapshot(`
+        {
+          "actions": [
+            {
+              "amount": "50",
+              "playerName": "Small Blind",
+              "postType": "blind",
+              "type": "post",
+            },
+            {
+              "amount": "100",
+              "playerName": "Big Blind",
+              "postType": "blind",
+              "type": "post",
+            },
+            {
+              "cards": [
+                "4d",
+                "7h",
+              ],
+              "playerName": "UTG+1",
+              "type": "deal-hand",
+            },
+            {
+              "cards": [
+                "6d",
+                "4s",
+              ],
+              "playerName": "UTG+2",
+              "type": "deal-hand",
+            },
+            {
+              "cards": [
+                "Ah",
+                "6h",
+              ],
+              "playerName": "Dealer",
+              "type": "deal-hand",
+            },
+            {
+              "cards": [
+                "Jd",
+                "Ad",
+              ],
+              "playerName": "Small Blind",
+              "type": "deal-hand",
+            },
+            {
+              "cards": [
+                "Tc",
+                "7c",
+              ],
+              "playerName": "Big Blind",
+              "type": "deal-hand",
+            },
+            {
+              "cards": [
+                "2c",
+                "Jc",
+              ],
+              "playerName": "UTG",
+              "type": "deal-hand",
+            },
+            {
+              "playerName": "UTG",
+              "type": "fold",
+            },
+            {
+              "playerName": "UTG+1",
+              "type": "fold",
+            },
+            {
+              "playerName": "UTG+2",
+              "type": "fold",
+            },
+            {
+              "amount": "2155",
+              "isAllIn": true,
+              "playerName": "Dealer",
+              "totalBet": "2155",
+              "type": "raise",
+            },
+            {
+              "amount": "2200",
+              "isAllIn": true,
+              "playerName": "Small Blind",
+              "totalBet": "2250",
+              "type": "raise",
+            },
+            {
+              "playerName": "Big Blind",
+              "type": "fold",
+            },
+            {
+              "amount": "95",
+              "playerName": "Small Blind",
+              "type": "return-bet",
+            },
+            {
+              "cards": [
+                "8d",
+                "Kc",
+                "8h",
+              ],
+              "street": "flop",
+              "type": "deal-board",
+            },
+            {
+              "cards": [
+                "Ac",
+              ],
+              "street": "turn",
+              "type": "deal-board",
+            },
+            {
+              "cards": [
+                "Ks",
+              ],
+              "street": "river",
+              "type": "deal-board",
+            },
+            {
+              "handStrength": 2,
+              "mucked": false,
+              "playerName": "Dealer",
+              "type": "showdown",
+            },
+            {
+              "handStrength": 2,
+              "mucked": false,
+              "playerName": "Small Blind",
+              "type": "showdown",
+            },
+            {
+              "amount": "4410",
+              "isSidePot": false,
+              "playerName": "Small Blind",
+              "type": "award-pot",
+            },
+            {
+              "amount": "10",
+              "playerName": "Small Blind",
+              "type": "award-bounty",
+            },
+            {
+              "placement": 12,
+              "playerName": "Dealer",
+              "type": "tournament-placement",
+            },
+          ],
+          "info": {
+            "bettingStructure": "no limit",
+            "blinds": [
+              "50",
+              "100",
+            ],
+            "buyIn": "25",
+            "currency": "USD",
+            "entryFee": "2.50",
+            "format": "on-demand",
+            "guaranteedPrizePool": "0",
+            "handNumber": "4561646697",
+            "isSatellite": false,
+            "level": 4,
+            "name": "2-Table ($10 Knockout)",
+            "site": "bovada",
+            "speed": "turbo",
+            "tableNumber": "1",
+            "tableSize": 6,
+            "timestamp": 2022-06-26T17:19:45.000Z,
+            "tournamentNumber": "51170049",
+            "type": "tournament",
+            "variant": "holdem",
+          },
+          "players": [
+            {
+              "chipStack": "1840",
+              "isAnonymous": true,
+              "isHero": false,
+              "name": "UTG+1",
+              "position": "UTG+1",
+              "seatNumber": 4,
+            },
+            {
+              "chipStack": "2610",
+              "isAnonymous": true,
+              "isHero": false,
+              "name": "UTG+2",
+              "position": "UTG+2",
+              "seatNumber": 14,
+            },
+            {
+              "chipStack": "2155",
+              "isAnonymous": false,
+              "isHero": true,
+              "name": "Dealer",
+              "position": "BTN",
+              "seatNumber": 18,
+            },
+            {
+              "chipStack": "2250",
+              "isAnonymous": true,
+              "isHero": false,
+              "name": "Small Blind",
+              "position": "SB",
+              "seatNumber": 9,
+            },
+            {
+              "chipStack": "615",
+              "isAnonymous": true,
+              "isHero": false,
+              "name": "Big Blind",
+              "position": "BB",
+              "seatNumber": 3,
+            },
+            {
+              "chipStack": "4030",
+              "isAnonymous": true,
+              "isHero": false,
+              "name": "UTG",
+              "position": "UTG",
+              "seatNumber": 2,
             },
           ],
         }

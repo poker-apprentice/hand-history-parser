@@ -301,6 +301,24 @@ export interface AwardPotAction extends BaseAction {
   isSidePot: boolean;
 }
 
+/**
+ * An action representing a player being awarded a bounty.
+ */
+export interface AwardBountyAction extends BaseAction {
+  type: 'award-bounty';
+  playerName: string;
+  amount: string;
+}
+
+/**
+ * An action representing a player placing in a tournament.
+ */
+export interface TournamentPlacementAction extends BaseAction {
+  type: 'tournament-placement';
+  playerName: string;
+  placement: number;
+}
+
 export type Action =
   | PostAction
   | DealHandAction
@@ -312,7 +330,9 @@ export type Action =
   | RaiseAction
   | ReturnBetAction
   | ShowdownAction
-  | AwardPotAction;
+  | AwardPotAction
+  | AwardBountyAction
+  | TournamentPlacementAction;
 
 /**
  * The parsed hand history details.

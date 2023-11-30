@@ -7,6 +7,7 @@ import {
   BettingStructureContext,
   HandStrengthContext,
   LineActionContext,
+  LineAwardBountyContext,
   LineHandsDealtContext,
   LineMetaCashContext,
   LineMetaTournamentContext,
@@ -17,6 +18,7 @@ import {
   LineShowdownContext,
   LineSmallBlindContext,
   LineStreetContext,
+  LineTournamentPlacementContext,
   LineUncalledContext,
   PositionContext,
   SiteContext,
@@ -355,5 +357,17 @@ export class IgnitionHandHistoryVisitor
     return [
       { type: 'action', action: { type: 'award-pot', playerName, amount: chipCount, isSidePot } },
     ];
+  }
+
+  public visitLineAwardBounty(ctx: LineAwardBountyContext): Line[] {
+    const playerName = ctx.position().text;
+    const amount = new IgnitionChipCountVisitor().visit(ctx.chipCount()).toString();
+    return [{ type: 'action', action: { type: 'award-bounty', playerName, amount } }];
+  }
+
+  public visitLineTournamentPlacement(ctx: LineTournamentPlacementContext): Line[] {
+    const playerName = ctx.position().text;
+    const placement = Number(ctx.tournamentPlacement().text);
+    return [{ type: 'action', action: { type: 'tournament-placement', playerName, placement } }];
   }
 }
