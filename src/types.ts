@@ -21,6 +21,23 @@ export type BettingStructure = 'limit' | 'pot limit' | 'no limit' | 'spread limi
 export type Position = 'SB' | 'BB' | 'UTG' | 'UTG+1' | 'UTG+2' | 'MP' | 'LJ' | 'HJ' | 'CO' | 'BTN';
 
 /**
+ * TODO
+ */
+export type TournamentSpeed = 'normal' | 'turbo' | 'hyper-turbo' | 'deep-stack';
+
+/**
+ * TODO
+ */
+export type TournamentFormat =
+  | 'freezeout'
+  | 're-entry'
+  | 're-buy'
+  | 'on-demand'
+  | 'bounty'
+  | 'mystery bounty'
+  | 'progressive knockout';
+
+/**
  * The betting round during a hand of poker.
  */
 export type Street = 'preflop' | 'flop' | 'turn' | 'river';
@@ -28,7 +45,11 @@ export type Street = 'preflop' | 'flop' | 'turn' | 'river';
 /**
  * Information related to the poker game as a whole.
  */
-export interface GameInfo {
+export interface GameInfoBase {
+  /**
+   * TODO
+   */
+  type: string;
   /**
    * The poker site where the hand was played.
    */
@@ -50,10 +71,6 @@ export interface GameInfo {
    */
   variant: Variant;
   /**
-   * The betting structure used during the hand.
-   */
-  bettingStructure: BettingStructure;
-  /**
    * An array of blind that were posted during the hand.  For games that include a small and big
    * blind, this array will contain two items with small blind at index 0 and the big blind at
    * index 1.  If more or fewer than two blinds were posted during a hand for any reason, the array
@@ -62,18 +79,70 @@ export interface GameInfo {
    */
   blinds: string[];
   /**
-   * The type of currency representing the poker chips.
-   */
-  currency: string;
-  /**
-   * Whether the game is a "fast fold" game (i.e.: Zoom Poker, Zone Poker, etc.).
-   */
-  isFastFold: boolean;
-  /**
    * The total number seats available at the table, whether they are occupied or not.
    */
   tableSize: 2 | 6 | 8 | 9;
 }
+
+export interface CashGameInfo extends GameInfoBase {
+  /**
+   * TODO
+   */
+  type: 'cash';
+  /**
+   * The type of currency representing the poker chips.
+   */
+  currency: string;
+  /**
+   * The betting structure used during the hand.
+   */
+  bettingStructure: BettingStructure;
+  /**
+   * Whether the game is a "fast fold" game (i.e.: Zoom Poker, Zone Poker, etc.).
+   */
+  isFastFold: boolean;
+}
+
+export interface TournamentInfo extends GameInfoBase {
+  /**
+   * TODO
+   */
+  type: 'tournament';
+  /**
+   * The tournament number as provided by the poker site.
+   */
+  tournamentNumber: string;
+  /**
+   * The name of the tournament.
+   */
+  name?: string;
+  /**
+   * TODO
+   */
+  buyIn: string;
+  /**
+   * TODO
+   */
+  entryFee: string;
+  /**
+   * The level of the tournament during which the hand took place.
+   */
+  level: number;
+  /**
+   * TODO
+   */
+  speed: TournamentSpeed;
+  /**
+   * TODO
+   */
+  format: TournamentFormat;
+  /**
+   * TODO
+   */
+  guaranteedPrizePool: string | undefined;
+}
+
+export type GameInfo = CashGameInfo | TournamentInfo;
 
 export interface Player {
   /**
@@ -252,4 +321,9 @@ export interface HandHistory {
   info: GameInfo;
   players: Player[];
   actions: Action[];
+}
+
+export interface ParseHandOptions {
+  hand: string;
+  filename?: string;
 }
