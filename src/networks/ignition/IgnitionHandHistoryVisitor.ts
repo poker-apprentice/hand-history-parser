@@ -25,7 +25,7 @@ import {
   VariantContext,
 } from '~/grammar/IgnitionParser';
 import { IgnitionVisitor } from '~/grammar/IgnitionVisitor';
-import { BettingStructure, Position, Site, Street, TournamentSpeed, Variant } from '~/types';
+import { BettingStructure, Site, Street, TournamentSpeed, Variant } from '~/types';
 import { IgnitionActionVisitor } from './IgnitionActionVisitor';
 import { IgnitionChipCountVisitor } from './IgnitionChipCountVisitor';
 import { Line } from './types';
@@ -79,25 +79,28 @@ const getBettingStructure = (ctx: BettingStructureContext): BettingStructure => 
   }
 };
 
-const getPosition = (ctx: PositionContext): Position => {
+const getPositionIndex = (ctx: PositionContext): number => {
   switch (ctx.text) {
-    case 'Small Blind':
-      return 'SB';
-    case 'Big Blind':
-      return 'BB';
-    case 'UTG':
-      return 'UTG';
-    case 'UTG+1':
-      return 'UTG+1';
-    case 'UTG+2':
-      return 'UTG+2';
-    case 'UTG+3':
-    case 'UTG+4':
-    case 'UTG+5':
-      // TODO: this isn't accurate
-      return 'CO';
     case 'Dealer':
-      return 'BTN';
+      return 0;
+    case 'Small Blind':
+      return 1;
+    case 'Big Blind':
+      return 2;
+    case 'UTG':
+      return 3;
+    case 'UTG+1':
+      return 4;
+    case 'UTG+2':
+      return 5;
+    case 'UTG+3':
+      return 6;
+    case 'UTG+4':
+      return 7;
+    case 'UTG+5':
+      return 8;
+    case 'UTG+6':
+      return 9;
     default:
       throw new Error(`Unexpected position: "${ctx.text}"`);
   }
@@ -288,12 +291,12 @@ export class IgnitionHandHistoryVisitor
     const seatNumber = Number(ctx.seatNumber().text);
     const positionContext = ctx.position();
     const name = positionContext.text;
-    const position = getPosition(positionContext);
+    const positionIndex = getPositionIndex(positionContext);
     const chipCount = new IgnitionChipCountVisitor().visit(ctx.chipCount()).toString();
     const isHero = !!ctx.ME();
     const isAnonymous = !isHero;
 
-    return [{ type: 'player', name, position, seatNumber, chipCount, isHero, isAnonymous }];
+    return [{ type: 'player', name, positionIndex, seatNumber, chipCount, isHero, isAnonymous }];
   }
 
   public visitLineStreet(ctx: LineStreetContext): Line[] {

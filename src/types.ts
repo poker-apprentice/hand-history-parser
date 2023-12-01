@@ -18,7 +18,7 @@ export type BettingStructure = 'limit' | 'pot limit' | 'no limit' | 'spread limi
 /**
  * The relative position of a player.
  */
-export type Position = 'SB' | 'BB' | 'UTG' | 'UTG+1' | 'UTG+2' | 'MP' | 'LJ' | 'HJ' | 'CO' | 'BTN';
+export type Position = 'SB' | 'BB' | 'UTG' | 'UTG+1' | 'MP' | 'LJ' | 'HJ' | 'CO' | 'BTN';
 
 /**
  * The speed of a tournament.
@@ -41,6 +41,11 @@ export type TournamentFormat =
  * The betting round during a hand of poker.
  */
 export type Street = 'preflop' | 'flop' | 'turn' | 'river';
+
+/**
+ * The supported table sizes.
+ */
+export type TableSize = 2 | 6 | 8 | 9;
 
 /**
  * Information related to the poker game as a whole.
@@ -81,7 +86,7 @@ export interface GameInfoBase {
   /**
    * The total number seats available at the table, whether they are occupied or not.
    */
-  tableSize: 2 | 6 | 8 | 9;
+  tableSize: TableSize;
 }
 
 export interface CashGameInfo extends GameInfoBase {
@@ -162,6 +167,17 @@ export interface Player {
    * The seat number of the player at the poker table.
    */
   seatNumber: number;
+  /**
+   * A zero-based index representing the relative position of the player at the poker table.
+   *  - 0 = Button
+   *  - 1 = Small Blind
+   *  - 2 = Big Blind
+   *  - 3 = UTG
+   *  - 4 = UTG+1
+   *  - 5 = UTG+2
+   *  - etc.
+   */
+  positionIndex: number;
   /**
    * The relative position of the player at the poker table.
    */

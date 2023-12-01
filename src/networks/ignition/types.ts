@@ -1,4 +1,4 @@
-import { Action, BettingStructure, Position, Site, TournamentSpeed, Variant } from '~/types';
+import { Action, BettingStructure, Site, TournamentSpeed, Variant } from '~/types';
 
 interface BaseLine {
   type: string;
@@ -46,7 +46,7 @@ export interface TournamentGame {
 export interface LinePlayer extends BaseLine {
   type: 'player';
   name: string;
-  position: Position;
+  positionIndex: number;
   seatNumber: number;
   chipCount: string;
   isHero: boolean;

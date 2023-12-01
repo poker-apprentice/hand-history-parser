@@ -226,6 +226,7 @@ describe('parseHand', () => {
               "isHero": true,
               "name": "Big Blind",
               "position": "BB",
+              "positionIndex": 2,
               "seatNumber": 1,
             },
             {
@@ -234,6 +235,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "UTG",
               "position": "UTG",
+              "positionIndex": 3,
               "seatNumber": 2,
             },
             {
@@ -241,7 +243,8 @@ describe('parseHand', () => {
               "isAnonymous": true,
               "isHero": false,
               "name": "UTG+1",
-              "position": "UTG+1",
+              "position": "MP",
+              "positionIndex": 4,
               "seatNumber": 3,
             },
             {
@@ -249,7 +252,8 @@ describe('parseHand', () => {
               "isAnonymous": true,
               "isHero": false,
               "name": "UTG+2",
-              "position": "UTG+2",
+              "position": "CO",
+              "positionIndex": 5,
               "seatNumber": 4,
             },
             {
@@ -258,6 +262,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "Dealer",
               "position": "BTN",
+              "positionIndex": 0,
               "seatNumber": 5,
             },
             {
@@ -266,6 +271,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "Small Blind",
               "position": "SB",
+              "positionIndex": 1,
               "seatNumber": 6,
             },
           ],
@@ -432,6 +438,7 @@ describe('parseHand', () => {
               "isHero": true,
               "name": "Small Blind",
               "position": "SB",
+              "positionIndex": 1,
               "seatNumber": 1,
             },
             {
@@ -440,6 +447,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "Big Blind",
               "position": "BB",
+              "positionIndex": 2,
               "seatNumber": 2,
             },
             {
@@ -448,6 +456,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "UTG",
               "position": "UTG",
+              "positionIndex": 3,
               "seatNumber": 3,
             },
             {
@@ -455,7 +464,8 @@ describe('parseHand', () => {
               "isAnonymous": true,
               "isHero": false,
               "name": "UTG+1",
-              "position": "UTG+1",
+              "position": "MP",
+              "positionIndex": 4,
               "seatNumber": 4,
             },
             {
@@ -463,7 +473,8 @@ describe('parseHand', () => {
               "isAnonymous": true,
               "isHero": false,
               "name": "UTG+2",
-              "position": "UTG+2",
+              "position": "CO",
+              "positionIndex": 5,
               "seatNumber": 5,
             },
             {
@@ -472,6 +483,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "Dealer",
               "position": "BTN",
+              "positionIndex": 0,
               "seatNumber": 6,
             },
           ],
@@ -624,6 +636,7 @@ describe('parseHand', () => {
               "isHero": true,
               "name": "UTG",
               "position": "UTG",
+              "positionIndex": 3,
               "seatNumber": 1,
             },
             {
@@ -631,7 +644,8 @@ describe('parseHand', () => {
               "isAnonymous": true,
               "isHero": false,
               "name": "UTG+1",
-              "position": "UTG+1",
+              "position": "MP",
+              "positionIndex": 4,
               "seatNumber": 2,
             },
             {
@@ -639,7 +653,8 @@ describe('parseHand', () => {
               "isAnonymous": true,
               "isHero": false,
               "name": "UTG+2",
-              "position": "UTG+2",
+              "position": "CO",
+              "positionIndex": 5,
               "seatNumber": 3,
             },
             {
@@ -648,6 +663,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "Dealer",
               "position": "BTN",
+              "positionIndex": 0,
               "seatNumber": 4,
             },
             {
@@ -656,6 +672,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "Small Blind",
               "position": "SB",
+              "positionIndex": 1,
               "seatNumber": 5,
             },
             {
@@ -664,6 +681,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "Big Blind",
               "position": "BB",
+              "positionIndex": 2,
               "seatNumber": 6,
             },
           ],
@@ -791,6 +809,7 @@ describe('parseHand', () => {
               "isHero": true,
               "name": "Big Blind",
               "position": "BB",
+              "positionIndex": 2,
               "seatNumber": 1,
             },
             {
@@ -799,6 +818,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "UTG",
               "position": "UTG",
+              "positionIndex": 3,
               "seatNumber": 2,
             },
             {
@@ -806,7 +826,8 @@ describe('parseHand', () => {
               "isAnonymous": true,
               "isHero": false,
               "name": "UTG+1",
-              "position": "UTG+1",
+              "position": "MP",
+              "positionIndex": 4,
               "seatNumber": 3,
             },
             {
@@ -814,7 +835,8 @@ describe('parseHand', () => {
               "isAnonymous": true,
               "isHero": false,
               "name": "UTG+2",
-              "position": "UTG+2",
+              "position": "CO",
+              "positionIndex": 5,
               "seatNumber": 4,
             },
             {
@@ -823,6 +845,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "Dealer",
               "position": "BTN",
+              "positionIndex": 0,
               "seatNumber": 5,
             },
             {
@@ -831,6 +854,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "Small Blind",
               "position": "SB",
+              "positionIndex": 1,
               "seatNumber": 6,
             },
           ],
@@ -1078,6 +1102,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "UTG",
               "position": "UTG",
+              "positionIndex": 3,
               "seatNumber": 1,
             },
             {
@@ -1085,7 +1110,8 @@ describe('parseHand', () => {
               "isAnonymous": true,
               "isHero": false,
               "name": "UTG+1",
-              "position": "UTG+1",
+              "position": "MP",
+              "positionIndex": 4,
               "seatNumber": 2,
             },
             {
@@ -1093,7 +1119,8 @@ describe('parseHand', () => {
               "isAnonymous": true,
               "isHero": false,
               "name": "UTG+2",
-              "position": "UTG+2",
+              "position": "CO",
+              "positionIndex": 5,
               "seatNumber": 3,
             },
             {
@@ -1102,6 +1129,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "Dealer",
               "position": "BTN",
+              "positionIndex": 0,
               "seatNumber": 4,
             },
             {
@@ -1110,6 +1138,7 @@ describe('parseHand', () => {
               "isHero": true,
               "name": "Small Blind",
               "position": "SB",
+              "positionIndex": 1,
               "seatNumber": 5,
             },
             {
@@ -1118,6 +1147,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "Big Blind",
               "position": "BB",
+              "positionIndex": 2,
               "seatNumber": 6,
             },
           ],
@@ -1303,6 +1333,7 @@ describe('parseHand', () => {
               "isHero": true,
               "name": "Small Blind",
               "position": "SB",
+              "positionIndex": 1,
               "seatNumber": 1,
             },
             {
@@ -1311,6 +1342,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "Big Blind",
               "position": "BB",
+              "positionIndex": 2,
               "seatNumber": 2,
             },
             {
@@ -1319,6 +1351,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "UTG",
               "position": "UTG",
+              "positionIndex": 3,
               "seatNumber": 3,
             },
             {
@@ -1327,6 +1360,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "Dealer",
               "position": "BTN",
+              "positionIndex": 0,
               "seatNumber": 6,
             },
           ],
@@ -1522,6 +1556,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "UTG",
               "position": "UTG",
+              "positionIndex": 3,
               "seatNumber": 1,
             },
             {
@@ -1529,7 +1564,8 @@ describe('parseHand', () => {
               "isAnonymous": true,
               "isHero": false,
               "name": "UTG+1",
-              "position": "UTG+1",
+              "position": "MP",
+              "positionIndex": 4,
               "seatNumber": 2,
             },
             {
@@ -1538,6 +1574,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "Dealer",
               "position": "BTN",
+              "positionIndex": 0,
               "seatNumber": 3,
             },
             {
@@ -1546,6 +1583,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "Small Blind",
               "position": "SB",
+              "positionIndex": 1,
               "seatNumber": 5,
             },
             {
@@ -1554,6 +1592,7 @@ describe('parseHand', () => {
               "isHero": true,
               "name": "Big Blind",
               "position": "BB",
+              "positionIndex": 2,
               "seatNumber": 6,
             },
           ],
@@ -1720,7 +1759,8 @@ describe('parseHand', () => {
               "isAnonymous": true,
               "isHero": false,
               "name": "UTG+1",
-              "position": "UTG+1",
+              "position": "MP",
+              "positionIndex": 4,
               "seatNumber": 1,
             },
             {
@@ -1728,7 +1768,8 @@ describe('parseHand', () => {
               "isAnonymous": false,
               "isHero": true,
               "name": "UTG+2",
-              "position": "UTG+2",
+              "position": "CO",
+              "positionIndex": 5,
               "seatNumber": 2,
             },
             {
@@ -1737,6 +1778,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "Big Blind",
               "position": "BB",
+              "positionIndex": 2,
               "seatNumber": 3,
             },
             {
@@ -1745,6 +1787,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "UTG",
               "position": "UTG",
+              "positionIndex": 3,
               "seatNumber": 4,
             },
             {
@@ -1753,6 +1796,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "Dealer",
               "position": "BTN",
+              "positionIndex": 0,
               "seatNumber": 5,
             },
             {
@@ -1761,6 +1805,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "Small Blind",
               "position": "SB",
+              "positionIndex": 1,
               "seatNumber": 6,
             },
           ],
@@ -1949,6 +1994,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "Dealer",
               "position": "BTN",
+              "positionIndex": 0,
               "seatNumber": 2,
             },
             {
@@ -1957,6 +2003,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "Small Blind",
               "position": "SB",
+              "positionIndex": 1,
               "seatNumber": 4,
             },
             {
@@ -1965,6 +2012,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "Big Blind",
               "position": "BB",
+              "positionIndex": 2,
               "seatNumber": 5,
             },
             {
@@ -1973,6 +2021,7 @@ describe('parseHand', () => {
               "isHero": true,
               "name": "UTG",
               "position": "UTG",
+              "positionIndex": 3,
               "seatNumber": 6,
             },
           ],
@@ -2134,6 +2183,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "Big Blind",
               "position": "BB",
+              "positionIndex": 2,
               "seatNumber": 1,
             },
             {
@@ -2142,6 +2192,7 @@ describe('parseHand', () => {
               "isHero": true,
               "name": "Dealer",
               "position": "BTN",
+              "positionIndex": 0,
               "seatNumber": 4,
             },
           ],
@@ -2292,6 +2343,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "Dealer",
               "position": "BTN",
+              "positionIndex": 0,
               "seatNumber": 1,
             },
             {
@@ -2300,6 +2352,7 @@ describe('parseHand', () => {
               "isHero": true,
               "name": "Big Blind",
               "position": "BB",
+              "positionIndex": 2,
               "seatNumber": 4,
             },
           ],
@@ -2395,6 +2448,7 @@ describe('parseHand', () => {
               "isHero": true,
               "name": "Dealer",
               "position": "BTN",
+              "positionIndex": 0,
               "seatNumber": 2,
             },
             {
@@ -2403,6 +2457,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "Big Blind",
               "position": "BB",
+              "positionIndex": 2,
               "seatNumber": 5,
             },
           ],
@@ -2607,6 +2662,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "Small Blind",
               "position": "SB",
+              "positionIndex": 1,
               "seatNumber": 1,
             },
             {
@@ -2615,6 +2671,7 @@ describe('parseHand', () => {
               "isHero": true,
               "name": "Big Blind",
               "position": "BB",
+              "positionIndex": 2,
               "seatNumber": 2,
             },
             {
@@ -2623,6 +2680,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "UTG",
               "position": "UTG",
+              "positionIndex": 3,
               "seatNumber": 3,
             },
             {
@@ -2630,7 +2688,8 @@ describe('parseHand', () => {
               "isAnonymous": true,
               "isHero": false,
               "name": "UTG+1",
-              "position": "UTG+1",
+              "position": "MP",
+              "positionIndex": 4,
               "seatNumber": 4,
             },
             {
@@ -2638,7 +2697,8 @@ describe('parseHand', () => {
               "isAnonymous": true,
               "isHero": false,
               "name": "UTG+2",
-              "position": "UTG+2",
+              "position": "CO",
+              "positionIndex": 5,
               "seatNumber": 5,
             },
             {
@@ -2647,6 +2707,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "Dealer",
               "position": "BTN",
+              "positionIndex": 0,
               "seatNumber": 6,
             },
           ],
@@ -2821,6 +2882,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "Dealer",
               "position": "BTN",
+              "positionIndex": 0,
               "seatNumber": 1,
             },
             {
@@ -2829,6 +2891,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "Small Blind",
               "position": "SB",
+              "positionIndex": 1,
               "seatNumber": 2,
             },
             {
@@ -2837,6 +2900,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "Big Blind",
               "position": "BB",
+              "positionIndex": 2,
               "seatNumber": 3,
             },
             {
@@ -2845,6 +2909,7 @@ describe('parseHand', () => {
               "isHero": true,
               "name": "UTG",
               "position": "UTG",
+              "positionIndex": 3,
               "seatNumber": 4,
             },
             {
@@ -2852,7 +2917,8 @@ describe('parseHand', () => {
               "isAnonymous": true,
               "isHero": false,
               "name": "UTG+1",
-              "position": "UTG+1",
+              "position": "MP",
+              "positionIndex": 4,
               "seatNumber": 5,
             },
             {
@@ -2860,7 +2926,8 @@ describe('parseHand', () => {
               "isAnonymous": true,
               "isHero": false,
               "name": "UTG+2",
-              "position": "UTG+2",
+              "position": "CO",
+              "positionIndex": 5,
               "seatNumber": 6,
             },
           ],
@@ -3072,7 +3139,8 @@ describe('parseHand', () => {
               "isAnonymous": true,
               "isHero": false,
               "name": "UTG+1",
-              "position": "UTG+1",
+              "position": "MP",
+              "positionIndex": 4,
               "seatNumber": 1,
             },
             {
@@ -3080,7 +3148,8 @@ describe('parseHand', () => {
               "isAnonymous": true,
               "isHero": false,
               "name": "UTG+2",
-              "position": "UTG+2",
+              "position": "CO",
+              "positionIndex": 5,
               "seatNumber": 2,
             },
             {
@@ -3089,6 +3158,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "Dealer",
               "position": "BTN",
+              "positionIndex": 0,
               "seatNumber": 3,
             },
             {
@@ -3097,6 +3167,7 @@ describe('parseHand', () => {
               "isHero": true,
               "name": "Small Blind",
               "position": "SB",
+              "positionIndex": 1,
               "seatNumber": 4,
             },
             {
@@ -3105,6 +3176,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "Big Blind",
               "position": "BB",
+              "positionIndex": 2,
               "seatNumber": 5,
             },
             {
@@ -3113,6 +3185,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "UTG",
               "position": "UTG",
+              "positionIndex": 3,
               "seatNumber": 6,
             },
           ],
@@ -3296,6 +3369,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "UTG",
               "position": "UTG",
+              "positionIndex": 3,
               "seatNumber": 2,
             },
             {
@@ -3303,7 +3377,8 @@ describe('parseHand', () => {
               "isAnonymous": false,
               "isHero": true,
               "name": "UTG+1",
-              "position": "UTG+1",
+              "position": "MP",
+              "positionIndex": 4,
               "seatNumber": 3,
             },
             {
@@ -3312,6 +3387,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "Dealer",
               "position": "BTN",
+              "positionIndex": 0,
               "seatNumber": 4,
             },
             {
@@ -3320,6 +3396,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "Big Blind",
               "position": "BB",
+              "positionIndex": 2,
               "seatNumber": 6,
             },
           ],
@@ -3448,6 +3525,7 @@ describe('parseHand', () => {
                 "isHero": false,
                 "name": "UTG",
                 "position": "UTG",
+                "positionIndex": 3,
                 "seatNumber": 1,
               },
               {
@@ -3455,7 +3533,8 @@ describe('parseHand', () => {
                 "isAnonymous": true,
                 "isHero": false,
                 "name": "UTG+1",
-                "position": "UTG+1",
+                "position": "MP",
+                "positionIndex": 4,
                 "seatNumber": 2,
               },
               {
@@ -3463,7 +3542,8 @@ describe('parseHand', () => {
                 "isAnonymous": true,
                 "isHero": false,
                 "name": "UTG+2",
-                "position": "UTG+2",
+                "position": "CO",
+                "positionIndex": 5,
                 "seatNumber": 3,
               },
               {
@@ -3472,6 +3552,7 @@ describe('parseHand', () => {
                 "isHero": false,
                 "name": "Dealer",
                 "position": "BTN",
+                "positionIndex": 0,
                 "seatNumber": 4,
               },
               {
@@ -3480,6 +3561,7 @@ describe('parseHand', () => {
                 "isHero": false,
                 "name": "Small Blind",
                 "position": "SB",
+                "positionIndex": 1,
                 "seatNumber": 5,
               },
               {
@@ -3488,6 +3570,7 @@ describe('parseHand', () => {
                 "isHero": true,
                 "name": "Big Blind",
                 "position": "BB",
+                "positionIndex": 2,
                 "seatNumber": 6,
               },
             ],
@@ -3615,6 +3698,7 @@ describe('parseHand', () => {
                 "isHero": false,
                 "name": "Dealer",
                 "position": "BTN",
+                "positionIndex": 0,
                 "seatNumber": 1,
               },
               {
@@ -3623,6 +3707,7 @@ describe('parseHand', () => {
                 "isHero": false,
                 "name": "Small Blind",
                 "position": "SB",
+                "positionIndex": 1,
                 "seatNumber": 2,
               },
               {
@@ -3631,6 +3716,7 @@ describe('parseHand', () => {
                 "isHero": false,
                 "name": "Big Blind",
                 "position": "BB",
+                "positionIndex": 2,
                 "seatNumber": 3,
               },
               {
@@ -3639,6 +3725,7 @@ describe('parseHand', () => {
                 "isHero": true,
                 "name": "UTG",
                 "position": "UTG",
+                "positionIndex": 3,
                 "seatNumber": 4,
               },
               {
@@ -3646,7 +3733,8 @@ describe('parseHand', () => {
                 "isAnonymous": true,
                 "isHero": false,
                 "name": "UTG+1",
-                "position": "UTG+1",
+                "position": "MP",
+                "positionIndex": 4,
                 "seatNumber": 5,
               },
               {
@@ -3654,7 +3742,8 @@ describe('parseHand', () => {
                 "isAnonymous": true,
                 "isHero": false,
                 "name": "UTG+2",
-                "position": "UTG+2",
+                "position": "CO",
+                "positionIndex": 5,
                 "seatNumber": 6,
               },
             ],
@@ -3925,7 +4014,8 @@ describe('parseHand', () => {
               "isAnonymous": true,
               "isHero": false,
               "name": "UTG+2",
-              "position": "UTG+2",
+              "position": "MP",
+              "positionIndex": 5,
               "seatNumber": 30,
             },
             {
@@ -3933,7 +4023,8 @@ describe('parseHand', () => {
               "isAnonymous": true,
               "isHero": false,
               "name": "UTG+3",
-              "position": "CO",
+              "position": "LJ",
+              "positionIndex": 6,
               "seatNumber": 37,
             },
             {
@@ -3942,6 +4033,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "Dealer",
               "position": "BTN",
+              "positionIndex": 0,
               "seatNumber": 86,
             },
             {
@@ -3950,6 +4042,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "Small Blind",
               "position": "SB",
+              "positionIndex": 1,
               "seatNumber": 16,
             },
             {
@@ -3958,6 +4051,7 @@ describe('parseHand', () => {
               "isHero": true,
               "name": "Big Blind",
               "position": "BB",
+              "positionIndex": 2,
               "seatNumber": 89,
             },
             {
@@ -3966,6 +4060,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "UTG",
               "position": "UTG",
+              "positionIndex": 3,
               "seatNumber": 61,
             },
             {
@@ -3974,6 +4069,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "UTG+1",
               "position": "UTG+1",
+              "positionIndex": 4,
               "seatNumber": 68,
             },
           ],
@@ -4132,6 +4228,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "Small Blind",
               "position": "SB",
+              "positionIndex": 1,
               "seatNumber": 4,
             },
             {
@@ -4140,6 +4237,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "Big Blind",
               "position": "BB",
+              "positionIndex": 2,
               "seatNumber": 1,
             },
             {
@@ -4148,6 +4246,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "UTG",
               "position": "UTG",
+              "positionIndex": 3,
               "seatNumber": 3,
             },
             {
@@ -4156,6 +4255,7 @@ describe('parseHand', () => {
               "isHero": true,
               "name": "Dealer",
               "position": "BTN",
+              "positionIndex": 0,
               "seatNumber": 5,
             },
           ],
@@ -4348,7 +4448,8 @@ describe('parseHand', () => {
               "isAnonymous": true,
               "isHero": false,
               "name": "UTG+1",
-              "position": "UTG+1",
+              "position": "MP",
+              "positionIndex": 4,
               "seatNumber": 4,
             },
             {
@@ -4356,7 +4457,8 @@ describe('parseHand', () => {
               "isAnonymous": true,
               "isHero": false,
               "name": "UTG+2",
-              "position": "UTG+2",
+              "position": "CO",
+              "positionIndex": 5,
               "seatNumber": 14,
             },
             {
@@ -4365,6 +4467,7 @@ describe('parseHand', () => {
               "isHero": true,
               "name": "Dealer",
               "position": "BTN",
+              "positionIndex": 0,
               "seatNumber": 18,
             },
             {
@@ -4373,6 +4476,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "Small Blind",
               "position": "SB",
+              "positionIndex": 1,
               "seatNumber": 9,
             },
             {
@@ -4381,6 +4485,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "Big Blind",
               "position": "BB",
+              "positionIndex": 2,
               "seatNumber": 3,
             },
             {
@@ -4389,6 +4494,7 @@ describe('parseHand', () => {
               "isHero": false,
               "name": "UTG",
               "position": "UTG",
+              "positionIndex": 3,
               "seatNumber": 2,
             },
           ],
