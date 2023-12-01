@@ -75,6 +75,7 @@
     "rimraf": "^5.0.1",
     "rollup": "^3.28.1",
     "ts-node": "^10.9.1",
+    "type-fest": "^4.8.2",
     "typescript": "^5.2.2"
   }
 }

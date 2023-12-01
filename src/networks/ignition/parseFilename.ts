@@ -1,4 +1,4 @@
-import { BettingStructure, TournamentFormat, Variant } from '~/types';
+import { BettingStructure, TournamentFormat, TournamentInfo, Variant } from '~/types';
 
 const CASH_REGEX =
   /^HH(?<date>\d+)-(?<time>\d+) - (?<unknown>\d+) - (?<format>RING|ZONE) - (?<smallBlind>\$(\d+,)*\d+(\.\d+)?)-(?<bigBlind>\$(\d+,)*\d+(\.\d+)?) - (?<variant>HOLDEM|OMAHA|OMAHA HiLo|HOLDEMZonePoker|OMAHAZonePoker) - (?<bettingStructure>NL|PL|FL) - TBL No\.(?<tableNumber>\d+)(?<extension>\.[Tt][Xx][Tt])?$/;
@@ -16,18 +16,21 @@ export interface CashFilenameMeta {
   bettingStructure: BettingStructure;
 }
 
-export interface TournamentFilenameMeta {
+export interface TournamentFilenameMeta
+  extends Pick<
+    TournamentInfo,
+    | 'tournamentStart'
+    | 'format'
+    | 'name'
+    | 'buyIn'
+    | 'entryFee'
+    | 'variant'
+    | 'tournamentNumber'
+    | 'guaranteedPrizePool'
+  > {
   type: 'tournament';
   currency: string;
-  timestamp: Date;
-  format: TournamentFormat;
-  name: string;
-  buyIn: string;
-  entryFee: string;
-  variant: Variant;
   bettingStructure: BettingStructure;
-  tournamentNumber: string;
-  guaranteedPrizePool: string;
   isSatellite: boolean;
 }
 
@@ -107,7 +110,7 @@ export const parseFilename = (filename: string): FilenameMeta | undefined => {
     return {
       type: 'tournament',
       currency: 'USD',
-      timestamp: getDate(tourney.date, tourney.time),
+      tournamentStart: getDate(tourney.date, tourney.time),
       name: tourney.tournamentName,
       tournamentNumber: tourney.tournamentNumber,
       bettingStructure: getBettingStructure(tourney.bettingStructure),
