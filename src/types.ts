@@ -18,15 +18,15 @@ export type BettingStructure = 'limit' | 'pot limit' | 'no limit' | 'spread limi
 /**
  * The relative position of a player.
  */
-export type Position = 'SB' | 'BB' | 'UTG' | 'UTG+1' | 'UTG+2' | 'MP' | 'LJ' | 'HJ' | 'CO' | 'BTN';
+export type Position = 'SB' | 'BB' | 'UTG' | 'UTG+1' | 'MP' | 'LJ' | 'HJ' | 'CO' | 'BTN';
 
 /**
- * TODO
+ * The speed of a tournament.
  */
 export type TournamentSpeed = 'normal' | 'turbo' | 'hyper-turbo' | 'deep-stack';
 
 /**
- * TODO
+ * The format of a tournament.
  */
 export type TournamentFormat =
   | 'freezeout'
@@ -43,11 +43,16 @@ export type TournamentFormat =
 export type Street = 'preflop' | 'flop' | 'turn' | 'river';
 
 /**
+ * The supported table sizes.
+ */
+export type TableSize = 2 | 6 | 8 | 9;
+
+/**
  * Information related to the poker game as a whole.
  */
 export interface GameInfoBase {
   /**
-   * TODO
+   * The type of game, specifically cash game or tournament.
    */
   type: string;
   /**
@@ -81,12 +86,12 @@ export interface GameInfoBase {
   /**
    * The total number seats available at the table, whether they are occupied or not.
    */
-  tableSize: 2 | 6 | 8 | 9;
+  tableSize: TableSize;
 }
 
 export interface CashGameInfo extends GameInfoBase {
   /**
-   * TODO
+   * The type of game, specifically cash game or tournament.
    */
   type: 'cash';
   /**
@@ -105,7 +110,7 @@ export interface CashGameInfo extends GameInfoBase {
 
 export interface TournamentInfo extends GameInfoBase {
   /**
-   * TODO
+   * The type of game, specifically cash game or tournament.
    */
   type: 'tournament';
   /**
@@ -113,15 +118,19 @@ export interface TournamentInfo extends GameInfoBase {
    */
   tournamentNumber: string;
   /**
+   * The tournament start date/time.
+   */
+  tournamentStart: Date;
+  /**
    * The name of the tournament.
    */
-  name?: string;
+  name: string;
   /**
-   * TODO
+   * The price of the tournament buy-in.
    */
   buyIn: string;
   /**
-   * TODO
+   * The price of the tournament entry fee.
    */
   entryFee: string;
   /**
@@ -129,17 +138,21 @@ export interface TournamentInfo extends GameInfoBase {
    */
   level: number;
   /**
-   * TODO
+   * The speed of the tournament.
    */
   speed: TournamentSpeed;
   /**
-   * TODO
+   * The format of the tournament.
    */
   format: TournamentFormat;
   /**
-   * TODO
+   * The minimum guaranteed size of the prize pool, represented in the associated `currency`.
    */
-  guaranteedPrizePool: string | undefined;
+  guaranteedPrizePool: string;
+  /**
+   * Whether or not the tournament is a satellite for another event.
+   */
+  isSatellite: boolean;
 }
 
 export type GameInfo = CashGameInfo | TournamentInfo;
@@ -154,6 +167,17 @@ export interface Player {
    * The seat number of the player at the poker table.
    */
   seatNumber: number;
+  /**
+   * A zero-based index representing the relative position of the player at the poker table.
+   *  - 0 = Button
+   *  - 1 = Small Blind
+   *  - 2 = Big Blind
+   *  - 3 = UTG
+   *  - 4 = UTG+1
+   *  - 5 = UTG+2
+   *  - etc.
+   */
+  positionIndex: number;
   /**
    * The relative position of the player at the poker table.
    */

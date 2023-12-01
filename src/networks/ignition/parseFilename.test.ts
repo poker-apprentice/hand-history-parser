@@ -34,8 +34,8 @@ describe('parseFilename', () => {
           "guaranteedPrizePool": "0",
           "isSatellite": false,
           "name": "Hyper Turbo (500 Chips)",
-          "timestamp": 2022-06-26T16:49:36.000Z,
           "tournamentNumber": "51169700",
+          "tournamentStart": 2022-06-26T16:49:36.000Z,
           "type": "tournament",
           "variant": "holdem",
         }
@@ -55,8 +55,8 @@ describe('parseFilename', () => {
           "guaranteedPrizePool": "300",
           "isSatellite": false,
           "name": "$300 Guaranteed (Beginner DS)",
-          "timestamp": 2022-06-25T20:20:00.000Z,
           "tournamentNumber": "47895702",
+          "tournamentStart": 2022-06-25T20:20:00.000Z,
           "type": "tournament",
           "variant": "omaha-8",
         }
@@ -76,8 +76,8 @@ describe('parseFilename', () => {
           "guaranteedPrizePool": "0",
           "isSatellite": false,
           "name": "2-Table ($10 Knockout)",
-          "timestamp": 2022-06-26T16:54:12.000Z,
           "tournamentNumber": "51170049",
+          "tournamentStart": 2022-06-26T16:54:12.000Z,
           "type": "tournament",
           "variant": "holdem",
         }
@@ -103,8 +103,8 @@ describe('parseFilename', () => {
           "guaranteedPrizePool": "0",
           "isSatellite": true,
           "name": "Monthly Milly Sub-Satellite 2 Seats Gtd",
-          "timestamp": 2022-06-26T08:21:00.000Z,
           "tournamentNumber": "46767990",
+          "tournamentStart": 2022-06-26T08:21:00.000Z,
           "type": "tournament",
           "variant": "holdem",
         }
@@ -124,8 +124,8 @@ describe('parseFilename', () => {
           "guaranteedPrizePool": "15000",
           "isSatellite": false,
           "name": "$15.000 Guaranteed (Monster Stack)",
-          "timestamp": 2022-07-11T14:30:00.000Z,
           "tournamentNumber": "50866781",
+          "tournamentStart": 2022-07-11T14:30:00.000Z,
           "type": "tournament",
           "variant": "holdem",
         }

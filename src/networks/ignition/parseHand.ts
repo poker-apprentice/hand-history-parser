@@ -1,9 +1,11 @@
 import omit from 'lodash/omit';
+import type { SetOptional } from 'type-fest';
 import { IgnitionLexer } from '~/grammar/IgnitionLexer';
 import { IgnitionParser } from '~/grammar/IgnitionParser';
-import { GameInfoBase, HandHistory } from '~/types';
+import { GameInfoBase, HandHistory, TableSize } from '~/types';
 import { OmitStrict } from '~/types/OmitStrict';
 import { getParser } from '~/utils/getParser';
+import { getPosition } from '~/utils/getPosition';
 import { Dictionary, groupBy } from '~/utils/groupBy';
 import { IgnitionHandHistoryVisitor } from './IgnitionHandHistoryVisitor';
 import { TournamentFilenameMeta, parseFilename } from './parseFilename';
@@ -13,13 +15,16 @@ type LineDictionary = Dictionary<Line>;
 
 class LineNotFoundError extends Error {}
 
-const getFilenameInfo = (
-  filename: string | undefined,
-): OmitStrict<TournamentFilenameMeta, 'timestamp' | 'tournamentNumber' | 'variant'> => {
+type TournamentFilenameInfo = SetOptional<
+  OmitStrict<TournamentFilenameMeta, 'tournamentNumber' | 'variant'>,
+  'tournamentStart'
+>;
+
+const getFilenameInfo = (filename: string | undefined): TournamentFilenameInfo => {
   const info = filename ? parseFilename(filename) : undefined;
 
   if (info?.type === 'tournament') {
-    return omit(info, ['timestamp', 'tournamentNumber', 'variant']);
+    return omit(info, ['tournamentNumber', 'variant']);
   }
 
   // return sane defaults if parsing fails or is returning wrong game type for some reason
@@ -89,17 +94,19 @@ const getInfo = (lines: LineDictionary, filename: string | undefined): HandHisto
     ...filenameInfo,
     type: 'tournament',
     tournamentNumber: meta.tournamentNumber,
+    tournamentStart: filenameInfo.tournamentStart ?? meta.timestamp,
     level: meta.level,
     speed: meta.speed,
   };
 };
 
-const getPlayers = (lines: LineDictionary): HandHistory['players'] => {
+const getPlayers = (lines: LineDictionary, tableSize: TableSize): HandHistory['players'] => {
   const players: LinePlayer[] = lines.player ?? [];
 
   return players.map((player) => ({
     name: player.name,
-    position: player.position,
+    positionIndex: player.positionIndex,
+    position: getPosition(player.positionIndex, tableSize),
     seatNumber: player.seatNumber,
     chipStack: player.chipCount,
     isHero: player.isHero,
@@ -134,9 +141,9 @@ export const parseHand = ({ hand, filename }: { hand: string; filename?: string 
   const lines = visitor.visit(context);
   const groupedLines = groupBy(lines, 'type');
 
-  return {
-    info: getInfo(groupedLines, filename),
-    players: getPlayers(groupedLines),
-    actions: getActions(groupedLines),
-  };
+  const info = getInfo(groupedLines, filename);
+  const players = getPlayers(groupedLines, info.tableSize);
+  const actions = getActions(groupedLines);
+
+  return { info, players, actions };
 };
