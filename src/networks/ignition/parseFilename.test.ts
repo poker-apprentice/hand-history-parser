@@ -8,10 +8,12 @@ describe('parseFilename', () => {
       expect(parseFilename(filename)).toMatchInlineSnapshot(`
         {
           "bettingStructure": "pot limit",
-          "bigBlind": "1",
+          "blinds": [
+            "0.50",
+            "1",
+          ],
           "currency": "USD",
           "isFastFold": false,
-          "smallBlind": "0.50",
           "timestamp": 2022-06-18T22:02:16.000Z,
           "type": "cash",
           "variant": "omaha",

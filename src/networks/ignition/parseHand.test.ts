@@ -204,6 +204,7 @@ describe('parseHand', () => {
             },
           ],
           "info": {
+            "ante": "0",
             "bettingStructure": "no limit",
             "blinds": [
               "0.1",
@@ -416,6 +417,7 @@ describe('parseHand', () => {
             },
           ],
           "info": {
+            "ante": "0",
             "bettingStructure": "no limit",
             "blinds": [
               "0.1",
@@ -614,6 +616,7 @@ describe('parseHand', () => {
             },
           ],
           "info": {
+            "ante": "0",
             "bettingStructure": "no limit",
             "blinds": [
               "0.1",
@@ -787,6 +790,7 @@ describe('parseHand', () => {
             },
           ],
           "info": {
+            "ante": "0",
             "bettingStructure": "no limit",
             "blinds": [
               "0.1",
@@ -1080,6 +1084,7 @@ describe('parseHand', () => {
             },
           ],
           "info": {
+            "ante": "0",
             "bettingStructure": "no limit",
             "blinds": [
               "0.1",
@@ -1311,6 +1316,7 @@ describe('parseHand', () => {
             },
           ],
           "info": {
+            "ante": "0",
             "bettingStructure": "no limit",
             "blinds": [
               "0.1",
@@ -1534,6 +1540,7 @@ describe('parseHand', () => {
             },
           ],
           "info": {
+            "ante": "0",
             "bettingStructure": "no limit",
             "blinds": [
               "0.1",
@@ -1619,7 +1626,7 @@ describe('parseHand', () => {
             {
               "amount": "0.25",
               "playerName": "UTG",
-              "postType": "ante",
+              "postType": "dead",
               "type": "post",
             },
             {
@@ -1738,6 +1745,7 @@ describe('parseHand', () => {
             },
           ],
           "info": {
+            "ante": "0",
             "bettingStructure": "no limit",
             "blinds": [
               "0.1",
@@ -1972,6 +1980,7 @@ describe('parseHand', () => {
             },
           ],
           "info": {
+            "ante": "0",
             "bettingStructure": "pot limit",
             "blinds": [
               "0.1",
@@ -2161,6 +2170,7 @@ describe('parseHand', () => {
             },
           ],
           "info": {
+            "ante": "0",
             "bettingStructure": "pot limit",
             "blinds": [
               "0.1",
@@ -2321,6 +2331,7 @@ describe('parseHand', () => {
             },
           ],
           "info": {
+            "ante": "0",
             "bettingStructure": "pot limit",
             "blinds": [
               "0.1",
@@ -2426,6 +2437,7 @@ describe('parseHand', () => {
             },
           ],
           "info": {
+            "ante": "0",
             "bettingStructure": "pot limit",
             "blinds": [
               "0.5",
@@ -2640,6 +2652,7 @@ describe('parseHand', () => {
             },
           ],
           "info": {
+            "ante": "0",
             "bettingStructure": "pot limit",
             "blinds": [
               "0.5",
@@ -2860,6 +2873,7 @@ describe('parseHand', () => {
             },
           ],
           "info": {
+            "ante": "0",
             "bettingStructure": "no limit",
             "blinds": [
               "0.1",
@@ -3118,6 +3132,7 @@ describe('parseHand', () => {
             },
           ],
           "info": {
+            "ante": "0",
             "bettingStructure": "no limit",
             "blinds": [
               "1",
@@ -3348,6 +3363,7 @@ describe('parseHand', () => {
             },
           ],
           "info": {
+            "ante": "0",
             "bettingStructure": "no limit",
             "blinds": [
               "0.25",
@@ -3503,6 +3519,7 @@ describe('parseHand', () => {
               },
             ],
             "info": {
+              "ante": "0",
               "bettingStructure": "no limit",
               "blinds": [
                 "0.1",
@@ -3676,6 +3693,7 @@ describe('parseHand', () => {
               },
             ],
             "info": {
+              "ante": "0",
               "bettingStructure": "no limit",
               "blinds": [
                 "1",
@@ -3984,6 +4002,7 @@ describe('parseHand', () => {
             },
           ],
           "info": {
+            "ante": "0",
             "bettingStructure": "no limit",
             "blinds": [
               "200",
@@ -4197,6 +4216,7 @@ describe('parseHand', () => {
             },
           ],
           "info": {
+            "ante": "0",
             "bettingStructure": "no limit",
             "blinds": [
               "25",
@@ -4418,6 +4438,7 @@ describe('parseHand', () => {
             },
           ],
           "info": {
+            "ante": "0",
             "bettingStructure": "no limit",
             "blinds": [
               "50",

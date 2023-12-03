@@ -270,15 +270,25 @@ export class IgnitionHandHistoryVisitor
   }
 
   public visitLinePost(ctx: LinePostContext): Line[] {
-    const chipCount = new IgnitionChipCountVisitor().visit(ctx.chipCount()).toString();
-    const isDead = !!ctx.DEAD();
+    const chipCountContext = ctx.chipCount();
+    const chipCount = new IgnitionChipCountVisitor().visit(chipCountContext).toString();
+
+    // If a user posts without waiting for the big blind in a cash game,
+    // it should not be considered an ante.
+    const isCashGame = chipCountContext.text.includes('$');
+    const isDead = !!ctx.DEAD() || isCashGame;
+
     const playerName = ctx.position().text;
-    return [
-      {
-        type: 'action',
-        action: { type: 'post', amount: chipCount, playerName, postType: isDead ? 'dead' : 'ante' },
-      },
-    ];
+
+    const lines: Line[] = [];
+    if (!isDead) {
+      lines.push({ type: 'ante', chipCount });
+    }
+    lines.push({
+      type: 'action',
+      action: { type: 'post', amount: chipCount, playerName, postType: isDead ? 'dead' : 'ante' },
+    });
+    return lines;
   }
 
   public visitLineUncalled(ctx: LineUncalledContext): Line[] {

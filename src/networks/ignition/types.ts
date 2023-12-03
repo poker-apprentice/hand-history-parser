@@ -63,6 +63,11 @@ export interface LineBigBlind extends BaseLine {
   chipCount: string;
 }
 
-export type Line = LineAction | LineMeta | LinePlayer | LineSmallBlind | LineBigBlind;
+export interface LineAnte extends BaseLine {
+  type: 'ante';
+  chipCount: string;
+}
+
+export type Line = LineAction | LineMeta | LinePlayer | LineSmallBlind | LineBigBlind | LineAnte;
 
 export class NotImplementedError extends Error {}
