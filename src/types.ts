@@ -76,13 +76,26 @@ export interface GameInfoBase {
    */
   variant: Variant;
   /**
-   * An array of blind that were posted during the hand.  For games that include a small and big
-   * blind, this array will contain two items with small blind at index 0 and the big blind at
-   * index 1.  If more or fewer than two blinds were posted during a hand for any reason, the array
-   * length will reflect that with the smallest blind being at index 0 and the biggest blind being
-   * at index N-1.  Guaranteed to contain at least one value.
+   * The betting structure used during the hand.
+   */
+  bettingStructure: BettingStructure;
+  /**
+   * An array of blind amounts that were posted during the hand.  For games that include a small
+   * and big blind, this array will contain two items with small blind at index 0 and the big blind
+   * at index 1.  If more or fewer than two blinds were posted during a hand for any reason, the
+   * array length will reflect that with the smallest blind being at index 0 and the biggest blind
+   * being at index N-1.  Guaranteed to contain at least one value.
    */
   blinds: string[];
+  /**
+   * The ante amount that was posted by each player during the hand.
+   */
+  ante: string;
+  /**
+   * The currency code representing the poker chips in a cash game, or the buy-in, entry fee, and
+   * awarded values in a tournament.
+   */
+  currency: string;
   /**
    * The total number seats available at the table, whether they are occupied or not.
    */
@@ -94,14 +107,6 @@ export interface CashGameInfo extends GameInfoBase {
    * The type of game, specifically cash game or tournament.
    */
   type: 'cash';
-  /**
-   * The type of currency representing the poker chips.
-   */
-  currency: string;
-  /**
-   * The betting structure used during the hand.
-   */
-  bettingStructure: BettingStructure;
   /**
    * Whether the game is a "fast fold" game (i.e.: Zoom Poker, Zone Poker, etc.).
    */

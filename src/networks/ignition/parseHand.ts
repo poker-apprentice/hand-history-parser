@@ -59,14 +59,19 @@ const getInfo = (lines: LineDictionary, filename: string | undefined): HandHisto
   }
   blinds.push(bigBlind.chipCount);
 
+  // the ante value should be the same for every player, so we can just extract the first value
+  const ante = lines.ante?.[0].chipCount ?? '0';
+
   // Bovada only has 6-person and 9-person cash game tables. Fast-fold games are all 6-max,
   // otherwise make a best guess on table size based upon the number of players in the hand.
   const playerCount = (lines.player ?? []).length;
   const tableSize = meta.gameType === 'cash' && meta.fastFold ? 6 : playerCount > 6 ? 9 : 6;
 
-  const baseInfo: GameInfoBase = {
+  const baseInfo: OmitStrict<GameInfoBase, 'bettingStructure'> = {
     type: meta.gameType,
     blinds,
+    ante,
+    currency: 'USD',
     variant: meta.variant,
     handNumber: meta.handNumber,
     tableNumber: meta.tableNumber,
@@ -79,7 +84,6 @@ const getInfo = (lines: LineDictionary, filename: string | undefined): HandHisto
     return {
       ...baseInfo,
       type: 'cash',
-      currency: 'USD',
       bettingStructure: meta.bettingStructure,
       isFastFold: meta.fastFold,
     };

@@ -1,37 +1,34 @@
-import { BettingStructure, TournamentFormat, TournamentInfo, Variant } from '~/types';
+import { BettingStructure, CashGameInfo, TournamentFormat, TournamentInfo, Variant } from '~/types';
 
 const CASH_REGEX =
   /^HH(?<date>\d+)-(?<time>\d+) - (?<unknown>\d+) - (?<format>RING|ZONE) - (?<smallBlind>\$(\d+,)*\d+(\.\d+)?)-(?<bigBlind>\$(\d+,)*\d+(\.\d+)?) - (?<variant>HOLDEM|OMAHA|OMAHA HiLo|HOLDEMZonePoker|OMAHAZonePoker) - (?<bettingStructure>NL|PL|FL) - TBL No\.(?<tableNumber>\d+)(?<extension>\.[Tt][Xx][Tt])?$/;
 const TOURNEY_REGEX =
   /^HH(?<date>\d+)-(?<time>\d+) - (?<unknown>\d+) - (?<format>STT|MTT|MSG|Jackpot Sit & Go) - (?<tournamentName>.+) - (?<buyIn>\$(\d+,)*\d+(\.\d+)?)-(?<entryFee>\$(\d+,)*\d+(\.\d+)?) - (?<variant>HOLDEM|OMAHA|OMAHA HiLo) - (?<bettingStructure>NL|PL|FL) -Tourney No\.(?<tournamentNumber>\d+)(?<extension>\.[Tt][Xx][Tt])?$/;
 
-export interface CashFilenameMeta {
+export interface CashFilenameMeta
+  extends Pick<
+    CashGameInfo,
+    'currency' | 'timestamp' | 'isFastFold' | 'variant' | 'bettingStructure' | 'blinds'
+  > {
   type: 'cash';
-  currency: string;
-  timestamp: Date;
-  isFastFold: boolean;
-  smallBlind: string;
-  bigBlind: string;
-  variant: Variant;
-  bettingStructure: BettingStructure;
 }
 
 export interface TournamentFilenameMeta
   extends Pick<
     TournamentInfo,
+    | 'currency'
     | 'tournamentStart'
     | 'format'
     | 'name'
     | 'buyIn'
     | 'entryFee'
     | 'variant'
+    | 'bettingStructure'
     | 'tournamentNumber'
     | 'guaranteedPrizePool'
+    | 'isSatellite'
   > {
   type: 'tournament';
-  currency: string;
-  bettingStructure: BettingStructure;
-  isSatellite: boolean;
 }
 
 export type FilenameMeta = CashFilenameMeta | TournamentFilenameMeta;
@@ -93,6 +90,15 @@ const getTournamentGuarantee = (tournamentName: string): string => {
 export const parseFilename = (filename: string): FilenameMeta | undefined => {
   const cash = filename.match(CASH_REGEX)?.groups;
   if (cash) {
+    const blinds: string[] = [];
+    const smallBlind = cash.smallBlind.replace(/[$,]/, '');
+    if (smallBlind) {
+      blinds.push(smallBlind);
+    }
+    const bigBlind = cash.bigBlind.replace(/[$,]/, '');
+    if (bigBlind) {
+      blinds.push(bigBlind);
+    }
     return {
       type: 'cash',
       currency: 'USD',
@@ -100,8 +106,7 @@ export const parseFilename = (filename: string): FilenameMeta | undefined => {
       bettingStructure: getBettingStructure(cash.bettingStructure),
       variant: getVariant(cash.variant),
       isFastFold: cash.format === 'ZONE',
-      smallBlind: cash.smallBlind.replace(/[$,]/, ''),
-      bigBlind: cash.bigBlind.replace(/[$,]/, ''),
+      blinds,
     };
   }
 
