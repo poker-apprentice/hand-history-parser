@@ -53,6 +53,7 @@ lineMisc       :
     | 'Sitout' forcedActionReason
     | 'Enter' forcedActionReason
     | 'Leave' forcedActionReason
+    | 'Draw for dealer' board
   );
 lineAction     : position ME? COLON action;
 lineMuck       : position ME? COLON 'Does not show' hand '(' handStrength ')';

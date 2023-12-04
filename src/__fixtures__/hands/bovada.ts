@@ -809,3 +809,44 @@ Seat+18: Dealer lose with Two pair [Ah 6h-Ah Ac Ks Kc 8d]
 Seat 9:Small Blind 4410  with Two pair [Jd Ad-Ad Ac Ks Kc Jd]   BOUNTY awarded:$10
 Seat+3: Big Blind Folded on the FLOP
 Seat+2: UTG Folded on the FLOP`;
+
+export const HAND_TOURNAMENT_DRAW_FOR_DEALER = `Bovada Hand #4557122159: HOLDEM Tournament #50991177 TBL#1, Turbo- Level 1 (10/20) - 2022-06-19 00:49:26
+Seat 3: Dealer (300 in chips)
+Seat 2: Small Blind [ME] (300 in chips)
+Seat 1: Big Blind (300 in chips)
+Small Blind [ME] : Table enter user
+Dealer : Table enter user
+Dealer : Draw for dealer [9d] 
+Small Blind [ME] : Draw for dealer [3c] 
+Big Blind : Draw for dealer [2d] 
+Dealer : Set dealer [1] 
+Small Blind [ME] : Small blind 10 
+Big Blind : Big blind 20 
+*** HOLE CARDS ***
+Dealer : Card dealt to a spot [Ac Th] 
+Small Blind [ME] : Card dealt to a spot [Jc 5c] 
+Big Blind : Card dealt to a spot [8c Qd] 
+Dealer : Raises 40 to 40
+Small Blind [ME] : Folds
+Big Blind : Call 20 
+*** FLOP *** [2c 7c 9s]
+Big Blind : Checks
+Dealer : Bets 28 
+Big Blind : Call 28 
+*** TURN *** [2c 7c 9s] [Jd]
+Big Blind : Bets 60 
+Dealer : Call 60 
+*** RIVER *** [2c 7c 9s Jd] [8d]
+Big Blind : All-in 172 
+Dealer : All-in 172 
+Big Blind : Showdown [8d 8c Qd Jd 9s] (One pair)
+Dealer : Showdown [Jd Th 9s 8d 7c] (Straight)
+Dealer : Hand Result 610 
+Big Blind : Ranking 3 
+Big Blind : Stand
+*** SUMMARY ***
+Total Pot(610)
+Board [2c 7c 9s Jd 8d]
+Seat+3: Dealer 610  with Straight [Ac Th-Jd Th 9s 8d 7c]  
+Seat+2: Small Blind Folded on the FLOP
+Seat+1: Big Blind lose with One pair [8c Qd-8d 8c Qd Jd 9s]`;

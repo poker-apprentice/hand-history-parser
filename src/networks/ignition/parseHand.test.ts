@@ -18,6 +18,7 @@ import {
   HAND_THOUSANDS_OF_DOLLARS,
   HAND_TOURNAMENT,
   HAND_TOURNAMENT_BOUNTY_AWARDED,
+  HAND_TOURNAMENT_DRAW_FOR_DEALER,
   HAND_TOURNAMENT_PLACEMENT,
 } from '~/__fixtures__/hands/bovada';
 import { HAND as HAND_IGNITION } from '~/__fixtures__/hands/ignition';
@@ -4517,6 +4518,212 @@ describe('parseHand', () => {
               "position": "UTG",
               "positionIndex": 3,
               "seatNumber": 2,
+            },
+          ],
+        }
+      `);
+    });
+
+    it.only('parses when drawing for dealer', () => {
+      const filename =
+        'HH20220619-004909 - 6556966 - Jackpot Sit & Go - Jackpot Sit And Go - $2 - TT$2-$0 - HOLDEM - NL -Tourney No.50991177.txt';
+
+      expect(parseHand({ hand: HAND_TOURNAMENT_DRAW_FOR_DEALER, filename })).toMatchInlineSnapshot(`
+        {
+          "actions": [
+            {
+              "amount": "10",
+              "playerName": "Small Blind",
+              "postType": "blind",
+              "type": "post",
+            },
+            {
+              "amount": "20",
+              "playerName": "Big Blind",
+              "postType": "blind",
+              "type": "post",
+            },
+            {
+              "cards": [
+                "Ac",
+                "Th",
+              ],
+              "playerName": "Dealer",
+              "type": "deal-hand",
+            },
+            {
+              "cards": [
+                "Jc",
+                "5c",
+              ],
+              "playerName": "Small Blind",
+              "type": "deal-hand",
+            },
+            {
+              "cards": [
+                "8c",
+                "Qd",
+              ],
+              "playerName": "Big Blind",
+              "type": "deal-hand",
+            },
+            {
+              "amount": "40",
+              "isAllIn": false,
+              "playerName": "Dealer",
+              "totalBet": "40",
+              "type": "raise",
+            },
+            {
+              "playerName": "Small Blind",
+              "type": "fold",
+            },
+            {
+              "amount": "20",
+              "isAllIn": false,
+              "playerName": "Big Blind",
+              "type": "call",
+            },
+            {
+              "cards": [
+                "2c",
+                "7c",
+                "9s",
+              ],
+              "street": "flop",
+              "type": "deal-board",
+            },
+            {
+              "playerName": "Big Blind",
+              "type": "check",
+            },
+            {
+              "amount": "28",
+              "isAllIn": false,
+              "playerName": "Dealer",
+              "type": "bet",
+            },
+            {
+              "amount": "28",
+              "isAllIn": false,
+              "playerName": "Big Blind",
+              "type": "call",
+            },
+            {
+              "cards": [
+                "Jd",
+              ],
+              "street": "turn",
+              "type": "deal-board",
+            },
+            {
+              "amount": "60",
+              "isAllIn": false,
+              "playerName": "Big Blind",
+              "type": "bet",
+            },
+            {
+              "amount": "60",
+              "isAllIn": false,
+              "playerName": "Dealer",
+              "type": "call",
+            },
+            {
+              "cards": [
+                "8d",
+              ],
+              "street": "river",
+              "type": "deal-board",
+            },
+            {
+              "amount": "172",
+              "isAllIn": true,
+              "playerName": "Big Blind",
+              "type": "bet",
+            },
+            {
+              "amount": "172",
+              "isAllIn": true,
+              "playerName": "Dealer",
+              "type": "call",
+            },
+            {
+              "handStrength": 1,
+              "mucked": false,
+              "playerName": "Big Blind",
+              "type": "showdown",
+            },
+            {
+              "handStrength": 4,
+              "mucked": false,
+              "playerName": "Dealer",
+              "type": "showdown",
+            },
+            {
+              "amount": "610",
+              "isSidePot": false,
+              "playerName": "Dealer",
+              "type": "award-pot",
+            },
+            {
+              "placement": 3,
+              "playerName": "Big Blind",
+              "type": "tournament-placement",
+            },
+          ],
+          "info": {
+            "ante": "0",
+            "bettingStructure": "no limit",
+            "blinds": [
+              "10",
+              "20",
+            ],
+            "buyIn": "2",
+            "currency": "USD",
+            "entryFee": "0",
+            "format": "freezeout",
+            "guaranteedPrizePool": "0",
+            "handNumber": "4557122159",
+            "isSatellite": false,
+            "level": 1,
+            "name": "Jackpot Sit And Go - $2",
+            "site": "bovada",
+            "speed": "turbo",
+            "tableNumber": "1",
+            "tableSize": 6,
+            "timestamp": 2022-06-19T00:49:26.000Z,
+            "tournamentNumber": "50991177",
+            "tournamentStart": 2022-06-19T00:49:09.000Z,
+            "type": "tournament",
+            "variant": "holdem",
+          },
+          "players": [
+            {
+              "chipStack": "300",
+              "isAnonymous": true,
+              "isHero": false,
+              "name": "Dealer",
+              "position": "BTN",
+              "positionIndex": 0,
+              "seatNumber": 3,
+            },
+            {
+              "chipStack": "300",
+              "isAnonymous": false,
+              "isHero": true,
+              "name": "Small Blind",
+              "position": "SB",
+              "positionIndex": 1,
+              "seatNumber": 2,
+            },
+            {
+              "chipStack": "300",
+              "isAnonymous": true,
+              "isHero": false,
+              "name": "Big Blind",
+              "position": "BB",
+              "positionIndex": 2,
+              "seatNumber": 1,
             },
           ],
         }
