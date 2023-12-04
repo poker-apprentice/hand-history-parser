@@ -3,7 +3,7 @@ import { BettingStructure, CashGameInfo, TournamentFormat, TournamentInfo, Varia
 const CASH_REGEX =
   /^HH(?<date>\d+)-(?<time>\d+) - (?<unknown>\d+) - (?<format>RING|ZONE) - (?<smallBlind>\$(\d+,)*\d+(\.\d+)?)-(?<bigBlind>\$(\d+,)*\d+(\.\d+)?) - (?<variant>HOLDEM|OMAHA|OMAHA HiLo|HOLDEMZonePoker|OMAHAZonePoker) - (?<bettingStructure>NL|PL|FL) - TBL No\.(?<tableNumber>\d+)(?<extension>\.[Tt][Xx][Tt])?$/;
 const TOURNEY_REGEX =
-  /^HH(?<date>\d+)-(?<time>\d+) - (?<unknown>\d+) - (?<format>STT|MTT|MSG|Jackpot Sit & Go) - (?<tournamentName>.+) - (?<buyIn>\$(\d+,)*\d+(\.\d+)?)-(?<entryFee>\$(\d+,)*\d+(\.\d+)?) - (?<variant>HOLDEM|OMAHA|OMAHA HiLo) - (?<bettingStructure>NL|PL|FL) -Tourney No\.(?<tournamentNumber>\d+)(?<extension>\.[Tt][Xx][Tt])?$/;
+  /^HH(?<date>\d+)-(?<time>\d+) - (?<unknown>\d+) - (?<format>STT|MTT|MSG|Jackpot Sit & Go) - (?<tournamentName>.+?) - (?<tournamentTicket>TT)?(?<buyIn>\$(\d+,)*\d+(\.\d+)?)-(?<entryFee>\$(\d+,)*\d+(\.\d+)?) - (?<variant>HOLDEM|OMAHA|OMAHA HiLo) - (?<bettingStructure>NL|PL|FL) -Tourney No\.(?<tournamentNumber>\d+)(?<extension>\.[Tt][Xx][Tt])?$/;
 
 export interface CashFilenameMeta
   extends Pick<

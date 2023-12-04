@@ -89,7 +89,22 @@ describe('parseFilename', () => {
     it('parses Jackpot Sit & Go tournaments', () => {
       const filename =
         'HH20220619-004909 - 6556966 - Jackpot Sit & Go - Jackpot Sit And Go - $2 - TT$2-$0 - HOLDEM - NL -Tourney No.50991177.txt';
-      expect(parseFilename(filename)).toMatchInlineSnapshot(`undefined`);
+      expect(parseFilename(filename)).toMatchInlineSnapshot(`
+        {
+          "bettingStructure": "no limit",
+          "buyIn": "2",
+          "currency": "USD",
+          "entryFee": "0",
+          "format": "freezeout",
+          "guaranteedPrizePool": "0",
+          "isSatellite": false,
+          "name": "Jackpot Sit And Go - $2",
+          "tournamentNumber": "50991177",
+          "tournamentStart": 2022-06-19T00:49:09.000Z,
+          "type": "tournament",
+          "variant": "holdem",
+        }
+      `);
     });
 
     it('parses satellites', () => {
