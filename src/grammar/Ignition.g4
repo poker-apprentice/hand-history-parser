@@ -23,6 +23,7 @@ line:
   | lineActionSummary
   | lineAwardBounty
   | lineTournamentPlacement
+  | lineTournamentPrize
   );
 
 // lines of text
@@ -37,6 +38,7 @@ lineStreet     : '***' STREET '***' boardSections?;
 lineHandsDealt : position ME? COLON 'Card dealt to a spot' hand;
 lineAwardBounty: position ME? COLON 'BOUNTY PRIZE' '[' chipCount ']';
 lineTournamentPlacement: position ME? COLON 'Ranking' tournamentPlacement;
+lineTournamentPrize: position ME? COLON 'Prize' (tournamentPrizeCash | tournamentPrizeTicket);
 lineMisc       :
   (position ME? COLON)?
   (
@@ -82,6 +84,8 @@ tournamentNumber: INT;
 tournamentLevel: INT;
 tournamentSpeed: 'Normal' | 'Turbo';
 tournamentPlacement: INT;
+tournamentPrizeCash: chipCount;
+tournamentPrizeTicket: 'Tournament Ticket' '[' WORD* chipCount WORD* ']';
 timestamp    : INT '-' INT '-' INT INT ':' INT ':' INT;
 site         : 'Bodog' | 'Bovada' | 'Ignition';
 variant      : 'HOLDEM' | 'OMAHA' | 'OMAHA HiLo' | 'HOLDEMZonePoker' | 'OMAHAZonePoker';

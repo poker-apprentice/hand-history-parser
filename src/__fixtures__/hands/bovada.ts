@@ -850,3 +850,42 @@ Board [2c 7c 9s Jd 8d]
 Seat+3: Dealer 610  with Straight [Ac Th-Jd Th 9s 8d 7c]  
 Seat+2: Small Blind Folded on the FLOP
 Seat+1: Big Blind lose with One pair [8c Qd-8d 8c Qd Jd 9s]`;
+
+export const HAND_TOURNAMENT_WIN_TICKET = `Bovada Hand #4561450085: HOLDEM Tournament #46767990 TBL#1, Turbo- Level 7 (125/250) - 2022-06-26 09:42:58
+Seat 6: Big Blind (3,432 in chips)
+Seat 3: Dealer (10,193 in chips)
+Seat 11: Small Blind [ME] (14,375 in chips)
+Dealer : Set dealer [7] 
+Big Blind : Ante chip 25 
+Dealer : Ante chip 25 
+Small Blind [ME] : Ante chip 25 
+Small Blind [ME] : Small blind 125 
+Big Blind : Big blind 250 
+*** HOLE CARDS ***
+Big Blind : Card dealt to a spot [Ad Th] 
+Dealer : Card dealt to a spot [Ks 5d] 
+Small Blind [ME] : Card dealt to a spot [Qd 3s] 
+Dealer : Folds
+Small Blind [ME] : All-in(raise) 14225 to 14350
+Big Blind : All-in 3157 
+Small Blind [ME] : Return uncalled portion of bet 10943 
+*** FLOP *** [2s Qh 6d]
+*** TURN *** [2s Qh 6d] [Tc]
+*** RIVER *** [2s Qh 6d Tc] [3c]
+Big Blind : Showdown [Th Tc Ad Qh 6d] (One pair)
+Small Blind [ME] : Showdown [Qh Qd 3s 3c Tc] (Two pair)
+Small Blind [ME] : Hand Result 6889 
+Big Blind : Ranking 3 
+Big Blind : Stand
+Dealer : Ranking 1 
+Dealer : Prize Tournament Ticket [Any Monthly Milly $60 Satellite] 
+Small Blind [ME] : Ranking 1 
+Small Blind [ME] : Prize Tournament Ticket [Any Monthly Milly $60 Satellite] 
+Dealer : Stand
+Small Blind [ME] : Stand
+*** SUMMARY ***
+Total Pot(6889)
+Board [2s Qh 6d Tc 3c]
+Seat+6: Big Blind lose with One pair [Ad Th-Th Tc Ad Qh 6d]  
+Seat+3: Dealer Folded on the FLOP
+Seat+11: Small Blind 6889  with Two pair [Qd 3s-Qh Qd 3s 3c Tc]`;

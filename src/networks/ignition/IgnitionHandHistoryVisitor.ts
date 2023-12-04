@@ -19,6 +19,7 @@ import {
   LineSmallBlindContext,
   LineStreetContext,
   LineTournamentPlacementContext,
+  LineTournamentPrizeContext,
   LineUncalledContext,
   PositionContext,
   SiteContext,
@@ -382,5 +383,22 @@ export class IgnitionHandHistoryVisitor
     const playerName = ctx.position().text;
     const placement = Number(ctx.tournamentPlacement().text);
     return [{ type: 'action', action: { type: 'tournament-placement', playerName, placement } }];
+  }
+
+  public visitLineTournamentPrize(ctx: LineTournamentPrizeContext): Line[] {
+    const playerName = ctx.position().text;
+    const prizeCash = ctx.tournamentPrizeCash();
+    if (prizeCash) {
+      const amount = new IgnitionChipCountVisitor().visit(prizeCash.chipCount()).toString();
+      return [{ type: 'action', action: { type: 'tournament-award', playerName, amount } }];
+    }
+
+    const prizeTicket = ctx.tournamentPrizeTicket();
+    if (prizeTicket) {
+      const amount = new IgnitionChipCountVisitor().visit(prizeTicket.chipCount()).toString();
+      return [{ type: 'action', action: { type: 'tournament-award', playerName, amount } }];
+    }
+
+    throw new Error('Error parsing tournament award.');
   }
 }

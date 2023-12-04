@@ -20,6 +20,7 @@ import {
   HAND_TOURNAMENT_BOUNTY_AWARDED,
   HAND_TOURNAMENT_DRAW_FOR_DEALER,
   HAND_TOURNAMENT_PLACEMENT,
+  HAND_TOURNAMENT_WIN_TICKET,
 } from '~/__fixtures__/hands/bovada';
 import { HAND as HAND_IGNITION } from '~/__fixtures__/hands/ignition';
 import { parseHand } from './parseHand';
@@ -4524,7 +4525,7 @@ describe('parseHand', () => {
       `);
     });
 
-    it.only('parses when drawing for dealer', () => {
+    it('parses when drawing for dealer', () => {
       const filename =
         'HH20220619-004909 - 6556966 - Jackpot Sit & Go - Jackpot Sit And Go - $2 - TT$2-$0 - HOLDEM - NL -Tourney No.50991177.txt';
 
@@ -4724,6 +4725,215 @@ describe('parseHand', () => {
               "position": "BB",
               "positionIndex": 2,
               "seatNumber": 1,
+            },
+          ],
+        }
+      `);
+    });
+
+    it('parses when winning a satellite seat ticket', () => {
+      const filename =
+        'HH20220626-082100 - 6615317 - MTT - Monthly Milly Sub-Satellite 2 Seats Gtd - $7-$0.70 - HOLDEM - NL -Tourney No.46767990.txt';
+
+      expect(parseHand({ hand: HAND_TOURNAMENT_WIN_TICKET, filename })).toMatchInlineSnapshot(`
+        {
+          "actions": [
+            {
+              "amount": "25",
+              "playerName": "Big Blind",
+              "postType": "ante",
+              "type": "post",
+            },
+            {
+              "amount": "25",
+              "playerName": "Dealer",
+              "postType": "ante",
+              "type": "post",
+            },
+            {
+              "amount": "25",
+              "playerName": "Small Blind",
+              "postType": "ante",
+              "type": "post",
+            },
+            {
+              "amount": "125",
+              "playerName": "Small Blind",
+              "postType": "blind",
+              "type": "post",
+            },
+            {
+              "amount": "250",
+              "playerName": "Big Blind",
+              "postType": "blind",
+              "type": "post",
+            },
+            {
+              "cards": [
+                "Ad",
+                "Th",
+              ],
+              "playerName": "Big Blind",
+              "type": "deal-hand",
+            },
+            {
+              "cards": [
+                "Ks",
+                "5d",
+              ],
+              "playerName": "Dealer",
+              "type": "deal-hand",
+            },
+            {
+              "cards": [
+                "Qd",
+                "3s",
+              ],
+              "playerName": "Small Blind",
+              "type": "deal-hand",
+            },
+            {
+              "playerName": "Dealer",
+              "type": "fold",
+            },
+            {
+              "amount": "14225",
+              "isAllIn": true,
+              "playerName": "Small Blind",
+              "totalBet": "14350",
+              "type": "raise",
+            },
+            {
+              "amount": "3157",
+              "isAllIn": true,
+              "playerName": "Big Blind",
+              "type": "call",
+            },
+            {
+              "amount": "10943",
+              "playerName": "Small Blind",
+              "type": "return-bet",
+            },
+            {
+              "cards": [
+                "2s",
+                "Qh",
+                "6d",
+              ],
+              "street": "flop",
+              "type": "deal-board",
+            },
+            {
+              "cards": [
+                "Tc",
+              ],
+              "street": "turn",
+              "type": "deal-board",
+            },
+            {
+              "cards": [
+                "3c",
+              ],
+              "street": "river",
+              "type": "deal-board",
+            },
+            {
+              "handStrength": 1,
+              "mucked": false,
+              "playerName": "Big Blind",
+              "type": "showdown",
+            },
+            {
+              "handStrength": 2,
+              "mucked": false,
+              "playerName": "Small Blind",
+              "type": "showdown",
+            },
+            {
+              "amount": "6889",
+              "isSidePot": false,
+              "playerName": "Small Blind",
+              "type": "award-pot",
+            },
+            {
+              "placement": 3,
+              "playerName": "Big Blind",
+              "type": "tournament-placement",
+            },
+            {
+              "placement": 1,
+              "playerName": "Dealer",
+              "type": "tournament-placement",
+            },
+            {
+              "amount": "60",
+              "playerName": "Dealer",
+              "type": "tournament-award",
+            },
+            {
+              "placement": 1,
+              "playerName": "Small Blind",
+              "type": "tournament-placement",
+            },
+            {
+              "amount": "60",
+              "playerName": "Small Blind",
+              "type": "tournament-award",
+            },
+          ],
+          "info": {
+            "ante": "0",
+            "bettingStructure": "no limit",
+            "blinds": [
+              "125",
+              "250",
+            ],
+            "buyIn": "7",
+            "currency": "USD",
+            "entryFee": "0.70",
+            "format": "freezeout",
+            "guaranteedPrizePool": "0",
+            "handNumber": "4561450085",
+            "isSatellite": true,
+            "level": 7,
+            "name": "Monthly Milly Sub-Satellite 2 Seats Gtd",
+            "site": "bovada",
+            "speed": "turbo",
+            "tableNumber": "1",
+            "tableSize": 6,
+            "timestamp": 2022-06-26T09:42:58.000Z,
+            "tournamentNumber": "46767990",
+            "tournamentStart": 2022-06-26T08:21:00.000Z,
+            "type": "tournament",
+            "variant": "holdem",
+          },
+          "players": [
+            {
+              "chipStack": "3432",
+              "isAnonymous": true,
+              "isHero": false,
+              "name": "Big Blind",
+              "position": "BB",
+              "positionIndex": 2,
+              "seatNumber": 6,
+            },
+            {
+              "chipStack": "10193",
+              "isAnonymous": true,
+              "isHero": false,
+              "name": "Dealer",
+              "position": "BTN",
+              "positionIndex": 0,
+              "seatNumber": 3,
+            },
+            {
+              "chipStack": "14375",
+              "isAnonymous": false,
+              "isHero": true,
+              "name": "Small Blind",
+              "position": "SB",
+              "positionIndex": 1,
+              "seatNumber": 11,
             },
           ],
         }

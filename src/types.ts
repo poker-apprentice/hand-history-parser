@@ -348,6 +348,15 @@ export interface TournamentPlacementAction extends BaseAction {
   placement: number;
 }
 
+/**
+ * An action representing a player receiving a monetary award in a tournament.
+ */
+export interface TournamentPlacementAward extends BaseAction {
+  type: 'tournament-award';
+  playerName: string;
+  amount: string;
+}
+
 export type Action =
   | PostAction
   | DealHandAction
@@ -361,7 +370,8 @@ export type Action =
   | ShowdownAction
   | AwardPotAction
   | AwardBountyAction
-  | TournamentPlacementAction;
+  | TournamentPlacementAction
+  | TournamentPlacementAward;
 
 /**
  * The parsed hand history details.
