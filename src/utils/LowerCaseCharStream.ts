@@ -26,7 +26,8 @@ export class LowerCaseCharStream implements CharStream {
     if (c <= 0) {
       return c;
     }
-    return String.fromCharCode(c).toLowerCase().charCodeAt(0);
+    const char = String.fromCharCode(c).toLowerCase();
+    return char.codePointAt(0) ?? char.charCodeAt(0);
   }
 
   mark(): number {
