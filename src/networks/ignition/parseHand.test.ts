@@ -4451,7 +4451,7 @@ describe('parseHand', () => {
             "buyIn": "25",
             "currency": "USD",
             "entryFee": "2.50",
-            "format": "on-demand",
+            "format": "bounty",
             "guaranteedPrizePool": "0",
             "handNumber": "4561646697",
             "isSatellite": false,

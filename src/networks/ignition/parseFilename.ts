@@ -75,8 +75,12 @@ const getVariant = (str: string): Variant => {
   }
 };
 
-const getTournamentFormat = (str: string): TournamentFormat => {
-  switch (str) {
+const getTournamentFormat = (format: string, name: string): TournamentFormat => {
+  if (name.match(/knockout/i)) {
+    return 'bounty';
+  }
+
+  switch (format) {
     case 'Jackpot Sit & Go':
       return 'freezeout';
     case 'MSG':
@@ -86,7 +90,7 @@ const getTournamentFormat = (str: string): TournamentFormat => {
     case 'STT':
       return 'on-demand';
     default:
-      throw new Error(`Unexpected tournament format: "${str}"`);
+      throw new Error(`Unexpected tournament format: "${format}"`);
   }
 };
 
@@ -102,7 +106,7 @@ const getTournamentSpeed = (tournamentName: string): TournamentSpeed => {
   if (tournamentName.match(/turbo/i)) {
     return 'turbo';
   }
-  if (tournamentName.match(/(deep|monster).*stack/)) {
+  if (tournamentName.match(/(deep|monster).*stack/) || tournamentName.match(/\bDS\b/)) {
     return 'deep-stack';
   }
   return 'normal';
@@ -143,7 +147,7 @@ export const parseFilename = (filename: string): FilenameMeta | undefined => {
       tournamentNumber: tourney.tournamentNumber,
       bettingStructure: getBettingStructure(tourney.bettingStructure),
       variant: getVariant(tourney.variant),
-      format: getTournamentFormat(tourney.format),
+      format: getTournamentFormat(tourney.format, tourney.tournamentName),
       speed: getTournamentSpeed(tourney.tournamentName),
       isSatellite: isSatellite(tourney.tournamentName),
       buyIn: tourney.buyIn.replace(/[$,]/, ''),
