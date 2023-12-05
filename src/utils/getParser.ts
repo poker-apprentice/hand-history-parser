@@ -8,6 +8,7 @@ import {
   Parser,
   Token,
 } from 'antlr4ts';
+import { LowerCaseCharStream } from './LowerCaseCharStream';
 
 interface Constructable<T> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -30,7 +31,7 @@ export const getParser = <L extends Lexer, P extends Parser>(
     errorListener,
   }: Options<L, P>,
 ) => {
-  const inputStream = CharStreams.fromString(str);
+  const inputStream = new LowerCaseCharStream(CharStreams.fromString(str));
   const lexer = new LexerClass(inputStream);
   const tokenStream = new CommonTokenStream(lexer);
   const parser = new ParserClass(tokenStream);
