@@ -35,6 +35,7 @@ const getFilenameInfo = (filename: string | undefined): TournamentFilenameInfo =
     entryFee: '0',
     currency: 'USD',
     format: 'freezeout',
+    speed: 'normal',
     guaranteedPrizePool: '0',
     isSatellite: false,
     name: 'Unknown',
@@ -100,7 +101,7 @@ const getInfo = (lines: LineDictionary, filename: string | undefined): HandHisto
     tournamentNumber: meta.tournamentNumber,
     tournamentStart: filenameInfo.tournamentStart ?? meta.timestamp,
     level: meta.level,
-    speed: meta.speed,
+    speed: meta.speed ?? filenameInfo.speed,
   };
 };
 

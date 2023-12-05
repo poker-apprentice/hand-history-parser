@@ -28,7 +28,7 @@ line:
 
 // lines of text
 lineMetaCash   : site 'Hand' '#' handNumber fastFold? ('TBL#' | 'ID#') tableNumber variant bettingStructure '-' timestamp;
-lineMetaTournament: site 'Hand' '#' handNumber COLON variant 'Tournament' '#' tournamentNumber 'TBL#' tableNumber ',' tournamentSpeed '-' 'Level' tournamentLevel '(' chipCount '/' chipCount ')' '-' timestamp;
+lineMetaTournament: site 'Hand' '#' handNumber COLON variant 'Tournament' '#' tournamentNumber 'TBL#' tableNumber ',' tournamentSpeed? '-' 'Level' tournamentLevel '(' chipCount '/' chipCount ')' '-' timestamp;
 linePlayer     : 'Seat' seatNumber COLON position ME? '(' chipCount 'in chips)';
 lineDealer     : ('Dealer' ME? COLON)? 'Set dealer' ('[' INT ']')?;
 lineSmallBlind : ('Small Blind' | 'Dealer') ME? COLON ('Small Blind' | 'Small blind') chipCount;
@@ -101,14 +101,14 @@ handAndBoard : '[' cards '-' cards ']';
 cards        : card+;
 card         : CARD;
 handStrength : 'High Card' | 'One pair' | 'Two pair' | 'Three of a kind' | 'Straight' | 'Flush' | 'Full House' | 'Four of a kind' | 'Straight Flush' | 'Royal Straight Flush';
-action       : actionFold | actionCheck | actionBet | actionCall | actionRaise | actionAllIn | actionAllInRaise | actionAnte;
+action       : actionFold | actionCheck | actionBet | actionCall | actionRaise | actionAllInRaise | actionAllIn | actionAnte;
 actionFold   : ('Fold' | 'Folds') (forcedActionReason | '& shows' hand)?;
 actionCheck  : 'Checks' forcedActionReason?;
-actionBet    : 'Bets' chipCount;
-actionCall   : ('Call' | 'Calls') chipCount;
-actionRaise  : 'Raises' chipCount 'to' chipCount;
-actionAllIn  : 'All-in' chipCount;
-actionAllInRaise : 'All-in' '(raise)' chipCount 'to' chipCount;
+actionBet    : 'Bets' forcedActionReason? chipCount;
+actionCall   : ('Call' | 'Calls') forcedActionReason? chipCount;
+actionRaise  : 'Raises' forcedActionReason? chipCount 'to' chipCount;
+actionAllIn  : 'All-in' forcedActionReason? chipCount;
+actionAllInRaise : 'All-in' '(raise)' forcedActionReason? chipCount 'to' chipCount;
 actionAnte   : 'Ante chip' chipCount;
 forcedActionReason : '(' ~')'* ')';
 showdownAction: 'Showdown' | 'Mucks';
@@ -122,7 +122,7 @@ ME           : '[ME]';
 STREET       : 'HOLE CARDS' | 'FLOP' | 'TURN' | 'RIVER' | 'SUMMARY';
 FASTFOLD     : 'Zone Poker';
 DEAD         : 'dead';
-SIDEPOT      : 'Side pot';
+SIDEPOT      : 'Side pot' | 'Side Pot';
 COLON        : ':';
 INT          : [0-9]+;
 CARD         : [2-9TJQKA][cdhs];

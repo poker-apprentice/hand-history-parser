@@ -29,7 +29,7 @@ interface LineMetaTournament extends LineMetaBase {
   gameType: 'tournament';
   tournamentNumber: string;
   level: number;
-  speed: TournamentSpeed;
+  speed: TournamentSpeed | undefined;
 }
 
 export type LineMeta = LineMetaCash | LineMetaTournament;

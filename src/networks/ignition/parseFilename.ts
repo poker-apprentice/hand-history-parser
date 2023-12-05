@@ -1,4 +1,11 @@
-import { BettingStructure, CashGameInfo, TournamentFormat, TournamentInfo, Variant } from '~/types';
+import {
+  BettingStructure,
+  CashGameInfo,
+  TournamentFormat,
+  TournamentInfo,
+  TournamentSpeed,
+  Variant,
+} from '~/types';
 
 const CASH_REGEX =
   /^HH(?<date>\d+)-(?<time>\d+) - (?<unknown>\d+) - (?<format>RING|ZONE) - (?<smallBlind>\$(\d+,)*\d+(\.\d+)?)-(?<bigBlind>\$(\d+,)*\d+(\.\d+)?) - (?<variant>HOLDEM|OMAHA|OMAHA HiLo|HOLDEMZonePoker|OMAHAZonePoker) - (?<bettingStructure>NL|PL|FL) - TBL No\.(?<tableNumber>\d+)(?<extension>\.[Tt][Xx][Tt])?$/;
@@ -19,6 +26,7 @@ export interface TournamentFilenameMeta
     | 'currency'
     | 'tournamentStart'
     | 'format'
+    | 'speed'
     | 'name'
     | 'buyIn'
     | 'entryFee'
@@ -87,6 +95,21 @@ const getTournamentGuarantee = (tournamentName: string): string => {
   return match?.guarantee.replace('.', '') ?? '0';
 };
 
+const getTournamentSpeed = (tournamentName: string): TournamentSpeed => {
+  if (tournamentName.match(/(super|hyper).*turbo/i)) {
+    return 'hyper-turbo';
+  }
+  if (tournamentName.match(/turbo/i)) {
+    return 'turbo';
+  }
+  if (tournamentName.match(/(deep|monster).*stack/)) {
+    return 'deep-stack';
+  }
+  return 'normal';
+};
+
+const isSatellite = (tournamentName: string): boolean => /satellite/i.test(tournamentName);
+
 export const parseFilename = (filename: string): FilenameMeta | undefined => {
   const cash = filename.match(CASH_REGEX)?.groups;
   if (cash) {
@@ -121,10 +144,11 @@ export const parseFilename = (filename: string): FilenameMeta | undefined => {
       bettingStructure: getBettingStructure(tourney.bettingStructure),
       variant: getVariant(tourney.variant),
       format: getTournamentFormat(tourney.format),
+      speed: getTournamentSpeed(tourney.tournamentName),
+      isSatellite: isSatellite(tourney.tournamentName),
       buyIn: tourney.buyIn.replace(/[$,]/, ''),
       entryFee: tourney.entryFee.replace(/[$,]/, ''),
       guaranteedPrizePool: getTournamentGuarantee(tourney.tournamentName),
-      isSatellite: /satellite/i.test(tourney.tournamentName),
     };
   }
 

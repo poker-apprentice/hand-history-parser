@@ -224,7 +224,9 @@ export class IgnitionHandHistoryVisitor
 
     const tournamentNumber = ctx.tournamentNumber().text;
     const level = Number(ctx.tournamentLevel().text);
-    const speed = getTournamentSpeed(ctx.tournamentSpeed().text);
+
+    const speedContext = ctx.tournamentSpeed();
+    const speed = speedContext && getTournamentSpeed(speedContext.text);
 
     const text = getSubstring(ctx.timestamp());
     const t = text.split(/\D/).map(Number);
