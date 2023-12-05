@@ -37,9 +37,10 @@ export const getParser = <L extends Lexer, P extends Parser>(
 
   parser.errorHandler = errorHandler;
 
-  parser.removeErrorListeners();
-  lexer.removeErrorListeners();
   if (errorListener) {
+    parser.removeErrorListeners();
+    lexer.removeErrorListeners();
+
     parser.addErrorListener(errorListener);
     lexer.addErrorListener(errorListener);
   }
