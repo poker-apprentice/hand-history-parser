@@ -3,7 +3,7 @@ import { Card, HandStrength } from '@poker-apprentice/types';
 /**
  * The name of the poker site.
  */
-export type Site = 'bodog' | 'bovada' | 'ignition';
+export type Site = 'bodog' | 'bovada' | 'ignition' | 'pokerstars';
 
 /**
  * The name of the poker variant.
@@ -45,7 +45,7 @@ export type Street = 'preflop' | 'flop' | 'turn' | 'river';
 /**
  * The supported table sizes.
  */
-export type TableSize = 2 | 6 | 8 | 9;
+export type TableSize = 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
 /**
  * Information related to the poker game as a whole.
@@ -191,6 +191,10 @@ export interface Player {
    * The number of chips the player had at the start of a poker hand.
    */
   chipStack: string;
+  /**
+   * The bounty awarded for stacking the player in a poker hand.
+   */
+  bounty: string;
   /**
    * Whether or not the player is the hero.
    */

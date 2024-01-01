@@ -10,6 +10,8 @@ const getParser = async (site: Site) => {
     case 'bovada':
     case 'ignition':
       return (await import('./networks/ignition/parseHand')).parseHand;
+    case 'pokerstars':
+      return (await import('./networks/pokerstars/parseHand')).parseHand;
     default:
       return assertNever(site);
   }

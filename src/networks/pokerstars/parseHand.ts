@@ -1,51 +1,34 @@
-import omit from 'lodash/omit';
-import type { SetOptional } from 'type-fest';
+import BigNumber from 'bignumber.js';
 import { IgnitionLexer } from '~/grammar/IgnitionLexer';
 import { IgnitionParser } from '~/grammar/IgnitionParser';
 import { GameInfoBase, HandHistory, ParseHandOptions, TableSize } from '~/types';
-import { OmitStrict } from '~/types/OmitStrict';
 import { getParser } from '~/utils/getParser';
 import { getPosition } from '~/utils/getPosition';
 import { Dictionary, groupBy } from '~/utils/groupBy';
-import { IgnitionHandHistoryVisitor } from './IgnitionHandHistoryVisitor';
-import { TournamentFilenameMeta, parseFilename } from './parseFilename';
-import { Line, LineAction, LineBigBlind, LineMeta, LinePlayer, LineSmallBlind } from './types';
+import { PokerStarsHandHistoryVisitor } from './PokerStarsHandHistoryVisitor';
+import {
+  Line,
+  LineAction,
+  LineBigBlind,
+  LineGameMeta,
+  LinePlayer,
+  LineSmallBlind,
+  LineTableMeta,
+} from './types';
 
 type LineDictionary = Dictionary<Line>;
 
 class LineNotFoundError extends Error {}
 
-type TournamentFilenameInfo = SetOptional<
-  OmitStrict<TournamentFilenameMeta, 'tournamentNumber' | 'variant'>,
-  'tournamentStart'
->;
-
-const getFilenameInfo = (filename: string | undefined): TournamentFilenameInfo => {
-  const info = filename ? parseFilename(filename) : undefined;
-
-  if (info?.type === 'tournament') {
-    return omit(info, ['tournamentNumber', 'variant']);
-  }
-
-  // return sane defaults if parsing fails or is returning wrong game type for some reason
-  return {
-    type: 'tournament',
-    bettingStructure: 'no limit',
-    buyIn: '0',
-    entryFee: '0',
-    currency: 'USD',
-    format: 'freezeout',
-    speed: 'normal',
-    guaranteedPrizePool: '0',
-    isSatellite: false,
-    name: 'Unknown',
-  };
-};
-
-const getInfo = (lines: LineDictionary, filename: string | undefined): HandHistory['info'] => {
-  const meta: LineMeta | undefined = lines.meta?.[0];
+const getInfo = (lines: LineDictionary): HandHistory['info'] => {
+  const meta: LineGameMeta | undefined = lines.gameMeta?.[0];
   if (!meta) {
     throw new LineNotFoundError('Missing meta information');
+  }
+
+  const table: LineTableMeta | undefined = lines.tableMeta?.[0];
+  if (!table) {
+    throw new LineNotFoundError('Missing table information');
   }
 
   // the big blind is always required, the small blind is not
@@ -63,19 +46,24 @@ const getInfo = (lines: LineDictionary, filename: string | undefined): HandHisto
   // the ante value should be the same for every player, so we can just extract the first value
   const ante = lines.ante?.[0].chipCount ?? '0';
 
-  // Bovada only has 6-person and 9-person cash game tables. Fast-fold games are all 6-max,
-  // otherwise make a best guess on table size based upon the number of players in the hand.
-  const playerCount = (lines.player ?? []).length;
-  const tableSize = meta.gameType === 'cash' && meta.fastFold ? 6 : playerCount > 6 ? 9 : 6;
+  const tableSize = Math.min(
+    Math.max(2 satisfies TableSize, table.tableSize),
+    9 satisfies TableSize,
+  ) as TableSize;
 
-  const baseInfo: OmitStrict<GameInfoBase, 'bettingStructure'> = {
+  if (tableSize !== table.tableSize) {
+    throw new Error(`Unexpected table size: ${table.tableSize}`);
+  }
+
+  const baseInfo: GameInfoBase = {
     type: meta.gameType,
     blinds,
     ante,
-    currency: 'USD',
+    currency: meta.currency,
     variant: meta.variant,
+    bettingStructure: meta.bettingStructure,
     handNumber: meta.handNumber,
-    tableNumber: meta.tableNumber,
+    tableNumber: table.tableName,
     site: meta.site,
     tableSize,
     timestamp: meta.timestamp,
@@ -86,22 +74,32 @@ const getInfo = (lines: LineDictionary, filename: string | undefined): HandHisto
       ...baseInfo,
       type: 'cash',
       bettingStructure: meta.bettingStructure,
-      isFastFold: meta.fastFold,
+      isFastFold: false,
     };
   }
 
-  // For tournaments, additional details are in the hand history filename.
-  // There's no need to parse the filename for cash games.
-  const filenameInfo = getFilenameInfo(filename);
+  const totalCost = new BigNumber(meta.buyIn).plus(meta.entryFee);
+
+  const formattedCost = totalCost.eq(0)
+    ? 'Freeroll'
+    : Intl.NumberFormat(undefined, {
+        style: 'currency',
+        currency: meta.currency,
+      }).format(totalCost.toNumber());
 
   return {
     ...baseInfo,
-    ...filenameInfo,
     type: 'tournament',
+    name: `${formattedCost} Tournament`, // TODO: better tourney name?
     tournamentNumber: meta.tournamentNumber,
-    tournamentStart: filenameInfo.tournamentStart ?? meta.timestamp,
+    tournamentStart: meta.timestamp, // TODO: this is actually the hand start time
+    format: 'freezeout', // TODO: we're not collecting this currently
     level: meta.level,
-    speed: meta.speed ?? filenameInfo.speed,
+    speed: 'normal', // TODO: we're not collecting this currently
+    buyIn: meta.buyIn,
+    entryFee: meta.entryFee,
+    isSatellite: false, // TODO: we're not collecting this currently
+    guaranteedPrizePool: '0', // TODO: we're not collecting this currently
   };
 };
 
@@ -114,9 +112,9 @@ const getPlayers = (lines: LineDictionary, tableSize: TableSize): HandHistory['p
     position: getPosition(player.positionIndex, tableSize),
     seatNumber: player.seatNumber,
     chipStack: player.chipCount,
-    bounty: '0',
-    isHero: player.isHero,
-    isAnonymous: player.isAnonymous,
+    bounty: player.bounty ?? '0',
+    isHero: false, // player.isHero, // TODO
+    isAnonymous: false,
   }));
 };
 
@@ -139,15 +137,15 @@ const getActions = (lines: LineDictionary): HandHistory['actions'] => {
   });
 };
 
-export const parseHand = ({ hand, filename }: ParseHandOptions): HandHistory => {
+export const parseHand = ({ hand }: ParseHandOptions): HandHistory => {
   const parser = getParser(hand, { lexer: IgnitionLexer, parser: IgnitionParser });
   const context = parser.handHistory();
 
-  const visitor = new IgnitionHandHistoryVisitor();
+  const visitor = new PokerStarsHandHistoryVisitor();
   const lines = visitor.visit(context);
   const groupedLines = groupBy(lines, 'type');
 
-  const info = getInfo(groupedLines, filename);
+  const info = getInfo(groupedLines);
   const players = getPlayers(groupedLines, info.tableSize);
   const actions = getActions(groupedLines);
 
