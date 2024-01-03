@@ -27,52 +27,52 @@ line:
   );
 
 // lines of text
-lineMetaCash   : site 'Hand' '#' handNumber fastFold? ('TBL#' | 'ID#') tableNumber variant bettingStructure '-' timestamp;
-lineMetaTournament: site 'Hand' '#' handNumber COLON variant 'Tournament' '#' tournamentNumber 'TBL#' tableNumber ',' tournamentSpeed? '-' 'Level' tournamentLevel '(' chipCount '/' chipCount ')' '-' timestamp;
-linePlayer     : 'Seat' seatNumber COLON position ME? '(' chipCount 'in chips)';
-lineDealer     : ('Dealer' ME? COLON)? 'Set dealer' ('[' INT ']')?;
-lineSmallBlind : ('Small Blind' | 'Dealer') ME? COLON ('Small Blind' | 'Small blind') chipCount;
-lineBigBlind   : 'Big Blind' ME? COLON ('Big Blind' | 'Big blind') chipCount;
-linePost       : position ME? COLON 'Posts' DEAD? 'chip' chipCount;
+lineMetaCash   : site 'hand' '#' handNumber fastFold? ('tbl' | 'id') '#' tableNumber variant bettingStructure '-' timestamp;
+lineMetaTournament: site 'hand' '#' handNumber COLON variant 'tournament' '#' tournamentNumber 'tbl' '#' tableNumber ',' tournamentSpeed? '-' 'level' tournamentLevel '(' chipCount '/' chipCount ')' '-' timestamp;
+linePlayer     : 'seat' seatNumber COLON position ME? '(' chipCount 'in chips)';
+lineDealer     : ('dealer' ME? COLON)? 'set dealer' ('[' INT ']')?;
+lineSmallBlind : ('small blind' | 'dealer') ME? COLON 'small blind' chipCount;
+lineBigBlind   : 'big blind' ME? COLON 'big blind' chipCount;
+linePost       : position ME? COLON 'posts' DEAD? 'chip' chipCount;
 lineStreet     : '***' STREET '***' boardSections?;
-lineHandsDealt : position ME? COLON 'Card dealt to a spot' hand;
-lineAwardBounty: position ME? COLON 'BOUNTY PRIZE' '[' chipCount ']';
-lineTournamentPlacement: position ME? COLON 'Ranking' tournamentPlacement;
-lineTournamentPrize: position ME? COLON 'Prize' (tournamentPrizeCash | tournamentPrizeTicket);
+lineHandsDealt : position ME? COLON 'card dealt to a spot' hand;
+lineAwardBounty: position ME? COLON 'bounty prize' '[' chipCount ']';
+lineTournamentPlacement: position ME? COLON 'ranking' tournamentPlacement;
+lineTournamentPrize: position ME? COLON 'prize' (tournamentPrizeCash | tournamentPrizeTicket);
 lineMisc       :
   (position ME? COLON)?
   (
-    'Table deposit' chipCount
-    | 'Seat sit down'
-    | 'Seat sit out'
-    | 'Seat stand'
-    | 'Seat re-join'
-    | 'Re-join'
-    | 'Table enter user'
-    | 'Table leave user'
-    | 'Stand'
-    | 'Sit out'
-    | 'Sitout' forcedActionReason
-    | 'Enter' forcedActionReason
-    | 'Leave' forcedActionReason
-    | 'Draw for dealer' board
+    'table deposit' chipCount
+    | 'seat sit down'
+    | 'seat sit out'
+    | 'seat stand'
+    | 'seat re-join'
+    | 're-join'
+    | 'table enter user'
+    | 'table leave user'
+    | 'stand'
+    | 'sit out'
+    | 'sitout' forcedActionReason
+    | 'enter' forcedActionReason
+    | 'leave' forcedActionReason
+    | 'draw for dealer' board
   );
 lineAction     : position ME? COLON action;
-lineMuck       : position ME? COLON 'Does not show' hand '(' handStrength ')';
-lineUncalled   : position ME? COLON 'Return uncalled portion of bet' chipCount;
+lineMuck       : position ME? COLON 'does not show' hand '(' handStrength ')';
+lineUncalled   : position ME? COLON 'return uncalled portion of bet' chipCount;
 lineShowdown   : position ME? COLON showdownAction  hand? '(' handStrength ')';
-lineResult     : position ME? COLON ('Hand Result' | 'Hand result') ('-' SIDEPOT)? chipCount;
-lineTotalPot   : 'Total Pot' '(' chipCount ')';
-lineBoard      : 'Board' board;
+lineResult     : position ME? COLON 'hand result' ('-' SIDEPOT)? chipCount;
+lineTotalPot   : 'total pot' '(' chipCount ')';
+lineBoard      : 'board' board;
 lineActionSummary:
-  'Seat' '+'? INT COLON position
+  'seat' '+'? INT COLON position
   (
-    'Folded' ('before'|'on') 'the' STREET
-    | 'HI'? chipCount? '[Does not show]'
-    | '[Mucked]' hand
+    'folded' ('before' | 'on') 'the' STREET
+    | 'hi'? chipCount? '[does not show]'
+    | '[mucked]' hand
     | winHighResult bountyAwardResult?
-    | 'HI' winHighResult ('LO' winLowResult)? bountyAwardResult?
-    | 'LO' winLowResult bountyAwardResult?
+    | 'hi' winHighResult ('lo' winLowResult)? bountyAwardResult?
+    | 'lo' winLowResult bountyAwardResult?
     | loseResult
   );
 
@@ -82,16 +82,16 @@ seatNumber   : INT;
 tableNumber  : INT;
 tournamentNumber: INT;
 tournamentLevel: INT;
-tournamentSpeed: 'Normal' | 'Turbo';
+tournamentSpeed: 'normal' | 'turbo';
 tournamentPlacement: INT;
 tournamentPrizeCash: chipCount;
-tournamentPrizeTicket: 'Tournament Ticket' '[' WORD* chipCount WORD* ']';
+tournamentPrizeTicket: 'tournament ticket' '[' WORD* chipCount WORD* ']';
 timestamp    : INT '-' INT '-' INT INT ':' INT ':' INT;
-site         : 'Bodog' | 'Bovada' | 'Ignition';
-variant      : 'HOLDEM' | 'OMAHA' | 'OMAHA HiLo' | 'HOLDEMZonePoker' | 'OMAHAZonePoker';
-bettingStructure : 'No Limit' | 'Pot Limit' | 'Limit';
+site         : 'bodog' | 'bovada' | 'ignition';
+variant      : 'holdem' | 'omaha' | 'omaha hilo' | 'holdemzonepoker' | 'omahazonepoker';
+bettingStructure : 'no limit' | 'pot limit' | 'limit';
 fastFold     : FASTFOLD;
-position     : 'Small Blind' | 'Big Blind' | 'UTG' | 'UTG+1' | 'UTG+2' | 'UTG+3' | 'UTG+4' | 'UTG+5' | 'Dealer';
+position     : 'small blind' | 'big blind' | 'utg' | ('utg+' INT) | 'dealer';
 chipCount    : '$'? value;
 value        : (INT ',')* INT ('.' INT)?;
 board        : '[' cards ']';
@@ -100,32 +100,32 @@ hand         : '[' cards ']';
 handAndBoard : '[' cards '-' cards ']';
 cards        : card+;
 card         : CARD;
-handStrength : 'High Card' | 'One pair' | 'Two pair' | 'Three of a kind' | 'Straight' | 'Flush' | 'Full House' | 'Four of a kind' | 'Straight Flush' | 'Royal Straight Flush';
+handStrength : 'high card' | 'one pair' | 'two pair' | 'three of a kind' | 'straight' | 'flush' | 'full house' | 'four of a kind' | 'straight flush' | 'royal straight flush';
 action       : actionFold | actionCheck | actionBet | actionCall | actionRaise | actionAllInRaise | actionAllIn | actionAnte;
-actionFold   : ('Fold' | 'Folds') (forcedActionReason | '& shows' hand)?;
-actionCheck  : 'Checks' forcedActionReason?;
-actionBet    : 'Bets' forcedActionReason? chipCount;
-actionCall   : ('Call' | 'Calls') forcedActionReason? chipCount;
-actionRaise  : 'Raises' forcedActionReason? chipCount 'to' chipCount;
-actionAllIn  : 'All-in' forcedActionReason? chipCount;
-actionAllInRaise : 'All-in' '(raise)' forcedActionReason? chipCount 'to' chipCount;
-actionAnte   : 'Ante chip' chipCount;
+actionFold   : ('fold' | 'folds') (forcedActionReason | '& shows' hand)?;
+actionCheck  : 'checks' forcedActionReason?;
+actionBet    : 'bets' forcedActionReason? chipCount;
+actionCall   : ('call' | 'calls') forcedActionReason? chipCount;
+actionRaise  : 'raises' forcedActionReason? chipCount 'to' chipCount;
+actionAllIn  : 'all-in' forcedActionReason? chipCount;
+actionAllInRaise : 'all-in' '(raise)' forcedActionReason? chipCount 'to' chipCount;
+actionAnte   : 'ante chip' chipCount;
 forcedActionReason : '(' ~')'* ')';
-showdownAction: 'Showdown' | 'Mucks';
+showdownAction: 'showdown' | 'mucks';
 winHighResult: chipCount 'with' handStrength (hand | handAndBoard);
 winLowResult : chipCount (hand | handAndBoard);
 loseResult   : ('lose with' | 'lost with') handStrength (hand | handAndBoard);
-bountyAwardResult: 'BOUNTY awarded' COLON chipCount;
+bountyAwardResult: 'bounty awarded' COLON chipCount;
 
 // lexer rules
-ME           : '[ME]';
-STREET       : 'HOLE CARDS' | 'FLOP' | 'TURN' | 'RIVER' | 'SUMMARY';
-FASTFOLD     : 'Zone Poker';
+ME           : '[me]';
+STREET       : 'hole cards' | 'flop' | 'turn' | 'river' | 'summary';
+FASTFOLD     : 'zone poker';
 DEAD         : 'dead';
-SIDEPOT      : 'Side pot' | 'Side Pot';
+SIDEPOT      : 'side pot';
 COLON        : ':';
 INT          : [0-9]+;
-CARD         : [2-9TJQKA][cdhs];
-WORD         : [A-Za-z]+;
+CARD         : [2-9tjqka][cdhs];
+WORD         : [a-z]+;
 EOL          : '\r' | '\n' | '\r\n';
 WS           : [ \t]+ -> skip;
