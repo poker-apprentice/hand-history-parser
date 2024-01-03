@@ -226,6 +226,7 @@ describe('parseHand', () => {
           },
           "players": [
             {
+              "bounty": "0",
               "chipStack": "25",
               "isAnonymous": false,
               "isHero": true,
@@ -235,6 +236,7 @@ describe('parseHand', () => {
               "seatNumber": 1,
             },
             {
+              "bounty": "0",
               "chipStack": "24.4",
               "isAnonymous": true,
               "isHero": false,
@@ -244,6 +246,7 @@ describe('parseHand', () => {
               "seatNumber": 2,
             },
             {
+              "bounty": "0",
               "chipStack": "7.5",
               "isAnonymous": true,
               "isHero": false,
@@ -253,6 +256,7 @@ describe('parseHand', () => {
               "seatNumber": 3,
             },
             {
+              "bounty": "0",
               "chipStack": "33.77",
               "isAnonymous": true,
               "isHero": false,
@@ -262,6 +266,7 @@ describe('parseHand', () => {
               "seatNumber": 4,
             },
             {
+              "bounty": "0",
               "chipStack": "26.87",
               "isAnonymous": true,
               "isHero": false,
@@ -271,6 +276,7 @@ describe('parseHand', () => {
               "seatNumber": 5,
             },
             {
+              "bounty": "0",
               "chipStack": "23.3",
               "isAnonymous": true,
               "isHero": false,
@@ -439,6 +445,7 @@ describe('parseHand', () => {
           },
           "players": [
             {
+              "bounty": "0",
               "chipStack": "20.5",
               "isAnonymous": false,
               "isHero": true,
@@ -448,6 +455,7 @@ describe('parseHand', () => {
               "seatNumber": 1,
             },
             {
+              "bounty": "0",
               "chipStack": "28.79",
               "isAnonymous": true,
               "isHero": false,
@@ -457,6 +465,7 @@ describe('parseHand', () => {
               "seatNumber": 2,
             },
             {
+              "bounty": "0",
               "chipStack": "7.25",
               "isAnonymous": true,
               "isHero": false,
@@ -466,6 +475,7 @@ describe('parseHand', () => {
               "seatNumber": 3,
             },
             {
+              "bounty": "0",
               "chipStack": "33.77",
               "isAnonymous": true,
               "isHero": false,
@@ -475,6 +485,7 @@ describe('parseHand', () => {
               "seatNumber": 4,
             },
             {
+              "bounty": "0",
               "chipStack": "26.87",
               "isAnonymous": true,
               "isHero": false,
@@ -484,6 +495,7 @@ describe('parseHand', () => {
               "seatNumber": 5,
             },
             {
+              "bounty": "0",
               "chipStack": "24.9",
               "isAnonymous": true,
               "isHero": false,
@@ -638,6 +650,7 @@ describe('parseHand', () => {
           },
           "players": [
             {
+              "bounty": "0",
               "chipStack": "21.64",
               "isAnonymous": false,
               "isHero": true,
@@ -647,6 +660,7 @@ describe('parseHand', () => {
               "seatNumber": 1,
             },
             {
+              "bounty": "0",
               "chipStack": "28.44",
               "isAnonymous": true,
               "isHero": false,
@@ -656,6 +670,7 @@ describe('parseHand', () => {
               "seatNumber": 2,
             },
             {
+              "bounty": "0",
               "chipStack": "11.45",
               "isAnonymous": true,
               "isHero": false,
@@ -665,6 +680,7 @@ describe('parseHand', () => {
               "seatNumber": 3,
             },
             {
+              "bounty": "0",
               "chipStack": "25.98",
               "isAnonymous": true,
               "isHero": false,
@@ -674,6 +690,7 @@ describe('parseHand', () => {
               "seatNumber": 4,
             },
             {
+              "bounty": "0",
               "chipStack": "28.77",
               "isAnonymous": true,
               "isHero": false,
@@ -683,6 +700,7 @@ describe('parseHand', () => {
               "seatNumber": 5,
             },
             {
+              "bounty": "0",
               "chipStack": "25",
               "isAnonymous": true,
               "isHero": false,
@@ -812,6 +830,7 @@ describe('parseHand', () => {
           },
           "players": [
             {
+              "bounty": "0",
               "chipStack": "25.83",
               "isAnonymous": false,
               "isHero": true,
@@ -821,6 +840,7 @@ describe('parseHand', () => {
               "seatNumber": 1,
             },
             {
+              "bounty": "0",
               "chipStack": "9.68",
               "isAnonymous": true,
               "isHero": false,
@@ -830,6 +850,7 @@ describe('parseHand', () => {
               "seatNumber": 2,
             },
             {
+              "bounty": "0",
               "chipStack": "26.92",
               "isAnonymous": true,
               "isHero": false,
@@ -839,6 +860,7 @@ describe('parseHand', () => {
               "seatNumber": 3,
             },
             {
+              "bounty": "0",
               "chipStack": "25",
               "isAnonymous": true,
               "isHero": false,
@@ -848,6 +870,7 @@ describe('parseHand', () => {
               "seatNumber": 4,
             },
             {
+              "bounty": "0",
               "chipStack": "30.55",
               "isAnonymous": true,
               "isHero": false,
@@ -857,6 +880,7 @@ describe('parseHand', () => {
               "seatNumber": 5,
             },
             {
+              "bounty": "0",
               "chipStack": "25",
               "isAnonymous": true,
               "isHero": false,
@@ -1106,6 +1130,7 @@ describe('parseHand', () => {
           },
           "players": [
             {
+              "bounty": "0",
               "chipStack": "26.54",
               "isAnonymous": true,
               "isHero": false,
@@ -1115,6 +1140,7 @@ describe('parseHand', () => {
               "seatNumber": 1,
             },
             {
+              "bounty": "0",
               "chipStack": "10.65",
               "isAnonymous": true,
               "isHero": false,
@@ -1124,6 +1150,7 @@ describe('parseHand', () => {
               "seatNumber": 2,
             },
             {
+              "bounty": "0",
               "chipStack": "14.57",
               "isAnonymous": true,
               "isHero": false,
@@ -1133,6 +1160,7 @@ describe('parseHand', () => {
               "seatNumber": 3,
             },
             {
+              "bounty": "0",
               "chipStack": "24.89",
               "isAnonymous": true,
               "isHero": false,
@@ -1142,6 +1170,7 @@ describe('parseHand', () => {
               "seatNumber": 4,
             },
             {
+              "bounty": "0",
               "chipStack": "47.51",
               "isAnonymous": false,
               "isHero": true,
@@ -1151,6 +1180,7 @@ describe('parseHand', () => {
               "seatNumber": 5,
             },
             {
+              "bounty": "0",
               "chipStack": "27.1",
               "isAnonymous": true,
               "isHero": false,
@@ -1338,6 +1368,7 @@ describe('parseHand', () => {
           },
           "players": [
             {
+              "bounty": "0",
               "chipStack": "16.56",
               "isAnonymous": false,
               "isHero": true,
@@ -1347,6 +1378,7 @@ describe('parseHand', () => {
               "seatNumber": 1,
             },
             {
+              "bounty": "0",
               "chipStack": "33.64",
               "isAnonymous": true,
               "isHero": false,
@@ -1356,6 +1388,7 @@ describe('parseHand', () => {
               "seatNumber": 2,
             },
             {
+              "bounty": "0",
               "chipStack": "32.01",
               "isAnonymous": true,
               "isHero": false,
@@ -1365,6 +1398,7 @@ describe('parseHand', () => {
               "seatNumber": 3,
             },
             {
+              "bounty": "0",
               "chipStack": "25.01",
               "isAnonymous": true,
               "isHero": false,
@@ -1562,6 +1596,7 @@ describe('parseHand', () => {
           },
           "players": [
             {
+              "bounty": "0",
               "chipStack": "24.65",
               "isAnonymous": true,
               "isHero": false,
@@ -1571,6 +1606,7 @@ describe('parseHand', () => {
               "seatNumber": 1,
             },
             {
+              "bounty": "0",
               "chipStack": "25",
               "isAnonymous": true,
               "isHero": false,
@@ -1580,6 +1616,7 @@ describe('parseHand', () => {
               "seatNumber": 2,
             },
             {
+              "bounty": "0",
               "chipStack": "7.15",
               "isAnonymous": true,
               "isHero": false,
@@ -1589,6 +1626,7 @@ describe('parseHand', () => {
               "seatNumber": 3,
             },
             {
+              "bounty": "0",
               "chipStack": "24.75",
               "isAnonymous": true,
               "isHero": false,
@@ -1598,6 +1636,7 @@ describe('parseHand', () => {
               "seatNumber": 5,
             },
             {
+              "bounty": "0",
               "chipStack": "34.65",
               "isAnonymous": false,
               "isHero": true,
@@ -1767,6 +1806,7 @@ describe('parseHand', () => {
           },
           "players": [
             {
+              "bounty": "0",
               "chipStack": "21.89",
               "isAnonymous": true,
               "isHero": false,
@@ -1776,6 +1816,7 @@ describe('parseHand', () => {
               "seatNumber": 1,
             },
             {
+              "bounty": "0",
               "chipStack": "25",
               "isAnonymous": false,
               "isHero": true,
@@ -1785,6 +1826,7 @@ describe('parseHand', () => {
               "seatNumber": 2,
             },
             {
+              "bounty": "0",
               "chipStack": "26.95",
               "isAnonymous": true,
               "isHero": false,
@@ -1794,6 +1836,7 @@ describe('parseHand', () => {
               "seatNumber": 3,
             },
             {
+              "bounty": "0",
               "chipStack": "47.01",
               "isAnonymous": true,
               "isHero": false,
@@ -1803,6 +1846,7 @@ describe('parseHand', () => {
               "seatNumber": 4,
             },
             {
+              "bounty": "0",
               "chipStack": "29.93",
               "isAnonymous": true,
               "isHero": false,
@@ -1812,6 +1856,7 @@ describe('parseHand', () => {
               "seatNumber": 5,
             },
             {
+              "bounty": "0",
               "chipStack": "52.8",
               "isAnonymous": true,
               "isHero": false,
@@ -2002,6 +2047,7 @@ describe('parseHand', () => {
           },
           "players": [
             {
+              "bounty": "0",
               "chipStack": "38.96",
               "isAnonymous": true,
               "isHero": false,
@@ -2011,6 +2057,7 @@ describe('parseHand', () => {
               "seatNumber": 2,
             },
             {
+              "bounty": "0",
               "chipStack": "11",
               "isAnonymous": true,
               "isHero": false,
@@ -2020,6 +2067,7 @@ describe('parseHand', () => {
               "seatNumber": 4,
             },
             {
+              "bounty": "0",
               "chipStack": "7.5",
               "isAnonymous": true,
               "isHero": false,
@@ -2029,6 +2077,7 @@ describe('parseHand', () => {
               "seatNumber": 5,
             },
             {
+              "bounty": "0",
               "chipStack": "25",
               "isAnonymous": false,
               "isHero": true,
@@ -2192,6 +2241,7 @@ describe('parseHand', () => {
           },
           "players": [
             {
+              "bounty": "0",
               "chipStack": "6.84",
               "isAnonymous": true,
               "isHero": false,
@@ -2201,6 +2251,7 @@ describe('parseHand', () => {
               "seatNumber": 1,
             },
             {
+              "bounty": "0",
               "chipStack": "25.6",
               "isAnonymous": false,
               "isHero": true,
@@ -2353,6 +2404,7 @@ describe('parseHand', () => {
           },
           "players": [
             {
+              "bounty": "0",
               "chipStack": "7.5",
               "isAnonymous": true,
               "isHero": false,
@@ -2362,6 +2414,7 @@ describe('parseHand', () => {
               "seatNumber": 1,
             },
             {
+              "bounty": "0",
               "chipStack": "25",
               "isAnonymous": false,
               "isHero": true,
@@ -2459,6 +2512,7 @@ describe('parseHand', () => {
           },
           "players": [
             {
+              "bounty": "0",
               "chipStack": "101.33",
               "isAnonymous": false,
               "isHero": true,
@@ -2468,6 +2522,7 @@ describe('parseHand', () => {
               "seatNumber": 2,
             },
             {
+              "bounty": "0",
               "chipStack": "26.95",
               "isAnonymous": true,
               "isHero": false,
@@ -2674,6 +2729,7 @@ describe('parseHand', () => {
           },
           "players": [
             {
+              "bounty": "0",
               "chipStack": "152.7",
               "isAnonymous": true,
               "isHero": false,
@@ -2683,6 +2739,7 @@ describe('parseHand', () => {
               "seatNumber": 1,
             },
             {
+              "bounty": "0",
               "chipStack": "92",
               "isAnonymous": false,
               "isHero": true,
@@ -2692,6 +2749,7 @@ describe('parseHand', () => {
               "seatNumber": 2,
             },
             {
+              "bounty": "0",
               "chipStack": "48.51",
               "isAnonymous": true,
               "isHero": false,
@@ -2701,6 +2759,7 @@ describe('parseHand', () => {
               "seatNumber": 3,
             },
             {
+              "bounty": "0",
               "chipStack": "80.31",
               "isAnonymous": true,
               "isHero": false,
@@ -2710,6 +2769,7 @@ describe('parseHand', () => {
               "seatNumber": 4,
             },
             {
+              "bounty": "0",
               "chipStack": "65.01",
               "isAnonymous": true,
               "isHero": false,
@@ -2719,6 +2779,7 @@ describe('parseHand', () => {
               "seatNumber": 5,
             },
             {
+              "bounty": "0",
               "chipStack": "98",
               "isAnonymous": true,
               "isHero": false,
@@ -2895,6 +2956,7 @@ describe('parseHand', () => {
           },
           "players": [
             {
+              "bounty": "0",
               "chipStack": "26.3",
               "isAnonymous": true,
               "isHero": false,
@@ -2904,6 +2966,7 @@ describe('parseHand', () => {
               "seatNumber": 1,
             },
             {
+              "bounty": "0",
               "chipStack": "22.18",
               "isAnonymous": true,
               "isHero": false,
@@ -2913,6 +2976,7 @@ describe('parseHand', () => {
               "seatNumber": 2,
             },
             {
+              "bounty": "0",
               "chipStack": "30.36",
               "isAnonymous": true,
               "isHero": false,
@@ -2922,6 +2986,7 @@ describe('parseHand', () => {
               "seatNumber": 3,
             },
             {
+              "bounty": "0",
               "chipStack": "25.1",
               "isAnonymous": false,
               "isHero": true,
@@ -2931,6 +2996,7 @@ describe('parseHand', () => {
               "seatNumber": 4,
             },
             {
+              "bounty": "0",
               "chipStack": "30.84",
               "isAnonymous": true,
               "isHero": false,
@@ -2940,6 +3006,7 @@ describe('parseHand', () => {
               "seatNumber": 5,
             },
             {
+              "bounty": "0",
               "chipStack": "34.47",
               "isAnonymous": true,
               "isHero": false,
@@ -3154,6 +3221,7 @@ describe('parseHand', () => {
           },
           "players": [
             {
+              "bounty": "0",
               "chipStack": "200.18",
               "isAnonymous": true,
               "isHero": false,
@@ -3163,6 +3231,7 @@ describe('parseHand', () => {
               "seatNumber": 1,
             },
             {
+              "bounty": "0",
               "chipStack": "90.76",
               "isAnonymous": true,
               "isHero": false,
@@ -3172,6 +3241,7 @@ describe('parseHand', () => {
               "seatNumber": 2,
             },
             {
+              "bounty": "0",
               "chipStack": "176.74",
               "isAnonymous": true,
               "isHero": false,
@@ -3181,6 +3251,7 @@ describe('parseHand', () => {
               "seatNumber": 3,
             },
             {
+              "bounty": "0",
               "chipStack": "1066.03",
               "isAnonymous": false,
               "isHero": true,
@@ -3190,6 +3261,7 @@ describe('parseHand', () => {
               "seatNumber": 4,
             },
             {
+              "bounty": "0",
               "chipStack": "110.15",
               "isAnonymous": true,
               "isHero": false,
@@ -3199,6 +3271,7 @@ describe('parseHand', () => {
               "seatNumber": 5,
             },
             {
+              "bounty": "0",
               "chipStack": "525.33",
               "isAnonymous": true,
               "isHero": false,
@@ -3384,6 +3457,7 @@ describe('parseHand', () => {
           },
           "players": [
             {
+              "bounty": "0",
               "chipStack": "18.26",
               "isAnonymous": true,
               "isHero": false,
@@ -3393,6 +3467,7 @@ describe('parseHand', () => {
               "seatNumber": 2,
             },
             {
+              "bounty": "0",
               "chipStack": "23.91",
               "isAnonymous": false,
               "isHero": true,
@@ -3402,6 +3477,7 @@ describe('parseHand', () => {
               "seatNumber": 3,
             },
             {
+              "bounty": "0",
               "chipStack": "54.38",
               "isAnonymous": true,
               "isHero": false,
@@ -3411,6 +3487,7 @@ describe('parseHand', () => {
               "seatNumber": 4,
             },
             {
+              "bounty": "0",
               "chipStack": "54.15",
               "isAnonymous": true,
               "isHero": false,
@@ -3541,6 +3618,7 @@ describe('parseHand', () => {
             },
             "players": [
               {
+                "bounty": "0",
                 "chipStack": "10.45",
                 "isAnonymous": true,
                 "isHero": false,
@@ -3550,6 +3628,7 @@ describe('parseHand', () => {
                 "seatNumber": 1,
               },
               {
+                "bounty": "0",
                 "chipStack": "24.75",
                 "isAnonymous": true,
                 "isHero": false,
@@ -3559,6 +3638,7 @@ describe('parseHand', () => {
                 "seatNumber": 2,
               },
               {
+                "bounty": "0",
                 "chipStack": "23.29",
                 "isAnonymous": true,
                 "isHero": false,
@@ -3568,6 +3648,7 @@ describe('parseHand', () => {
                 "seatNumber": 3,
               },
               {
+                "bounty": "0",
                 "chipStack": "127.59",
                 "isAnonymous": true,
                 "isHero": false,
@@ -3577,6 +3658,7 @@ describe('parseHand', () => {
                 "seatNumber": 4,
               },
               {
+                "bounty": "0",
                 "chipStack": "12.47",
                 "isAnonymous": true,
                 "isHero": false,
@@ -3586,6 +3668,7 @@ describe('parseHand', () => {
                 "seatNumber": 5,
               },
               {
+                "bounty": "0",
                 "chipStack": "25",
                 "isAnonymous": false,
                 "isHero": true,
@@ -3715,6 +3798,7 @@ describe('parseHand', () => {
             },
             "players": [
               {
+                "bounty": "0",
                 "chipStack": "202",
                 "isAnonymous": true,
                 "isHero": false,
@@ -3724,6 +3808,7 @@ describe('parseHand', () => {
                 "seatNumber": 1,
               },
               {
+                "bounty": "0",
                 "chipStack": "334.8",
                 "isAnonymous": true,
                 "isHero": false,
@@ -3733,6 +3818,7 @@ describe('parseHand', () => {
                 "seatNumber": 2,
               },
               {
+                "bounty": "0",
                 "chipStack": "179.95",
                 "isAnonymous": true,
                 "isHero": false,
@@ -3742,6 +3828,7 @@ describe('parseHand', () => {
                 "seatNumber": 3,
               },
               {
+                "bounty": "0",
                 "chipStack": "254.75",
                 "isAnonymous": false,
                 "isHero": true,
@@ -3751,6 +3838,7 @@ describe('parseHand', () => {
                 "seatNumber": 4,
               },
               {
+                "bounty": "0",
                 "chipStack": "199",
                 "isAnonymous": true,
                 "isHero": false,
@@ -3760,6 +3848,7 @@ describe('parseHand', () => {
                 "seatNumber": 5,
               },
               {
+                "bounty": "0",
                 "chipStack": "222.78",
                 "isAnonymous": true,
                 "isHero": false,
@@ -4033,6 +4122,7 @@ describe('parseHand', () => {
           },
           "players": [
             {
+              "bounty": "0",
               "chipStack": "4619",
               "isAnonymous": true,
               "isHero": false,
@@ -4042,6 +4132,7 @@ describe('parseHand', () => {
               "seatNumber": 30,
             },
             {
+              "bounty": "0",
               "chipStack": "6282",
               "isAnonymous": true,
               "isHero": false,
@@ -4051,6 +4142,7 @@ describe('parseHand', () => {
               "seatNumber": 37,
             },
             {
+              "bounty": "0",
               "chipStack": "4300",
               "isAnonymous": true,
               "isHero": false,
@@ -4060,6 +4152,7 @@ describe('parseHand', () => {
               "seatNumber": 86,
             },
             {
+              "bounty": "0",
               "chipStack": "11003",
               "isAnonymous": true,
               "isHero": false,
@@ -4069,6 +4162,7 @@ describe('parseHand', () => {
               "seatNumber": 16,
             },
             {
+              "bounty": "0",
               "chipStack": "3000",
               "isAnonymous": false,
               "isHero": true,
@@ -4078,6 +4172,7 @@ describe('parseHand', () => {
               "seatNumber": 89,
             },
             {
+              "bounty": "0",
               "chipStack": "5714",
               "isAnonymous": true,
               "isHero": false,
@@ -4087,6 +4182,7 @@ describe('parseHand', () => {
               "seatNumber": 61,
             },
             {
+              "bounty": "0",
               "chipStack": "15486",
               "isAnonymous": true,
               "isHero": false,
@@ -4247,6 +4343,7 @@ describe('parseHand', () => {
           },
           "players": [
             {
+              "bounty": "0",
               "chipStack": "1125",
               "isAnonymous": true,
               "isHero": false,
@@ -4256,6 +4353,7 @@ describe('parseHand', () => {
               "seatNumber": 4,
             },
             {
+              "bounty": "0",
               "chipStack": "845",
               "isAnonymous": true,
               "isHero": false,
@@ -4265,6 +4363,7 @@ describe('parseHand', () => {
               "seatNumber": 1,
             },
             {
+              "bounty": "0",
               "chipStack": "760",
               "isAnonymous": true,
               "isHero": false,
@@ -4274,6 +4373,7 @@ describe('parseHand', () => {
               "seatNumber": 3,
             },
             {
+              "bounty": "0",
               "chipStack": "270",
               "isAnonymous": false,
               "isHero": true,
@@ -4469,6 +4569,7 @@ describe('parseHand', () => {
           },
           "players": [
             {
+              "bounty": "0",
               "chipStack": "1840",
               "isAnonymous": true,
               "isHero": false,
@@ -4478,6 +4579,7 @@ describe('parseHand', () => {
               "seatNumber": 4,
             },
             {
+              "bounty": "0",
               "chipStack": "2610",
               "isAnonymous": true,
               "isHero": false,
@@ -4487,6 +4589,7 @@ describe('parseHand', () => {
               "seatNumber": 14,
             },
             {
+              "bounty": "0",
               "chipStack": "2155",
               "isAnonymous": false,
               "isHero": true,
@@ -4496,6 +4599,7 @@ describe('parseHand', () => {
               "seatNumber": 18,
             },
             {
+              "bounty": "0",
               "chipStack": "2250",
               "isAnonymous": true,
               "isHero": false,
@@ -4505,6 +4609,7 @@ describe('parseHand', () => {
               "seatNumber": 9,
             },
             {
+              "bounty": "0",
               "chipStack": "615",
               "isAnonymous": true,
               "isHero": false,
@@ -4514,6 +4619,7 @@ describe('parseHand', () => {
               "seatNumber": 3,
             },
             {
+              "bounty": "0",
               "chipStack": "4030",
               "isAnonymous": true,
               "isHero": false,
@@ -4702,6 +4808,7 @@ describe('parseHand', () => {
           },
           "players": [
             {
+              "bounty": "0",
               "chipStack": "300",
               "isAnonymous": true,
               "isHero": false,
@@ -4711,6 +4818,7 @@ describe('parseHand', () => {
               "seatNumber": 3,
             },
             {
+              "bounty": "0",
               "chipStack": "300",
               "isAnonymous": false,
               "isHero": true,
@@ -4720,6 +4828,7 @@ describe('parseHand', () => {
               "seatNumber": 2,
             },
             {
+              "bounty": "0",
               "chipStack": "300",
               "isAnonymous": true,
               "isHero": false,
@@ -4911,6 +5020,7 @@ describe('parseHand', () => {
           },
           "players": [
             {
+              "bounty": "0",
               "chipStack": "3432",
               "isAnonymous": true,
               "isHero": false,
@@ -4920,6 +5030,7 @@ describe('parseHand', () => {
               "seatNumber": 6,
             },
             {
+              "bounty": "0",
               "chipStack": "10193",
               "isAnonymous": true,
               "isHero": false,
@@ -4929,6 +5040,7 @@ describe('parseHand', () => {
               "seatNumber": 3,
             },
             {
+              "bounty": "0",
               "chipStack": "14375",
               "isAnonymous": false,
               "isHero": true,
@@ -5237,6 +5349,7 @@ describe('parseHand', () => {
           },
           "players": [
             {
+              "bounty": "0",
               "chipStack": "13243",
               "isAnonymous": true,
               "isHero": false,
@@ -5246,6 +5359,7 @@ describe('parseHand', () => {
               "seatNumber": 9,
             },
             {
+              "bounty": "0",
               "chipStack": "17389",
               "isAnonymous": true,
               "isHero": false,
@@ -5255,6 +5369,7 @@ describe('parseHand', () => {
               "seatNumber": 17,
             },
             {
+              "bounty": "0",
               "chipStack": "14971",
               "isAnonymous": true,
               "isHero": false,
@@ -5264,6 +5379,7 @@ describe('parseHand', () => {
               "seatNumber": 18,
             },
             {
+              "bounty": "0",
               "chipStack": "13952",
               "isAnonymous": true,
               "isHero": false,
@@ -5273,6 +5389,7 @@ describe('parseHand', () => {
               "seatNumber": 4,
             },
             {
+              "bounty": "0",
               "chipStack": "11217",
               "isAnonymous": true,
               "isHero": false,
@@ -5282,6 +5399,7 @@ describe('parseHand', () => {
               "seatNumber": 13,
             },
             {
+              "bounty": "0",
               "chipStack": "16326",
               "isAnonymous": true,
               "isHero": false,
@@ -5291,6 +5409,7 @@ describe('parseHand', () => {
               "seatNumber": 15,
             },
             {
+              "bounty": "0",
               "chipStack": "14979",
               "isAnonymous": true,
               "isHero": false,
@@ -5300,6 +5419,7 @@ describe('parseHand', () => {
               "seatNumber": 24,
             },
             {
+              "bounty": "0",
               "chipStack": "17162",
               "isAnonymous": false,
               "isHero": true,
@@ -5459,6 +5579,7 @@ describe('parseHand', () => {
           },
           "players": [
             {
+              "bounty": "0",
               "chipStack": "500",
               "isAnonymous": true,
               "isHero": false,
@@ -5468,6 +5589,7 @@ describe('parseHand', () => {
               "seatNumber": 4,
             },
             {
+              "bounty": "0",
               "chipStack": "500",
               "isAnonymous": true,
               "isHero": false,
@@ -5477,6 +5599,7 @@ describe('parseHand', () => {
               "seatNumber": 1,
             },
             {
+              "bounty": "0",
               "chipStack": "500",
               "isAnonymous": true,
               "isHero": false,
@@ -5486,6 +5609,7 @@ describe('parseHand', () => {
               "seatNumber": 3,
             },
             {
+              "bounty": "0",
               "chipStack": "500",
               "isAnonymous": true,
               "isHero": false,
@@ -5495,6 +5619,7 @@ describe('parseHand', () => {
               "seatNumber": 6,
             },
             {
+              "bounty": "0",
               "chipStack": "500",
               "isAnonymous": false,
               "isHero": true,
@@ -5504,6 +5629,7 @@ describe('parseHand', () => {
               "seatNumber": 5,
             },
             {
+              "bounty": "0",
               "chipStack": "500",
               "isAnonymous": true,
               "isHero": false,

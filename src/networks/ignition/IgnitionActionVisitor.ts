@@ -2,7 +2,7 @@ import { AbstractParseTreeVisitor } from 'antlr4ts/tree/AbstractParseTreeVisitor
 import { LineActionContext } from '~/grammar/IgnitionParser';
 import { IgnitionVisitor } from '~/grammar/IgnitionVisitor';
 import { Action } from '~/types';
-import { IgnitionChipCountVisitor } from './IgnitionChipCountVisitor';
+import { getChipCount } from './getChipCount';
 import { NotImplementedError } from './types';
 
 export class IgnitionActionVisitor
@@ -22,7 +22,7 @@ export class IgnitionActionVisitor
 
     const allInAction = action.actionAllIn();
     if (allInAction) {
-      const amount = new IgnitionChipCountVisitor().visit(allInAction.chipCount()).toString();
+      const amount = getChipCount(allInAction.chipCount());
       const playerName = ctx.position().text;
 
       // This all-in action could actually represent a bet or a call. Unfortunately,
@@ -34,26 +34,22 @@ export class IgnitionActionVisitor
 
     const allInRaiseAction = action.actionAllInRaise();
     if (allInRaiseAction) {
-      const amount = new IgnitionChipCountVisitor()
-        .visit(allInRaiseAction.chipCount()[0])
-        .toString();
-      const totalBet = new IgnitionChipCountVisitor()
-        .visit(allInRaiseAction.chipCount()[1])
-        .toString();
+      const amount = getChipCount(allInRaiseAction.chipCount()[0]);
+      const totalBet = getChipCount(allInRaiseAction.chipCount()[1]);
       const playerName = ctx.position().text;
       return [{ type: 'raise', playerName, amount, totalBet, isAllIn: true }];
     }
 
     const betAction = action.actionBet();
     if (betAction) {
-      const amount = new IgnitionChipCountVisitor().visit(betAction.chipCount()).toString();
+      const amount = getChipCount(betAction.chipCount());
       const playerName = ctx.position().text;
       return [{ type: 'bet', playerName, amount, isAllIn: false }];
     }
 
     const callAction = action.actionCall();
     if (callAction) {
-      const amount = new IgnitionChipCountVisitor().visit(callAction.chipCount()).toString();
+      const amount = getChipCount(callAction.chipCount());
       const playerName = ctx.position().text;
       return [{ type: 'call', playerName, amount, isAllIn: false }];
     }
@@ -72,15 +68,15 @@ export class IgnitionActionVisitor
 
     const raiseAction = action.actionRaise();
     if (raiseAction) {
-      const amount = new IgnitionChipCountVisitor().visit(raiseAction.chipCount()[0]).toString();
-      const totalBet = new IgnitionChipCountVisitor().visit(raiseAction.chipCount()[1]).toString();
+      const amount = getChipCount(raiseAction.chipCount()[0]);
+      const totalBet = getChipCount(raiseAction.chipCount()[1]);
       const playerName = ctx.position().text;
       return [{ type: 'raise', playerName, amount, totalBet, isAllIn: false }];
     }
 
     const anteAction = action.actionAnte();
     if (anteAction) {
-      const amount = new IgnitionChipCountVisitor().visit(anteAction.chipCount()).toString();
+      const amount = getChipCount(anteAction.chipCount());
       const playerName = ctx.position().text;
       return [{ type: 'post', postType: 'ante', playerName, amount }];
     }

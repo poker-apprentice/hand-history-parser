@@ -8,6 +8,7 @@ import {
   HandStrengthContext,
   LineActionContext,
   LineAwardBountyContext,
+  LineBigBlindContext,
   LineHandsDealtContext,
   LineMetaCashContext,
   LineMetaTournamentContext,
@@ -26,12 +27,12 @@ import {
   VariantContext,
 } from '~/grammar/IgnitionParser';
 import { IgnitionVisitor } from '~/grammar/IgnitionVisitor';
-import { BettingStructure, Site, Street, TournamentSpeed, Variant } from '~/types';
+import { BettingStructure, Street, TournamentSpeed, Variant } from '~/types';
 import { IgnitionActionVisitor } from './IgnitionActionVisitor';
-import { IgnitionChipCountVisitor } from './IgnitionChipCountVisitor';
-import { Line } from './types';
+import { getChipCount } from './getChipCount';
+import { IgnitionSite, Line } from './types';
 
-const getSite = (ctx: SiteContext): Site => {
+const getSite = (ctx: SiteContext): IgnitionSite => {
   switch (ctx.text) {
     case 'Bodog':
       return 'bodog';
@@ -249,7 +250,7 @@ export class IgnitionHandHistoryVisitor
   }
 
   public visitLineSmallBlind(ctx: LineSmallBlindContext): Line[] {
-    const chipCount = new IgnitionChipCountVisitor().visit(ctx.chipCount()).toString();
+    const chipCount = getChipCount(ctx.chipCount());
     const playerName = 'Small Blind';
     return [
       { type: 'smallBlind', chipCount },
@@ -260,8 +261,8 @@ export class IgnitionHandHistoryVisitor
     ];
   }
 
-  public visitLineBigBlind(ctx: LineSmallBlindContext): Line[] {
-    const chipCount = new IgnitionChipCountVisitor().visit(ctx.chipCount()).toString();
+  public visitLineBigBlind(ctx: LineBigBlindContext): Line[] {
+    const chipCount = getChipCount(ctx.chipCount());
     const playerName = 'Big Blind';
     return [
       { type: 'bigBlind', chipCount },
@@ -274,7 +275,7 @@ export class IgnitionHandHistoryVisitor
 
   public visitLinePost(ctx: LinePostContext): Line[] {
     const chipCountContext = ctx.chipCount();
-    const chipCount = new IgnitionChipCountVisitor().visit(chipCountContext).toString();
+    const chipCount = getChipCount(chipCountContext);
 
     // If a user posts without waiting for the big blind in a cash game,
     // it should not be considered an ante.
@@ -295,7 +296,7 @@ export class IgnitionHandHistoryVisitor
   }
 
   public visitLineUncalled(ctx: LineUncalledContext): Line[] {
-    const chipCount = new IgnitionChipCountVisitor().visit(ctx.chipCount()).toString();
+    const chipCount = getChipCount(ctx.chipCount());
     const playerName = ctx.position().text;
     return [{ type: 'action', action: { type: 'return-bet', playerName, amount: chipCount } }];
   }
@@ -305,7 +306,7 @@ export class IgnitionHandHistoryVisitor
     const positionContext = ctx.position();
     const name = positionContext.text;
     const positionIndex = getPositionIndex(positionContext);
-    const chipCount = new IgnitionChipCountVisitor().visit(ctx.chipCount()).toString();
+    const chipCount = getChipCount(ctx.chipCount());
     const isHero = !!ctx.ME();
     const isAnonymous = !isHero;
 
@@ -369,7 +370,7 @@ export class IgnitionHandHistoryVisitor
   public visitLineResult(ctx: LineResultContext): Line[] {
     const playerName = ctx.position().text;
     const isSidePot = !!ctx.SIDEPOT();
-    const chipCount = new IgnitionChipCountVisitor().visit(ctx.chipCount()).toString();
+    const chipCount = getChipCount(ctx.chipCount());
     return [
       { type: 'action', action: { type: 'award-pot', playerName, amount: chipCount, isSidePot } },
     ];
@@ -377,7 +378,7 @@ export class IgnitionHandHistoryVisitor
 
   public visitLineAwardBounty(ctx: LineAwardBountyContext): Line[] {
     const playerName = ctx.position().text;
-    const amount = new IgnitionChipCountVisitor().visit(ctx.chipCount()).toString();
+    const amount = getChipCount(ctx.chipCount());
     return [{ type: 'action', action: { type: 'award-bounty', playerName, amount } }];
   }
 
@@ -391,13 +392,13 @@ export class IgnitionHandHistoryVisitor
     const playerName = ctx.position().text;
     const prizeCash = ctx.tournamentPrizeCash();
     if (prizeCash) {
-      const amount = new IgnitionChipCountVisitor().visit(prizeCash.chipCount()).toString();
+      const amount = getChipCount(prizeCash.chipCount());
       return [{ type: 'action', action: { type: 'tournament-award', playerName, amount } }];
     }
 
     const prizeTicket = ctx.tournamentPrizeTicket();
     if (prizeTicket) {
-      const amount = new IgnitionChipCountVisitor().visit(prizeTicket.chipCount()).toString();
+      const amount = getChipCount(prizeTicket.chipCount());
       return [{ type: 'action', action: { type: 'tournament-award', playerName, amount } }];
     }
 

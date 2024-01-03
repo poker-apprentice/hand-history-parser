@@ -2,7 +2,11 @@ import { Position, TableSize } from '../types';
 
 const POSITIONS_BY_TABLE_SIZE: Record<TableSize, Position[]> = {
   2: ['BB', 'SB'],
+  3: ['BTN', 'SB', 'BB'],
+  4: ['BTN', 'SB', 'BB', 'UTG'],
+  5: ['BTN', 'SB', 'BB', 'UTG', 'CO'],
   6: ['BTN', 'SB', 'BB', 'UTG', 'MP', 'CO'],
+  7: ['BTN', 'SB', 'BB', 'UTG', 'MP', 'HJ', 'CO'],
   8: ['BTN', 'SB', 'BB', 'UTG', 'UTG+1', 'MP', 'HJ', 'CO'],
   9: ['BTN', 'SB', 'BB', 'UTG', 'UTG+1', 'MP', 'LJ', 'HJ', 'CO'],
 };

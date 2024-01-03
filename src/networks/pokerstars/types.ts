@@ -1,6 +1,6 @@
-import { Action, BettingStructure, Site, TournamentSpeed, Variant } from '~/types';
+import { Action, BettingStructure, Site, Variant } from '~/types';
 
-export type IgnitionSite = Site & ('bodog' | 'bovada' | 'ignition');
+export type PokerStarsSite = Site & 'pokerstars';
 
 interface BaseLine {
   type: string;
@@ -11,30 +11,37 @@ export interface LineAction extends BaseLine {
   action: Action;
 }
 
-interface LineMetaBase extends BaseLine {
-  type: 'meta';
+interface LineGameMetaBase extends BaseLine {
+  type: 'gameMeta';
   gameType: string;
-  site: IgnitionSite;
+  site: PokerStarsSite;
+  currency: string;
   handNumber: string;
-  tableNumber: string;
   variant: Variant;
+  bettingStructure: BettingStructure;
   timestamp: Date;
 }
 
-interface LineMetaCash extends LineMetaBase {
+interface LineGameMetaCash extends LineGameMetaBase {
   gameType: 'cash';
-  bettingStructure: BettingStructure;
-  fastFold: boolean;
 }
 
-interface LineMetaTournament extends LineMetaBase {
+interface LineMetaTournament extends LineGameMetaBase {
   gameType: 'tournament';
   tournamentNumber: string;
   level: number;
-  speed: TournamentSpeed | undefined;
+  // speed: TournamentSpeed | undefined;
+  buyIn: string;
+  entryFee: string;
 }
 
-export type LineMeta = LineMetaCash | LineMetaTournament;
+export type LineGameMeta = LineGameMetaCash | LineMetaTournament;
+
+export interface LineTableMeta {
+  type: 'tableMeta';
+  tableName: string;
+  tableSize: number;
+}
 
 export interface LinePlayer extends BaseLine {
   type: 'player';
@@ -42,8 +49,7 @@ export interface LinePlayer extends BaseLine {
   positionIndex: number;
   seatNumber: number;
   chipCount: string;
-  isHero: boolean;
-  isAnonymous: boolean;
+  bounty: string | undefined;
 }
 
 export interface LineSmallBlind extends BaseLine {
@@ -61,6 +67,13 @@ export interface LineAnte extends BaseLine {
   chipCount: string;
 }
 
-export type Line = LineAction | LineMeta | LinePlayer | LineSmallBlind | LineBigBlind | LineAnte;
+export type Line =
+  | LineAction
+  | LineGameMeta
+  | LineTableMeta
+  | LinePlayer
+  | LineSmallBlind
+  | LineBigBlind
+  | LineAnte;
 
 export class NotImplementedError extends Error {}

@@ -1,23 +1,25 @@
 import { InvalidSiteError } from './errors/InvalidSiteError';
 import { Site } from './types';
 
-const getFirstLine = (str: string) => {
-  const [firstLine] = str.replace(/^\s+/g, '').split(/[\r\n]+/g, 2);
-  return firstLine;
-};
+const invert = <T extends PropertyKey, U extends PropertyKey>(input: Record<T, U>) =>
+  Object.fromEntries(Object.entries(input).map(([key, value]) => [value, key])) as Record<U, T>;
+
+const SITE_STRINGS: Record<Site, string> = {
+  bodog: 'Bodog',
+  bovada: 'Bovada',
+  ignition: 'Ignition',
+  pokerstars: 'PokerStars',
+} as const;
+
+const SITE_LOOKUP = invert(SITE_STRINGS);
 
 export const parseSite = (hand: string): Site => {
-  const siteMeta = getFirstLine(hand);
+  const regex = new RegExp(`(?<site>${Object.values(SITE_STRINGS).join('|')})`, 'm');
+  const groups = hand.match(regex)?.groups ?? {};
+  const site: Site | undefined = SITE_LOOKUP[groups.site];
 
-  if (siteMeta.match(/^Bodog\b/)) {
-    return 'bodog';
+  if (!site) {
+    throw new InvalidSiteError(hand);
   }
-  if (siteMeta.match(/^Bovada\b/)) {
-    return 'bovada';
-  }
-  if (siteMeta.match(/^Ignition\b/)) {
-    return 'ignition';
-  }
-
-  throw new InvalidSiteError(siteMeta);
+  return site;
 };
